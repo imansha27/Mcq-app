@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/navbar.css">
+    <title>Home</title>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar-container" id="navbarContainer"></div>
+        <div class="left-container">
+            <h1>ChemX</h1>
+            <h2>“Creating Chemical Connections”</h2>
+            <button class="custom-button">
+                Get started
+            </button>
+        </div>
+        <div class="right-container">
+            <!-- Content for the right container goes here -->
+        </div>
+    </div>
+    <script>
+        // Fetch and inject navbar content
+        fetch('./components/navbar_before_login.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('navbarContainer').innerHTML = html;
+            })
+            .catch(error => console.error('Error fetching navbar content:', error));
+    </script>
+</body>
+</html>
