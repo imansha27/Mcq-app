@@ -1,0 +1,12 @@
+.body {
+    margin: 0;
+}
+
+.log-container{
+    display: flex;
+}
+
+.lg-left-container{
+    flex: 3;
+    background-image: url('../images/bg.jpg');
+}

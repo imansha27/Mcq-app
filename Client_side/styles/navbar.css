@@ -1,0 +1,75 @@
+
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica+SC&family=Inconsolata&display=swap');
+
+
+.navbar {
+    position: absolute;
+    width: 100%;
+    height: 80px;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+}
+
+.navbar-logo {
+    position: absolute;
+    left: 0px;
+    top: -40px;
+    list-style: none;
+    display: flex;
+}
+
+.navbar-logo img {
+    width: 200px; 
+    height: 195px; 
+}
+
+.navbar-links {
+    position: absolute;
+    right: 10px; /* Adjust the value as needed */
+    top: 27px;
+    list-style: none;
+    display: flex;
+}
+
+.navbar-links li {
+    margin-right: 50px; /* Adjust the spacing between links */
+}
+
+.navbar-links a {
+    text-decoration: none;
+    color: #000000;
+    font-family: 'Inconsolata', monospace;
+
+    font-weight: 700;
+    font-size: 22px; /* Adjust the font size as needed */
+}
+
+/* Styles for Home link */
+.navbar-links #lnk {
+    width: 195px;
+    text-decoration-line: underline;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* Styles for Login button */
+.navbar-links #login-btn {
+    margin-right: 30px; /* Adjust the spacing between "About" and "Login" */
+}
+
+.navbar-links #login-btn a {
+    padding: 10px 15px; /* Adjust padding as needed */
+    background: #27AC1F;
+    border: 1px solid #85FE78;
+    border-radius: 30px;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.navbar-links #login-btn :hover{
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
