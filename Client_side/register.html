@@ -3,9 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="styles/register.css">
+    <link rel="stylesheet" href="styles/navbar.css">
+    <title>Register</title>
 </head>
 <body>
-    
+    <div class="rg-container">
+        <div class="navbar-container" id="navbarContainer"></div>
+        <div class="rg-left-container">
+            <img src="./images/rg.jpg" alt="register">
+        </div>
+        <div class="rg-right-container">
+            <h1>register</h1>
+            <form action="">
+                <input type="fname" id="fname" name="fname" placeholder="First name">
+                <input type="lname" id="lname" name="lname" placeholder="Last name">
+                <input type="uname" id="uname" name="uname" placeholder="Username">
+                <input type="email" id="email" name="email" placeholder="Email">
+                <input type="password" id="password" name="password" placeholder="Password"> 
+                <select id="users2" name="users">
+                    <option value="Student">Student</option>
+                    <option value="Teacher">Teacher</option>
+                    
+                  </select>
+                  <button class="rg-button">
+                    Continue
+                </button>
+                
+            </form>
+          
+        </div>
+    </div>
+    <script>
+        // Fetch and inject navbar content
+        fetch('./components/navbar_before_login.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('navbarContainer').innerHTML = html;
+            })
+            .catch(error => console.error('Error fetching navbar content:', error));
+    </script>
 </body>
 </html>
