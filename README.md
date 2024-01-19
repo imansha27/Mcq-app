@@ -1,1 +1,1 @@
-# Mcq-app
+# Mcq-web application
