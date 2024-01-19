@@ -6,7 +6,7 @@
 
 .container {
     display: flex;
-    height: 100vh;
+    height: 97vh;
     top: -1px;
     left: -10px;
 
@@ -37,7 +37,7 @@
 
 
 
-h1 {
+.left-container h1 {
 
 
     position: absolute;
@@ -57,7 +57,7 @@ h1 {
 
 }
 
-h2 {
+.left-container h2 {
 
     position: absolute;
     width: 400px;
