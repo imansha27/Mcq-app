@@ -59,3 +59,26 @@ body {
     color: #000000;
     z-index: 100;
 }
+
+.au-container{
+    position: absolute;
+    top: 170px;
+    background-color: rgb(217,217,217);
+    left: 200px;
+    right: 0px;
+    z-index: 100;
+    height: 360px;
+    width: 85%;
+}
+
+.au-container ul{
+font-family: 'IM Fell DW Pica SC', serif;
+font-style: normal;
+font-weight: 200;
+color: #2D8A27;
+padding-left: 80px;
+padding-top: 30px;
+padding-right: 80px;
+font-size: 20px;
+text-align:justify ;
+}
