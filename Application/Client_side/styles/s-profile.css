@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica+SC&family=Inconsolata&display=swap');
+
+
+.body {
+    margin: 0;
+}
+
+.p-container {
+    position: absolute;
+    width: 1000px;
+    height: 400px;
+    left: 140px;
+    top: 160px;
+    background: rgba(217, 217, 217, 0.5);
+
+}

@@ -190,3 +190,115 @@
 .lg-button2:hover {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
+
+
+@media screen and (max-width: 768px) {
+
+    .lg-right-container h1{
+        
+        width: 200px;
+        height: 113px;
+        right:50px;
+        top: 25px;
+        
+        
+    }
+
+    .lg-left-container img {
+        width: 110%; /* Make sure the image takes 100% of the container's width */
+        height: 90%; 
+       
+    
+    }
+
+
+    .lg-left-container {
+        flex: 2;
+        width: 50%; 
+      
+       
+      
+    }
+
+
+
+
+
+
+
+    
+
+
+    
+.lg-right-container input[type="uname"] {
+    
+    width: 200px;
+    right: 50px;
+    
+}
+
+.lg-right-container input[type="password"] {
+    width: 200px;
+    right: 50px;
+}
+
+
+.lg-right-container input::placeholder {
+   
+    font-size: 18px;
+    
+}
+
+
+.lg-right-container #users {
+  
+    width: 222px;
+    right: 50px;
+   
+    
+   
+}
+
+.lg-button{
+   
+    width: 160px;
+    height: 58px;
+    right: 80px;
+    top: 390px;
+
+}
+
+
+
+
+.lg-right-container h2{
+  
+    right: -110px;
+}
+
+
+.lg-button2 {
+    
+    width: 160px;
+    height: 58px;
+    right: 80px;
+    top: 510px;
+   
+}
+
+
+
+.log-container {
+ 
+    height: 90vh;
+    overflow-y: hidden;
+   
+}
+    
+
+.lg-right-container {
+    flex: 2;
+    overflow-x: hidden;
+}
+
+}

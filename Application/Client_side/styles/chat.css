@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica+SC&family=Inconsolata&display=swap');
+
+
+.body {
+    margin: 0;
+}
+
+.q-container {
+    position: absolute;
+    width: 1200px;
+    height: 530px;
+    left: 40px;
+    top: 90px;
+    border-radius: 20px;
+    border: 3px solid #9ecd9d;
+    background: rgba(217, 217, 217, 0.5);
+}
+
+.typezone {
+    position: absolute;
+    height: 70px;
+    left: -1.1px;
+    bottom: 0; 
+    background: #9ecd9d;
+    border: 1px solid #9ecd9d;
+    width: 100%; /* Ensures full width within the container */
+    outline: none;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+  
+  textarea {
+    position: relative; /* Removed absolute positioning; uses default flow */
+    width: calc(100% - 110px); /* Resizes to fit container, minus button width */
+    resize: none; /* Disables resizing by the user */
+    outline: none;
+    background: #9ecd9d;
+    margin-left: 30px;
+    margin-top: 10px;
+    height: 40px;
+    padding: 5px;
+    text: size 10px; 
+    /* border: none; */
+  
+
+  }
+  
+  .send {
+    display: flex; 
+    justify-content: flex-end; 
+    width: 50px;
+    height: 50px;
+    margin-left: 1140px;
+    margin-top: -55px;
+    border-radius: 100%; 
+    background: #9ecd9d;
+    border: none;
+  
+  }
+  
+  .send img {
+  margin-top: 10px;
+  margin-right: 2px;
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+   
+   
+    
+  }
+  .send:hover {
+  
+    background: #c6d8c5;
+}
+
