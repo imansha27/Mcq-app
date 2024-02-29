@@ -1,33 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/s-home.css">
-    <link rel="stylesheet" href="styles/navbar.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/s-home.css" />
+    <link rel="stylesheet" href="styles/navbar.css" />
     <title>Quiz</title>
     <div ="h-container">
-        <div class="navbar-container" id="navbarContainer"></div>
-        <div class="q-container">
-           <div class="qtn">
-            Question.
-           </div>
-           <div class="ans">
-           Answer.
-           </div>
-
+      <div class="navbar-container" id="navbarContainer"></div>
+      <div class="q-container">
+        <div class="qtn">
+          Question.
+          <div class="img-cont"></div>
+          <div class="list">
+            <ol>
+              <li>ans1</li>
+              <li>an2</li>
+              <li>an3</li>
+            </ol>
+          </div>
         </div>
+        <div class="ans-btns">
+          <button class="btn">1</button>
+          <button class="btn">2</button>
+          <button class="btn">3</button>
+          <button class="btn">4</button>
+          <button class="btn">5</button>
+        </div>
+        <button id="next-btn">NEXT</button>
+      </div>
+      
     </div>
-</head>
-<body>
+  </head>
+  <body>
     <script>
-        // Fetch and inject navbar contents
-        fetch('./components/navbar_after_login.html')
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById('navbarContainer').innerHTML = html;
-            })
-            .catch(error => console.error('Error fetching navbar content:', error));
+      // Fetch and inject navbar contents
+      fetch("./components/navbar_after_login.html")
+        .then((response) => response.text())
+        .then((html) => {
+          document.getElementById("navbarContainer").innerHTML = html;
+        })
+        .catch((error) =>
+          console.error("Error fetching navbar content:", error)
+        );
     </script>
-</body>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $(".btn").click(function () {
+          $(".btn").removeClass("clicked"); // Remove the class from all buttons
+          $(this).addClass("clicked"); // Add the class to the clicked button
+        });
+      });
+    </script>
+  </body>
 </html>
