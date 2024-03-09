@@ -13,17 +13,19 @@
 
 .lg-left-container {
     flex: 2;
-    width: 675px; 
-    height: 600px; 
-   
+    width: 675px;
+    height: 600px;
+
     overflow-y: hidden;
     box-shadow: 10px 0 0px rgba(85, 84, 84, 0.5);
     margin-top: 100px
 }
 
 .lg-left-container img {
-    width: 100%; /* Make sure the image takes 100% of the container's width */
-    height: 100%; /* Make sure the image takes 100% of the container's height */
+    width: 100%;
+    /* Make sure the image takes 100% of the container's width */
+    height: 100%;
+    /* Make sure the image takes 100% of the container's height */
 
 }
 
@@ -32,13 +34,13 @@
     overflow: hidden;
 }
 
-.lg-right-container h1{
+.lg-right-container h1 {
     position: absolute;
     width: 200px;
     height: 113px;
-    right:200px;
+    right: 200px;
     top: 30px;
-    
+
     font-family: 'IM FELL DW Pica SC';
     font-style: normal;
     font-weight: 400;
@@ -47,11 +49,11 @@
     display: flex;
     align-items: center;
     text-align: center;
-    
+
     color: #000000;
 }
 
-.lg-right-container input[type="uname"] {
+.lg-right-container #UserName {
     position: absolute;
     width: 450px;
     height: 45px;
@@ -67,12 +69,13 @@
     padding-bottom: 0px;
 }
 
-.lg-right-container input[type="password"] {
+.lg-right-container #Password {
     position: absolute;
     width: 450px;
     height: 45px;
     right: 90px;
-    top: 240px; /* Adjust the top position to create space below the username input */
+    top: 240px;
+    /* Adjust the top position to create space below the username input */
     border: none;
     background: #FEFEFE;
     box-shadow: 0px 4px 4px rgba(87, 86, 86, 0.25);
@@ -93,7 +96,7 @@
 }
 
 
-.lg-right-container #users {
+.lg-right-container #UserType {
     position: absolute;
     width: 473px;
     height: 45px;
@@ -107,10 +110,10 @@
     padding-left: 20px;
     padding-top: 5px;
     padding-bottom: 0px;
-   
+
 }
 
-.lg-button{
+.lg-button {
     box-sizing: border-box;
     position: absolute;
     width: 300px;
@@ -134,19 +137,20 @@
     /* Center horizontally */
 
     text-align: center;
-    color:  #FFFFFF;
+    color: #FFFFFF;
 }
+
 .lg-button:hover {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.lg-right-container h2{
+.lg-right-container h2 {
     position: absolute;
     width: 400px;
     height: 103px;
-    right:165px;
+    right: 165px;
     top: 410px;
-    
+
     font-family: 'IM FELL DW Pica SC';
     font-style: normal;
     font-weight: 400;
@@ -155,7 +159,7 @@
     display: flex;
     align-items: center;
     text-align: center;
-    
+
     color: #000000;
 }
 
@@ -194,30 +198,35 @@
 
 @media screen and (max-width: 768px) {
 
-    .lg-right-container h1{
-        
+    .lg-right-container h1 {
+
         width: 200px;
         height: 113px;
-        right:50px;
+        right: 50px;
         top: 25px;
-        
-        
+
+
     }
 
     .lg-left-container img {
-        width: 110%; /* Make sure the image takes 100% of the container's width */
-        height: 90%; 
-       
-    
+        width: 110%;
+        /* Make sure the image takes 100% of the container's width */
+        height: 90%;
+
+
     }
 
+
+
+
+   
 
     .lg-left-container {
         flex: 2;
-        width: 50%; 
-      
-       
-      
+        width: 50%;
+
+
+
     }
 
 
@@ -226,79 +235,81 @@
 
 
 
-    
-
-
-    
-.lg-right-container input[type="uname"] {
-    
-    width: 200px;
-    right: 50px;
-    
-}
-
-.lg-right-container input[type="password"] {
-    width: 200px;
-    right: 50px;
-}
-
-
-.lg-right-container input::placeholder {
-   
-    font-size: 18px;
-    
-}
-
-
-.lg-right-container #users {
-  
-    width: 222px;
-    right: 50px;
-   
-    
-   
-}
-
-.lg-button{
-   
-    width: 160px;
-    height: 58px;
-    right: 80px;
-    top: 390px;
-
-}
 
 
 
 
-.lg-right-container h2{
-  
-    right: -110px;
-}
+    .lg-right-container input[type="text"] {
 
+        width: 200px;
+        right: 50px;
 
-.lg-button2 {
-    
-    width: 160px;
-    height: 58px;
-    right: 80px;
-    top: 510px;
-   
-}
+    }
 
 
 
-.log-container {
- 
-    height: 90vh;
-    overflow-y: hidden;
-   
-}
-    
+    .lg-right-container input::placeholder {
 
-.lg-right-container {
-    flex: 2;
-    overflow-x: hidden;
-}
+        font-size: 18px;
+
+    }
+
+
+    .lg-right-container #UserType {
+
+        width: 222px;
+        right: 50px;
+
+
+
+    }
+
+    .lg-button {
+
+        width: 160px;
+        height: 58px;
+        right: 80px;
+        top: 390px;
+
+    }
+
+
+
+
+    .lg-right-container h2 {
+
+        right: -110px;
+    }
+
+
+    .lg-button2 {
+
+        width: 160px;
+        height: 58px;
+        right: 80px;
+        top: 510px;
+
+    }
+
+
+
+    .log-container {
+
+        height: 90vh;
+        overflow-y: hidden;
+
+    }
+
+
+    .lg-right-container {
+        flex: 2;
+        overflow-x: hidden;
+    }
+    .lg-right-container #UserName,
+    .lg-right-container #Password {
+        width: 32%;
+        right: 50px;
+       
+    }
 
 }
