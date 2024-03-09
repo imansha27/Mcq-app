@@ -51,7 +51,7 @@
     color: #000000;
 }
 
-.rg-right-container input[type="fname"] {
+.rg-right-container #FirstName {
     position: absolute;
     width: 450px;
     height: 45px;
@@ -67,7 +67,7 @@
     padding-bottom: 0px;
 }
 
-.rg-right-container input[type="lname"] {
+.rg-right-container #LastName {
     position: absolute;
     width: 450px;
     height: 45px;
@@ -82,7 +82,7 @@
     padding-top: 5px;
     padding-bottom: 0px;
 }
-.rg-right-container input[type="uname"] {
+.rg-right-container #UserName {
     position: absolute;
     width: 450px;
     height: 45px;
@@ -97,7 +97,7 @@
     padding-top: 5px;
     padding-bottom: 0px;
 }
-.rg-right-container input[type="email"] {
+.rg-right-container #Email {
     position: absolute;
     width: 450px;
     height: 45px;
@@ -113,7 +113,7 @@
     padding-bottom: 0px;
 }
 
-.rg-right-container input[type="password"] {
+.rg-right-container #Password {
     position: absolute;
     width: 450px;
     height: 45px;
@@ -137,7 +137,7 @@
 }
 
 
-.rg-right-container #users2 {
+.rg-right-container #UserType {
     position: absolute;
     width: 473px;
     height: 45px;
@@ -206,40 +206,12 @@
     }
 
 
-
-
-
-
-
     
-
-
-    
-.rg-right-container input[type="fname"] {
+.rg-right-container input[type="text"] {
     
     width: 200px;
     right: 50px;
     
-}
-
-.rg-right-container input[type="lname"]{
-    width: 200px;
-    right: 50px;
-}
-
-.rg-right-container input[type="uname"] {
-    width: 200px;
-    right: 50px;
-}
-
-.rg-right-container input[type="email"] {
-    width: 200px;
-    right: 50px;
-}
-
-.rg-right-container input[type="password"] {
-    width: 200px;
-    right: 50px;
 }
 
 .rg-right-container input::placeholder {

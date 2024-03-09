@@ -5,10 +5,10 @@
 .navbar {
     position: absolute;
     width: 100%;
-    height: 80px;
+    height: 61px;
     top: -5px;
-    left: -5px;
-    right: -5px;
+    left: -1px;
+    right: -1px;
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
@@ -17,20 +17,20 @@
 .navbar-logo {
     position: absolute;
     left: 0px;
-    top: -40px;
+    top: -60px;
     list-style: none;
     display: flex;
 }
 
 .navbar-logo img {
-    width: 200px; 
-    height: 195px; 
+    width: 160px; 
+    height: 185px; 
 }
 
 .navbar-links {
     position: absolute;
     right: 10px; /* Adjust the value as needed */
-    top: 27px;
+    top: 13px;
     list-style: none;
     display: flex;
 }
@@ -61,7 +61,7 @@
 }
 
 .navbar-links #login-btn a {
-    padding: 10px 15px; /* Adjust padding as needed */
+    padding: 6px 10px; /* Adjust padding as needed */
     background: #27AC1F;
     border: 1px solid #85FE78;
     border-radius: 30px;
