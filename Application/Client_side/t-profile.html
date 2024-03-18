@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/t-profile.css" />
+    <link rel="stylesheet" href="styles/navbar.css" />
+    <title>Profile</title>
+</head>
+<body>
+    <div class="navbar-container" id="navbarContainer"></div>
+    <div class ="tpro">
+        
+    <div class="rec1">
+
+    </div>
+
+    <div class="rec2">
+        <div class="profile-icon">
+            <img src="your-profile-image.jpg" alt="Profile Image">
+        </div>
+        <h1>Profile</h1>
+        <div class="tpro1">
+            <h3>Name:</h3>
+            <h3>Email:</h3>
+            <h3>Phone:</h3>
+            <h3>Address:</h3>
+        </div>
+    </div>
+    </div>
+    <script>
+        // Fetch and inject navbar contents
+        fetch("./components/Teacher_navbar.html")
+          .then((response) => response.text())
+          .then((html) => {
+            document.getElementById("navbarContainer").innerHTML = html;
+          })
+          .catch((error) =>
+            console.error("Error fetching navbar content:", error)
+          );
+      </script>
+</body>
+</html>
