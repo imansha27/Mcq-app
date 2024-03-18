@@ -13,8 +13,8 @@
 
 .lg-left-container {
     flex: 2;
-    width: 675px;
-    height: 600px;
+    width: 655px;
+    height: 590px;
 
     overflow-y: hidden;
     box-shadow: 10px 0 0px rgba(85, 84, 84, 0.5);
@@ -37,14 +37,14 @@
 .lg-right-container h1 {
     position: absolute;
     width: 200px;
-    height: 113px;
+    height: 103px;
     right: 200px;
     top: 30px;
 
     font-family: 'IM FELL DW Pica SC';
     font-style: normal;
     font-weight: 400;
-    font-size: 70px;
+    font-size: 60px;
     line-height: 88px;
     display: flex;
     align-items: center;
@@ -56,14 +56,14 @@
 .lg-right-container #UserName {
     position: absolute;
     width: 450px;
-    height: 45px;
+    height: 35px;
     right: 90px;
     top: 170px;
     border: none;
     background: #FEFEFE;
     box-shadow: 0px 4px 4px rgba(87, 86, 86, 0.25);
     font-weight: 400;
-    font-size: 20px;
+    font-size: 18px;
     padding-left: 20px;
     padding-top: 5px;
     padding-bottom: 0px;
@@ -72,7 +72,7 @@
 .lg-right-container #Password {
     position: absolute;
     width: 450px;
-    height: 45px;
+    height: 35px;
     right: 90px;
     top: 240px;
     /* Adjust the top position to create space below the username input */
@@ -80,7 +80,7 @@
     background: #FEFEFE;
     box-shadow: 0px 4px 4px rgba(87, 86, 86, 0.25);
     font-weight: 400;
-    font-size: 20px;
+    font-size: 18px;
     padding-left: 20px;
     padding-top: 5px;
     padding-bottom: 0px;
@@ -90,7 +90,7 @@
 .lg-right-container input::placeholder {
     font-family: 'Inconsolata', monospace;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 18px;
     padding-top: 5px;
     padding-bottom: 0px;
 }
@@ -99,14 +99,14 @@
 .lg-right-container #UserType {
     position: absolute;
     width: 473px;
-    height: 45px;
+    height: 35px;
     right: 90px;
     top: 320px;
     border: none;
     background: #FEFEFE;
     box-shadow: 0px 4px 4px rgba(87, 86, 86, 0.25);
     font-weight: 400;
-    font-size: 20px;
+    font-size: 18px;
     padding-left: 20px;
     padding-top: 5px;
     padding-bottom: 0px;
@@ -116,8 +116,8 @@
 .lg-button {
     box-sizing: border-box;
     position: absolute;
-    width: 300px;
-    height: 58px;
+    width: 260px;
+    height: 50px;
     right: 170px;
     top: 390px;
     border: none;
@@ -167,8 +167,8 @@
 .lg-button2 {
     box-sizing: border-box;
     position: absolute;
-    width: 300px;
-    height: 58px;
+    width: 260px;
+    height: 50px;
     right: 170px;
     top: 510px;
     border: 2px solid #27AC1F;
