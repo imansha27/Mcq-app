@@ -1,0 +1,46 @@
+.tpro {
+    display: flex;
+    margin-top: 97px;
+    width: 93%;
+}
+
+.rec1 {
+    width: 93%;
+    height: 450px;
+    background-color:#c4e1c4;
+    margin-right: 30px;
+    margin-left: 50px;
+    overflow-y: scroll;
+    margin-top: 30px
+
+  
+}
+
+.rec2 {
+    width: 30%;
+    height: 550px;
+    background-color: #5ec2ab;
+}
+
+.tpro1 {
+    margin-left: 10px;
+}
+
+
+.rec2 {
+    text-align: center;
+}
+
+.profile-icon {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 20px 80px;
+    background-color: blue; /* Add margin below the profile icon */
+}
+
+.profile-icon img {
+    width: 100%;
+    height: auto;
+}
