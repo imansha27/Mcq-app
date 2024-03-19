@@ -2,7 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica+SC&family=Inconsolata&display=swap');
 
 
-
 .t-container {
     margin: 0;
     left: 130px;
@@ -11,7 +10,7 @@
     height: 500px;
     width: 1000px;
     display: flex; /* Added */
-   
+
 }
 
 .quest {
@@ -81,6 +80,7 @@ h3{
     margin-left: 10px;
 }
 
+
 #cate{
     display: flex;
     flex-direction: column;
@@ -92,6 +92,8 @@ h3{
     vertical-align: top; 
     margin-left: 10px;
 }
+
+
 
 .input-box {
     width: 748px;

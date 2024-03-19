@@ -1,5 +1,4 @@
-<<<<<<< Updated upstream
-=======
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,7 +10,7 @@
   </head>
   <body>
     <div class="h-container">
-      
+
       <div class="navbar-container" id="navbarContainer"></div>
     </div>
     <h1>Add MCQ from here :</h1>
@@ -20,7 +19,9 @@
       <div class="quest">
         <div class="input-box">
           <textarea
+
             id="questionInput"
+
             placeholder="Enter your question..."
             rows="10"
             cols="50"
@@ -28,6 +29,7 @@
         </div>
         <div class="choices">
           <div class="choice-row">
+
             <input type="text" id="choice1Input1" placeholder="Choice 1" />
           </div>
           <div class="choice-row">
@@ -41,11 +43,27 @@
           </div>
           <div class="choice-row">
             <input type="text" id="choice1Input5" placeholder="Choice 5" />
+
+            <input type="text" placeholder="Choice 1" />
+          </div>
+          <div class="choice-row">
+            <input type="text" placeholder="Choice 2" />
+          </div>
+          <div class="choice-row">
+            <input type="text" placeholder="Choice 3" />
+          </div>
+          <div class="choice-row">
+            <input type="text" placeholder="Choice 4" />
+          </div>
+          <div class="choice-row">
+            <input type="text" placeholder="Choice 5" />
+
           </div>
         </div>
       </div>
       <div class="fields">
         <br />
+
 
         <div class="choice-row2">
           <h3>if the question : includes an Image</h3>
@@ -54,21 +72,31 @@
       </div>
 
 
+
         <div class="choice-row2">
           <h3>Correct Answer:</h3>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <select id="corr" name="correct">
+
             <option value="Choice1">Choice 1</option>
             <option value="Choice2">Choice 2</option>
             <option value="Choice3">Choice 3</option>
             <option value="Choice4">Choice 4</option>
             <option value="Choice5">Choice 5</option>
+
+            <option value="1">Choice 1</option>
+            <option value="2">Choice 2</option>
+            <option value="3">Choice 3</option>
+            <option value="4">Choice 4</option>
+            <option value="5">Choice 5</option>
+
           </select>
         </div>
 
         <div class="choice-row2">
           <h3>Question Category:</h3>
           &nbsp;
+
           <select id="cate" name="cat">
             <option value="Organic">Organic</option>
             <option value="Inorganic">Inorganic</option>
@@ -77,6 +105,16 @@
         </div>
         
         
+
+          <select id="corr" name="cat">
+            <option value="o">Organic</option>
+            <option value="i">Inorganic</option>
+            <option value="p">Physical</option>
+          </select>
+        </div>
+        <br />
+        <br />
+
         <h3 style="padding-left: 10px">
           Source (E.g: Model Paper, 2001 Past Paper):
         </h3>
@@ -84,10 +122,17 @@
         <div class="choice-row">
           <input id="source" type="text" placeholder="Source" />
         </div>
+
       
         <div class="button-container">
           <button type="submit" id="sub">Submit</button>
             <button type="button" id="dele" onclick="discard()">Discard </button>
+
+        <br />
+        <div class="button-container">
+          <button type="submit" id="sub">Submit</button>
+          <button type="button" id="dele">Discard</button>
+
         </div>
         <h3 style="padding-left: 10px">The submitted questions will be reviewed before being added to the database.</h3>
       </div>
@@ -102,6 +147,7 @@
         .catch((error) =>
           console.error("Error fetching navbar content:", error)
         );
+
 
 
        // Function to discard the question
@@ -211,4 +257,8 @@ document.getElementById('sub').addEventListener('click', submitQuestion);
     </script>
   </body>
 </html>
->>>>>>> Stashed changes
+
+    </script>
+  </body>
+</html>
+
