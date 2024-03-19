@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,6 +10,7 @@
   </head>
   <body>
     <div class="h-container">
+
       <div class="navbar-container" id="navbarContainer"></div>
     </div>
     <h1>Add MCQ from here :</h1>
@@ -17,6 +19,9 @@
       <div class="quest">
         <div class="input-box">
           <textarea
+
+            id="questionInput"
+
             placeholder="Enter your question..."
             rows="10"
             cols="50"
@@ -24,6 +29,21 @@
         </div>
         <div class="choices">
           <div class="choice-row">
+
+            <input type="text" id="choice1Input1" placeholder="Choice 1" />
+          </div>
+          <div class="choice-row">
+            <input type="text" id="choice1Input2" placeholder="Choice 2" />
+          </div>
+          <div class="choice-row">
+            <input type="text" id="choice1Input3" placeholder="Choice 3" />
+          </div>
+          <div class="choice-row">
+            <input type="text" id="choice1Input4" placeholder="Choice 4" />
+          </div>
+          <div class="choice-row">
+            <input type="text" id="choice1Input5" placeholder="Choice 5" />
+
             <input type="text" placeholder="Choice 1" />
           </div>
           <div class="choice-row">
@@ -37,26 +57,55 @@
           </div>
           <div class="choice-row">
             <input type="text" placeholder="Choice 5" />
+
           </div>
         </div>
       </div>
       <div class="fields">
         <br />
+
+
+        <div class="choice-row2">
+          <h3>if the question : includes an Image</h3>
+          <input type="file" id="imageInput" style="margin-top: 14px;" accept="image/*" onchange="previewImage(event)" />
+          <div id="imagePreview" style="width: 295px; height: 75px; margin-left: 10px;"></div>
+      </div>
+
+
+
         <div class="choice-row2">
           <h3>Correct Answer:</h3>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <select id="corr" name="correct">
+
+            <option value="Choice1">Choice 1</option>
+            <option value="Choice2">Choice 2</option>
+            <option value="Choice3">Choice 3</option>
+            <option value="Choice4">Choice 4</option>
+            <option value="Choice5">Choice 5</option>
+
             <option value="1">Choice 1</option>
             <option value="2">Choice 2</option>
             <option value="3">Choice 3</option>
             <option value="4">Choice 4</option>
             <option value="5">Choice 5</option>
+
           </select>
         </div>
 
         <div class="choice-row2">
           <h3>Question Category:</h3>
           &nbsp;
+
+          <select id="cate" name="cat">
+            <option value="Organic">Organic</option>
+            <option value="Inorganic">Inorganic</option>
+            <option value="Physical">Physical</option>
+          </select>
+        </div>
+        
+        
+
           <select id="corr" name="cat">
             <option value="o">Organic</option>
             <option value="i">Inorganic</option>
@@ -65,6 +114,7 @@
         </div>
         <br />
         <br />
+
         <h3 style="padding-left: 10px">
           Source (E.g: Model Paper, 2001 Past Paper):
         </h3>
@@ -72,10 +122,17 @@
         <div class="choice-row">
           <input id="source" type="text" placeholder="Source" />
         </div>
+
+      
+        <div class="button-container">
+          <button type="submit" id="sub">Submit</button>
+            <button type="button" id="dele" onclick="discard()">Discard </button>
+
         <br />
         <div class="button-container">
           <button type="submit" id="sub">Submit</button>
           <button type="button" id="dele">Discard</button>
+
         </div>
         <h3 style="padding-left: 10px">The submitted questions will be reviewed before being added to the database.</h3>
       </div>
@@ -90,6 +147,118 @@
         .catch((error) =>
           console.error("Error fetching navbar content:", error)
         );
+
+
+
+       // Function to discard the question
+       function discard() {
+        // Reset textarea and input field values
+        document.getElementById("questionInput").value = "";
+        document.getElementById("choice1Input1").value = "";
+        document.getElementById("choice1Input2").value = "";
+        document.getElementById("choice1Input3").value = "";
+        document.getElementById("choice1Input4").value = "";
+        document.getElementById("choice1Input5").value = "";
+        document.getElementById("imageInput").value = "";
+        document.getElementById("imagePreview").style.backgroundImage = "";
+        document.getElementById("corr").value = "";
+        document.getElementById("cate").value = "";
+        document.getElementById("source").value = "";
+      }
+
+
+
+
+
+
+
+       //Function to show the image preview
+        function previewImage(event) {
+        const fileInput = event.target;
+        const files = fileInput.files;
+        
+        if (files.length > 0) {
+            const file = files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                const imagePreview = document.getElementById('imagePreview');
+                imagePreview.style.backgroundImage = `url(${e.target.result})`;
+                imagePreview.style.backgroundSize = 'contain'; // Adjusted to 'contain'
+                imagePreview.style.backgroundRepeat = 'no-repeat';
+            }
+
+            reader.readAsDataURL(file);
+        } else {
+            // Clear the preview if no file selected
+            const imagePreview = document.getElementById('imagePreview');
+            imagePreview.style.backgroundImage = 'none';
+        }
+    }
+
+
+
+
+
+
+
+    // Function to handle form submission
+async function submitQuestion() {
+    try {
+        // Collect form data
+        const question = document.getElementById('questionInput').value;
+        const choice1 = document.getElementById('choice1Input1').value;
+        const choice2 = document.getElementById('choice1Input2').value;
+        const choice3 = document.getElementById('choice1Input3').value;
+        const choice4 = document.getElementById('choice1Input4').value;
+        const choice5 = document.getElementById('choice1Input5').value;
+        const correctAnswer = document.getElementById('corr').value;
+        const category = document.getElementById('cate').value;
+        const source = document.getElementById('source').value;
+
+        // Prepare data object
+        const formData = {
+            Question: question,
+            Choice1: choice1,
+            Choice2: choice2,
+            Choice3: choice3,
+            Choice4: choice4,
+            Choice5: choice5,
+            Correctans: correctAnswer,
+            Category: category,
+            source: source
+        };
+
+        // Make a POST request to submit the question
+        const response = await fetch('http://localhost:8000/submitques', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        });
+
+        // Parse response
+        const result = await response.json();
+        if (response.ok) {
+            alert(result.success);
+            // Optionally, redirect or perform other actions after successful submission
+        } else {
+            alert(result.error);
+        }
+    } catch (error) {
+        console.error('Error submitting question:', error);
+    }
+}
+
+// Attach submitQuestion function to submit button click event
+document.getElementById('sub').addEventListener('click', submitQuestion);
+
     </script>
   </body>
 </html>
+
+    </script>
+  </body>
+</html>
+
