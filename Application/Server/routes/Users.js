@@ -8,7 +8,9 @@ const session = require('express-session');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const JWT_SECRET ="jnhugyuyeugyxegycecvgyhuj434r4g54y6578i8i"
+require('dotenv').config();
+
+const JWT_SECRET = process.env.JWT_SECRET;
 
 
 
@@ -80,7 +82,7 @@ router.post('/login', async (req, res) => {
 
         // Generate JWT token
         const token = jwt.sign({ userId: user._id, userType: user.UserType }, JWT_SECRET);
-        console.log(token);
+       //console.log(token);
 
         // Redirect or send response based on user type
         if (user.UserType === 'Student') {
