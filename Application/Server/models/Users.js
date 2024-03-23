@@ -26,7 +26,11 @@ const UserDetailsSchema = new mongoose.Schema({
         type: String,
         enum: ['Student', 'Teacher'], 
         required: true
-    }
+    },
+    image: {
+        type: String,
+        
+    },
 }, {
     collection: "UserDetails" 
 });

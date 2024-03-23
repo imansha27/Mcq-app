@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const connectToDatabase = require('./database/connection');
 const cors = require('cors');
-const session = require('express-session');
+
 
 // Create Express app
 const app = express();
@@ -16,11 +16,7 @@ app.use(express.json());
 
 
 
-app.use(session({
-    secret: process.env.SECRET_KEY, 
-    resave: false,
-    saveUninitialized: true
-}));
+
 
 // Static file serving
 app.use('/Client_side', express.static('Client_side'));
