@@ -21,32 +21,26 @@
                 <select id="UserType" name="users">
                     <option value="Student">Student</option>
                     <option value="Teacher">Teacher</option>
-                    
-                  </select>
-                  <button type="button" class="lg-button" onclick="loginUser()">
+                </select>
+                <button type="button" class="lg-button" onclick="loginUser()">
                     Continue
                 </button>
                 <h2>Don't have an account?</h2>
-                
                 <button class="lg-button2">
                     <a href="register.html" style="text-decoration: none; color: inherit;">
                     Get started 
                     </a>
                 </button>
-         
             </form>
-          
         </div>
     </div>
     <script>
-
-async function loginUser() {
+        async function loginUser() {
             // Collect form data
             const username = document.getElementById('UserName').value;
             const password = document.getElementById('Password').value;
             const userType = document.getElementById('UserType').value;
 
-            
             if (username.trim() === '' || password.trim() === '') {
                 alert('Please enter both username and password.');
                 return;
@@ -62,26 +56,24 @@ async function loginUser() {
                 });
 
                 if (response.ok) {
-    const result = await response.json();
-    alert('Login Succesful!');
-    
-    // Redirect based on the userType
-    if (result.redirect) {
-        window.location.href = result.redirect;
-    }
-} else {
-    const result = await response.json();
-    alert(result.error);
-}
+                    const result = await response.json();
+                    alert('Login Successful!');
+                    
+                    // Store the token in local storage
+                    localStorage.setItem('token', result.token);
+                   
+                    // Redirect based on the userType
+                    if (result.redirect) {
+                        window.location.href = result.redirect;
+                    }
+                } else {
+                    const result = await response.json();
+                    alert(result.error);
+                }
             } catch (error) {
                 console.error('Error logging in:', error);
             }
         }
-
-
-
-
-
 
         // Fetch and inject navbar content
         fetch('./components/navbar_before_login.html')

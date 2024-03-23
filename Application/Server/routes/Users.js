@@ -7,7 +7,7 @@ const upload = multer();
 const session = require('express-session');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-
+const verifyToken = require('../middlewares/authMiddleware');
 require('dotenv').config();
 
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -56,7 +56,6 @@ router.post('/register', upload.none(), async (req, res) => {
 
 
 //login user
-
 router.post('/login', async (req, res) => {
     try {
         const { username, password, userType } = req.body;
@@ -81,10 +80,10 @@ router.post('/login', async (req, res) => {
         }
 
         // Generate JWT token
-        const token = jwt.sign({ userId: user._id, userType: user.UserType }, JWT_SECRET);
-       //console.log(token);
+        const token = jwt.sign({ userId: user._id, username: user.UserName,userType: user.UserType }, JWT_SECRET);
+       // console.log(token);
 
-        // Redirect or send response based on user type
+        // Send the token to the frontend along with the response
         if (user.UserType === 'Student') {
             return res.json({ success: 'Login successful. Redirecting to s-home', redirect: '/Application/Client_side/s-home.html', token });
         } else if (user.UserType === 'Teacher') {
@@ -99,24 +98,19 @@ router.post('/login', async (req, res) => {
 });
 
 
+//get user details to the profile page
 
-
-
-//get userdetails to user profile
-router.get('/profile', async (req, res) => {
+router.get('/profile', verifyToken, async (req, res) => {
     try {
-        
-        
-        if (!username2) {
-            return res.status(401).json({ error: "User not authenticated" });
-        }
-        const user = await Users.findOne({ UserName: username2 });
+        const userId = req.userId;
+        const user = await Users.findById(userId);
         if (!user) {
-            return res.status(404).json({ error: "User not found" });
+            return res.status(404).json({ error: 'User not found.' });
         }
-        res.status(200).json(user);
+        res.json({ data: user });
     } catch (error) {
-        res.status(500).json({ error: "Internal Server Error" });
+        console.error('Error fetching user details:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 });
 
