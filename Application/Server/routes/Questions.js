@@ -3,31 +3,45 @@ const router = express.Router();
 const sques = require('../models/SubQuestions');
 const multer = require('multer');
 const upload = multer();
+const jwt = require('jsonwebtoken'); 
+const verifyToken = require('../middlewares/authMiddleware');
 
-
-//submit new question
-router.post('/submitques', upload.none(), async (req, res) => {
+// submit new question
+router.post('/submitques', verifyToken, upload.single('image'), async (req, res) => {
     try {
-        // Retrieve the username from the session
-        const Username = req.session.username;
-        console.log(req.session)
-       
-        console.log('Username set in session:', req.session.username);
+        // Retrieve the username from the request object
+        const username = req.username;
 
-        
-        // Check if username exists in the session
-        if (!Username) {
-            return res.status(401).json({ error: "User not authenticated" });
+        // Check if all required fields are provided
+        const { Question, Choice1, Choice2, Choice3, Choice4, Choice5, Correctans, Category, source } = req.body;
+        if (!Question || !Choice1 || !Choice2 || !Choice3 || !Choice4 || !Choice5 || !Correctans || !Category || !source) {
+            return res.status(400).json({ error: "All fields are required." });
+        }
+
+        // Check if an image was provided
+        let imagePath = null;
+        if (req.file) {
+            // If an image was provided, save its path
+            imagePath = req.file.path;
         }
 
         // Create a new question object
-        const newQues = new sques(req.body);
-        
-        // Set the submitby field to the username from the session
-        newQues.submitby = Username;
+        const newQues = new sques({
+            Question,
+            Choice1,
+            Choice2,
+            Choice3,
+            Choice4,
+            Choice5,
+            Correctans,
+            Category,
+            source,
+            submitby: username, // Set the submitby field to the username
+            image: imagePath // Set the image path
+        });
 
         // Check if the question already exists
-        const existingQuestion = await sques.findOne({ Question: req.body.Question });
+        const existingQuestion = await sques.findOne({ Question });
         if (existingQuestion) {
             return res.status(400).json({ error: "Question already exists" });
         }

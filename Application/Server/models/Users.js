@@ -12,7 +12,7 @@ const UserDetailsSchema = new mongoose.Schema({
     UserName: {
         type: String,
         required: true,
-        Unique: true
+        unique: true
     },
     Email: {
         type: String,
