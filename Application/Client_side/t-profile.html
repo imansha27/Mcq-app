@@ -9,24 +9,32 @@
 </head>
 <body>
     <div class="navbar-container" id="navbarContainer"></div>
-    <div class ="tpro">
-        
-    <div class="rec1">
+    <div class="tpro">
+        <div class="rec1"></div>
 
-    </div>
-
-    <div class="rec2">
-        <div class="profile-icon">
-            <img src="your-profile-image.jpg" alt="Profile Image">
+        <div class="rec2">
+            <div class="profile-icon" id="profileIconContainer">
+                <!-- Profile Image will be loaded here -->
+            </div>
+            <input type="file" id="profile-image-input" style="display: none;" accept="image/*">
+            <button id="upload-button" style="position: absolute; bottom: 10px; right: 10px;">+</button>
+            
+            <h1>Profile</h1>
+            <div class="tpro1">
+                <h3 id="name">Name:</h3>
+                <h3 id="email">Email:</h3>
+                <h3 id="usertype">User Type:</h3>
+                <div id="teaches-at-section">
+                    <h3 id="teaches-at-header">Teaches at:</h3>
+                    <div id="teaches-at-wrapper">
+                        <span id="teaches-at-value"></span>
+                        <input type="text" id="teaches-at-input" style="display: none;">
+                        <button id="edit-teaches-at">Edit</button>
+                        <button id="save-teaches-at" style="display: none;">Save</button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <h1>Profile</h1>
-        <div class="tpro1">
-            <h3>Name:</h3>
-            <h3>Email:</h3>
-            <h3>Phone:</h3>
-            <h3>Address:</h3>
-        </div>
-    </div>
     </div>
     <script>
         // Fetch and inject navbar contents
@@ -38,6 +46,64 @@
           .catch((error) =>
             console.error("Error fetching navbar content:", error)
           );
-      </script>
+
+        // Handle profile image input
+        document.getElementById('profile-image-input').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('profile-image').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Fetch user details
+        fetch("/api/user/details")
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("name").innerText = "Name: " + data.FirstName + " " + data.LastName;
+                document.getElementById("email").innerText = "Email: " + data.Email;
+                document.getElementById("usertype").innerText = "User Type: " + data.UserType;
+                const teachesAtValue = document.getElementById("teaches-at-value");
+                const teachesAtInput = document.getElementById("teaches-at-input");
+                if (data.TeachesAt) {
+                    teachesAtValue.innerText = data.TeachesAt;
+                } else {
+                    teachesAtValue.innerText = "(Not set)";
+                }
+                document.getElementById("edit-teaches-at").addEventListener("click", function() {
+                    teachesAtValue.style.display = "none";
+                    teachesAtInput.style.display = "inline-block";
+                    document.getElementById("save-teaches-at").style.display = "inline-block";
+                    document.getElementById("edit-teaches-at").style.display = "none";
+                });
+                document.getElementById("save-teaches-at").addEventListener("click", function() {
+                    const newTeachesAt = teachesAtInput.value;
+                    fetch("/api/user/teachesat", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({ teachesAt: newTeachesAt })
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            teachesAtValue.innerText = newTeachesAt;
+                            teachesAtValue.style.display = "inline-block";
+                            teachesAtInput.style.display = "none";
+                            document.getElementById("edit-teaches-at").style.display = "inline-block";
+                            document.getElementById("save-teaches-at").style.display = "none";
+                            console.log("Teaches at saved successfully.");
+                        } else {
+                            console.error("Failed to save teaches at.");
+                        }
+                    })
+                    .catch(error => console.error("Error saving teaches at:", error));
+                });
+            })
+            .catch(error => console.error('Error fetching user details:', error));
+    </script>
 </body>
 </html>

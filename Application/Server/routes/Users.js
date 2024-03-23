@@ -5,12 +5,23 @@ const Users = require('../models/Users');
 const multer = require('multer');
 const upload = multer();
 const session = require('express-session');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
+require('dotenv').config();
+
+const JWT_SECRET = process.env.JWT_SECRET;
+
+
+
 
 //user register
 router.post('/register', upload.none(), async (req, res) => {
     try {
-        const { UserName } = req.body;
+        const {FirstName,LastName,Email,UserType, UserName, Password } = req.body;
 
+        // Encrypt the password
+        const encryptedPassword = await bcrypt.hash(Password, 10);
 
         // Check if username already exists
         const existingUser = await Users.findOne({ UserName: UserName });
@@ -19,7 +30,16 @@ router.post('/register', upload.none(), async (req, res) => {
             return res.status(400).json({ error: 'Username already exists.' });
         }
 
-        let newUser = new Users(req.body);
+        let newUser = new Users({
+            FirstName:FirstName,
+            LastName:LastName,
+            Email:Email,
+            UserType:UserType,
+            UserName: UserName,
+            Password: encryptedPassword,
+            
+        });
+
         await newUser.save();
         res.status(200).json({
             success: "User registered successfully",
@@ -35,51 +55,62 @@ router.post('/register', upload.none(), async (req, res) => {
 
 
 
-//user login
+//login user
 
 router.post('/login', async (req, res) => {
     try {
         const { username, password, userType } = req.body;
         
-
-        // Find the user by username and password
-        const user = await Users.findOne({ UserName: username, Password: password, UserType: userType });
-
+        // Find the user by username
+        const user = await Users.findOne({ UserName: username });
+        
         if (!user) {
-            return res.status(401).json({ error: 'Invalid username, password, or user type.' });
+            return res.status(401).json({ error: 'Invalid username or password.' });
         }
 
-        req.session.username = username;
-        console.log(req.session)
-       
-        console.log('Username received in login:', username);
+        // Compare the password
+        const isPasswordValid = await bcrypt.compare(password, user.Password);
+        
+        if (!isPasswordValid) {
+            return res.status(401).json({ error: 'Invalid username or password.' });
+        }
 
-       
+        // Compare the user type
+        if (userType !== user.UserType) {
+            return res.status(401).json({ error: 'Invalid user type.' });
+        }
 
+        // Generate JWT token
+        const token = jwt.sign({ userId: user._id, userType: user.UserType }, JWT_SECRET);
+       //console.log(token);
 
-        // Redirect based on user type
-        if (userType === 'Student') {
-            res.json({ success: 'Login successful. Redirecting to s-home', redirect: '/Application/Client_side/s-home.html' });
-        } else if (userType === 'Teacher') {
-            res.json({ success: 'Login successful. Redirecting to t-home', redirect: '/Application/Client_side/t-home.html' });
+        // Redirect or send response based on user type
+        if (user.UserType === 'Student') {
+            return res.json({ success: 'Login successful. Redirecting to s-home', redirect: '/Application/Client_side/s-home.html', token });
+        } else if (user.UserType === 'Teacher') {
+            return res.json({ success: 'Login successful. Redirecting to t-home', redirect: '/Application/Client_side/t-home.html', token });
         } else {
-            res.status(400).json({ error: 'Invalid user type.' });
+            return res.status(400).json({ error: 'Invalid user type.' });
         }
     } catch (error) {
         console.error('Error during login:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
+        return res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
+
+
 
 
 //get userdetails to user profile
 router.get('/profile', async (req, res) => {
     try {
-        const username = req.session.username;
-        if (!username) {
+        
+        
+        if (!username2) {
             return res.status(401).json({ error: "User not authenticated" });
         }
-        const user = await Users.findOne({ UserName: username });
+        const user = await Users.findOne({ UserName: username2 });
         if (!user) {
             return res.status(404).json({ error: "User not found" });
         }
