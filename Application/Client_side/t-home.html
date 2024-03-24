@@ -195,7 +195,10 @@ async function submitQuestion() {
         formData.append('Correctans', correctAnswer);
         formData.append('Category', category);
         formData.append('source', source);
-        formData.append('image', imageInput); // Append the image file
+      
+       if (imageInput) {
+            formData.append('image', imageInput); // Append the image file
+        }
         
         // Make a POST request to submit the question
         const response = await fetch('http://localhost:8000/submitques', {

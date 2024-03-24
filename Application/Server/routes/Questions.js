@@ -1,31 +1,32 @@
 const express = require('express');
 const router = express.Router();
 const sques = require('../models/SubQuestions');
-const multer = require('multer');
-const upload = multer();
 const jwt = require('jsonwebtoken'); 
 const verifyToken = require('../middlewares/authMiddleware');
+const upload = require('../middlewares/fileUploadMiddleware'); // Require file upload middleware
 
 // submit new question
-router.post('/submitques', verifyToken, upload.single('image'), async (req, res) => {
+router.post('/submitques', verifyToken, upload, async (req, res) => {
     try {
         // Retrieve the username from the request object
         const username = req.username;
 
         // Check if all required fields are provided
         const { Question, Choice1, Choice2, Choice3, Choice4, Choice5, Correctans, Category, source } = req.body;
-        if (!Question || !Choice1 || !Choice2 || !Choice3 || !Choice4 || !Choice5 || !Correctans || !Category || !source) {
-            return res.status(400).json({ error: "All fields are required." });
-        }
-
-        // Check if an image was provided
-        let imagePath = null;
+        
+        // Check if the image file exists
+        let image = null;
         if (req.file) {
-            // If an image was provided, save its path
-            imagePath = req.file.path;
+            image = {
+                filename: req.file.filename,
+                path: req.file.path // or whatever property holds the path to the uploaded file
+            };
         }
 
-        // Create a new question object
+        if (!Question || !Choice1 || !Choice2 || !Choice3 || !Choice4 || !Choice5 || !Correctans || !Category || !source ) {
+            return res.status(400).json({ error: "All fields are required including image." });
+        } 
+
         const newQues = new sques({
             Question,
             Choice1,
@@ -36,9 +37,10 @@ router.post('/submitques', verifyToken, upload.single('image'), async (req, res)
             Correctans,
             Category,
             source,
+            image, // Assign the image object
             submitby: username, // Set the submitby field to the username
-            image: imagePath // Set the image path
         });
+        //console.log(newQues.image.path);
 
         // Check if the question already exists
         const existingQuestion = await sques.findOne({ Question });
@@ -50,10 +52,10 @@ router.post('/submitques', verifyToken, upload.single('image'), async (req, res)
         await newQues.save();
         
         // Send success response
-        res.status(200).json({ success: "Question submitted successfully" });
+        return res.status(200).json({ success: "Question submitted successfully" });
     } catch (error) {
         // Handle any errors that occur during the process
-        res.status(400).json({ error: error.message });
+        return res.status(400).json({ error: error.message });
     }
 });
 
