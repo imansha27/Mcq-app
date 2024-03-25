@@ -43,6 +43,10 @@ const SubmitedQSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    status: {
+        type: String,
+        default: 'submit' 
+    },
     image: {
         filename: String,
         path: String
