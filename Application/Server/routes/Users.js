@@ -115,6 +115,41 @@ router.get('/profile', verifyToken, async (req, res) => {
 });
 
 
+
+
+
+
+// edit user details   
+
+router.put('/edit-profile', verifyToken, upload.single('image'), async (req, res) => {
+    try {
+        const userId = req.userId;
+        const { Email, School } = req.body; 
+        console.log(req.body);
+        const user = await Users.findById(userId);
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found.' });
+        }
+
+        // Update user details
+        user.Email = Email;
+        user.School = School;
+
+        // Check if theres a image 
+        if (req.file) {
+            user.image = req.file.path; 
+        }
+
+        await user.save();
+
+        res.json({ success: 'User details updated successfully.' });
+    } catch (error) {
+        console.error('Error updating user details:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 module.exports = router;
 
 

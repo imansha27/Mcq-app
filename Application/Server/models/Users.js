@@ -22,14 +22,18 @@ const UserDetailsSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    School: {
+        type: String,
+        required: true
+    },
     UserType: {
         type: String,
         enum: ['Student', 'Teacher'], 
         required: true
     },
     image: {
-        type: String,
-        
+        filename: String,
+        path: String
     },
 }, {
     collection: "UserDetails" 
