@@ -1,15 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica+SC&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica+SC&family=Inconsolata&display=swap');
 
+body {
+    
+    background-image: url('../images/g2.jpg');
+    background-size: cover;
+}
 
 .t-container {
     margin: 0;
     left: 130px;
     position: relative;
     margin-top: 5px;
+    margin-bottom: 7px;
     height: 500px;
     width: 1000px;
     display: flex; /* Added */
+ 
 
 }
 
@@ -18,12 +25,16 @@
     height: 100%;
     background-color: #9ecd9d;
     margin-right: 10px; /* Added */
+    border: 1px solid #017056;
+    margin-bottom: 7px;
 }
 
 .fields {
     width: 40%;
     height: 100%;
     background-color: #c4e1c4;
+    border: 1px solid #017056;
+    margin-bottom: 7px;
 }
 
 
@@ -63,7 +74,7 @@
 
 h3{
     font-family: 'IM FELL DW Pica SC';
- font-size: 16px;
+ font-size: 18px;
 }
 
 
@@ -145,7 +156,7 @@ textarea {
 .button-container {
     display: flex;
     justify-content: space-between;
-    margin: 40px;
+    margin: 20px;
     margin-left: 60px;
     margin-right: 60px;
 }

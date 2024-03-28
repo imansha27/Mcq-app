@@ -65,12 +65,15 @@
     border-radius: 40px;
 
 }
-h1 {
+#username{
     font-family: 'IM FELL DW Pica SC';
-    margin-left: 75px;
+    margin-left: 85px;
     margin-top: 10px;
     margin-right:75px;
     font-size: 30px;
+    width: 90px;
+    text-align: center;
+    align-items: center;
     color: #08421e; /* Text color */
     font-style: bold;
     border-radius: 10px;
