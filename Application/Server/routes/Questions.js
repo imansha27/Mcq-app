@@ -19,7 +19,7 @@ router.post('/submitques', verifyToken, upload, async (req, res) => {
         if (req.file) {
             image = {
                 filename: req.file.filename,
-                path: req.file.path // or whatever property holds the path to the uploaded file
+                path: req.file.path 
             };
         }
 

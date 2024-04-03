@@ -1,35 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/chat.css">
-    <link rel="stylesheet" href="styles/navbar.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/chat.css" />
+    <link rel="stylesheet" href="styles/navbar.css" />
     <title>Quiz</title>
     <div ="h-container">
-        
-
-        <div class="navbar-container" id="navbarContainer"></div>
-        <div class="q-container">
-            <div class="typezone">
-                <form><textarea type="text" placeholder="Say something"></textarea>
-                <button type="submit" class="send"><img src="./images/send.png" alt="Send"></button>
-            </form>
-              </div>
-            </div>
-              
-        </div>
+      <div class="navbar-container" id="navbarContainer"></div>
     </div>
-</head>
-<body>
+  </head>
+  <body>
+    <main>
+      <div class="container">
+        <div class="row">
+          <section class="left">
+            <div class="inner-left">
+            
+             
+              <div class="box">
+                <div class="img">
+                 
+                  <img src="<%= discussion.image.path %>" alt="<%= discussion.title %>" />
+                </div>
+                <div class="details">
+                  <p><%= discussion.content %></p>
+                  <h3><%= discussion.title %></h3>
+                  <div class="sub-details">
+                    <span><%= discussion.author %></span>
+                   
+                    <span><%= discussion.created_at %></span>
+                   
+                    <div class="comment">
+                      <i class="fa-solid fa-comment"></i>
+                      <span><%= discussion.commentCount %></span>
+                    </div>
+                    <button class="view-button">View</button>
+                  </div>
+                </div>
+              </div>
+            
+            
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+    
+
+    <button class="start-discussion-btn" onclick="openModal()">
+      Start a new discussion
+    </button>
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Start a New Discussion</h2>
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" /><br /><br />
+        <label for="content">Content:</label>
+        <textarea id="content" name="content"></textarea><br /><br />
+        <h3>if the Discussion includes an Image :</h3>
+        <input
+          type="file"
+          id="imageInput"
+          style="margin-top: 5px"
+          accept="image/*"
+          onchange="previewImage(event)"
+        />
+        <div
+          id="imagePreview"
+          style="width: 295px; height: 75px; margin-left: 10px"
+        ></div>
+        <button onclick="saveDiscussion()">Save</button>
+        <button class="cancel-btn" onclick="closeModal()">Cancel</button>
+      </div>
+    </div>
     <script>
-        // Fetch and inject navbar contents
-        fetch('./components/navbar_after_login.html')
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById('navbarContainer').innerHTML = html;
-            })
-            .catch(error => console.error('Error fetching navbar content:', error));
+
+
+
+
+      // Fetch and inject navbar contents
+      fetch("./components/navbar_after_login.html")
+        .then((response) => response.text())
+        .then((html) => {
+          document.getElementById("navbarContainer").innerHTML = html;
+        })
+        .catch((error) =>
+          console.error("Error fetching navbar content:", error)
+        );
+
+
+
+
+
+      //"start a new discussion" window
+      function openModal() {
+        document.getElementById("modal").style.display = "block";
+      }
+
+      function closeModal() {
+        document.getElementById("modal").style.display = "none";
+        document.getElementById('title').value='';
+        document.getElementById('content').value='';
+        document.getElementById('imageInput').value='';
+        document.getElementById('imagePreview').innerHTML='';
+        document.getElementById('modal').style.display='none';
+
+
+      }
+ 
+
+      function saveDiscussion() {
+        var title = document.getElementById("title").value;
+        var content = document.getElementById("content").value;
+        var image = document.getElementById("image").value;
+
+        // Check if the user entered required fields
+        if (!title || !content) {
+          alert("Title and content are required.");
+          return;
+        }
+
+        // Further processing (e.g., saving to database) goes here
+
+        closeModal();
+      }
+
+
+
+
+
+
+      //image preview on the window
+
+      function previewImage(event) {
+        const fileInput = event.target;
+        const files = fileInput.files;
+
+        if (files.length > 0) {
+          const file = files[0];
+          const reader = new FileReader();
+
+          reader.onload = function (e) {
+            const imagePreview = document.getElementById("imagePreview");
+            imagePreview.style.backgroundImage = `url(${e.target.result})`;
+            imagePreview.style.backgroundSize = "contain"; // Adjusted to 'contain'
+            imagePreview.style.backgroundRepeat = "no-repeat";
+          };
+
+          reader.readAsDataURL(file);
+        } else {
+          // Clear the preview if no file selected
+          const imagePreview = document.getElementById("imagePreview");
+          imagePreview.style.backgroundImage = "none";
+        }
+      }
     </script>
-</body>
+  </body>
 </html>

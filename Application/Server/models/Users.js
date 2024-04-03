@@ -35,6 +35,10 @@ const UserDetailsSchema = new mongoose.Schema({
         filename: String,
         path: String
     },
+    join_date: {
+        type: Date,
+        default: Date.now 
+    }
 }, {
     collection: "UserDetails" 
 });
