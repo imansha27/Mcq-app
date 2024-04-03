@@ -4,10 +4,10 @@ const path = require('path');
 // Set storage engine
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
-        cb(null, 'uploads'); // specify the destination folder where the uploaded file will be stored
+        cb(null, 'uploads'); 
     },
     filename: function(req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname)); // specify the filename format
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname)); 
     }
 });
 
@@ -18,7 +18,7 @@ const upload = multer({
     fileFilter: function(req, file, cb) {
         checkFileType(file, cb); 
     }
-}).single('image'); // specify the field name for single file upload
+}).single('image'); 
 
 // Check file type
 function checkFileType(file, cb) {

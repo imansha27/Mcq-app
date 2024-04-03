@@ -197,7 +197,7 @@ async function submitQuestion() {
         formData.append('source', source);
       
        if (imageInput) {
-            formData.append('image', imageInput); // Append the image file
+            formData.append('image', imageInput); 
         }
         
         // Make a POST request to submit the question
@@ -206,14 +206,14 @@ async function submitQuestion() {
             headers: {
                 'Authorization': `Bearer ${token}`
             },
-            body: formData // Use formData instead of JSON.stringify(formData)
+            body: formData 
         });
 
         // Parse response
         const result = await response.json();
         if (response.ok) {
             alert(result.success);
-            // Optionally, redirect or perform other actions after successful submission
+          
         } else {
             alert(result.error);
         }

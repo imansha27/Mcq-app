@@ -25,10 +25,15 @@ app.use('/Admin_side', express.static('Admin_side'));
 // Import routes
 const UserRoutes = require('./routes/Users');
 const QuesRoutes = require('./routes/Questions');
+const DiscusRoutes = require('./routes/Discussions');
+const commentsRoutes = require('./routes/comments');
+
 
 // Routes
 app.use(UserRoutes);
 app.use(QuesRoutes);
+app.use(DiscusRoutes);
+app.use(commentsRoutes);
 
 // Connect to database
 connectToDatabase();
