@@ -39,17 +39,12 @@
     </div>
 
     <script>
-        function todiscuss(discussion) {
-            // Save discussion details to local storage
-            localStorage.setItem("discussion_title", discussion.title);
-            localStorage.setItem("discussion_content", discussion.content);
-            localStorage.setItem("discussion_image", discussion.image ? discussion.image.path : "");
-            localStorage.setItem("discussion_author", discussion.author);
-            localStorage.setItem("discussion_created_at", discussion.created_at);
+     function todiscuss(discussionId) {
+    // Redirect to the chat page with the discussion _id
+    window.location.href = `discussion.html?discussionId=${discussionId}`;
+    console.log(discussionId); // Log the discussionId to the console
+}
 
-            // Redirect to the discussion page
-            window.location.href = "discussion.html";
-        }
 
 
         // Fetch and inject navbar contents
@@ -207,9 +202,8 @@
                     viewButton.classList.add("view-button");
                     viewButton.textContent = "View";
                     viewButton.onclick = function () {
-                        todiscuss(discussion);
-                    };
-
+    todiscuss(discussion._id); 
+};
 
                     subDetailsDiv.appendChild(authorSpan);
                     subDetailsDiv.appendChild(createdAtSpan);
