@@ -26,52 +26,11 @@
         </div>
     </div>
 
-    <script>
-
-
-
-
-
-        // Fetch and inject navbar contents
-        fetch("./components/navbar_after_login.html")
-            .then((response) => response.text())
-            .then((html) => {
-                document.getElementById("navbarContainer").innerHTML = html;
-            })
-            .catch((error) =>
-                console.error("Error fetching navbar content:", error)
-            );
-
-        // Function to handle sending a comment
-        document.getElementById("sendButton").addEventListener("click", function () {
-            // Get the input value
-            var commentText = document.getElementById("commentInput").value;
-
-            // If the input is not empty
-            if (commentText.trim() !== "") {
-                // Create a new message element
-                var messageElement = document.createElement("div");
-                messageElement.classList.add("message"); // Add the message class
-
-                // Create a new paragraph element for the message content
-                var messageContent = document.createElement("p");
-                messageContent.textContent = commentText;
-
-                // Append the message content to the message element
-                messageElement.appendChild(messageContent);
-
-                // Append the message to the chat area
-                document.getElementById("chatMessages").appendChild(messageElement);
-
-                // Clear the input field
-                document.getElementById("commentInput").value = "";
-            }
-        });
-    </script>
-
+ 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="js/discussion.js"></script>
     <script>
-        $(document).ready(function () {
+         $(document).ready(function () {
             $(".btn").click(function () {
                 $(".btn").removeClass("clicked"); // Remove the class from all buttons
                 $(this).addClass("clicked"); // Add the class to the clicked button

@@ -24,7 +24,7 @@ const UserDetailsSchema = new mongoose.Schema({
     },
     School: {
         type: String,
-        required: true
+       
     },
     UserType: {
         type: String,
