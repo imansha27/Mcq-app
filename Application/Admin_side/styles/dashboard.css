@@ -1,46 +1,6 @@
-body{
-    background-image:url('../admin-images/g3.jpg');
-    background-size: cover;
+.container{
+    margin: 10px 255px;
 }
-
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+h1{
+    color: black;
 }
-
-.dashboard-buttons {
-    display: flex;
-    flex-direction: row; /* Change to row */
-    justify-content: center; /* Align horizontally */
-    align-items: center;
-    margin-top: 200px; /* Add margin */
-}
-
-.dashboard-buttons button {
-   
-    margin: 0 20px; /* Add margin between buttons */
-    padding: 0; /* Remove the padding to fit the image */
-    width: 200px; /* Set width */
-    height: 200px; /* Set height */
-    border-radius: 50%;
-    background-color:  #92ecb7; /* Remove background color */
-    border: none;
-    outline: none;
-    cursor: pointer;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease; /* Add transition */
-    border: 1px solid #81e03c;
-}
-
-.dashboard-buttons button:hover {
-    background-color: #f0f0f0; /* Change background color on hover */
-}
-
-.dashboard-buttons img {
-    width: 70%;
-    height: 70%;
-    object-fit: cover;
-    
-}
-

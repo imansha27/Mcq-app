@@ -7,18 +7,30 @@
     <link rel="stylesheet" href="styles/dashboard.css">
 </head>
 <body>
+    <div class="navbar-container" id="navbarContainer"></div>
+   
     <div class="container">
-        <div class="dashboard-buttons">
-            <button>
-                <img src="./admin-images/user.png" alt="Image 1">
-            </button>
-            <button>
-                <img src="./admin-images/file.png" alt="Image 1">
-            </button>
-            <button>
-                <img src="./admin-images/chat.png" alt="Image 1">
-            </button>
-        </div>
+        <h1>Users</h1>
     </div>
+    
+   
+    <script>
+        fetch("./components/adminnavbar.html")
+            .then(response => response.text())
+            .then(html => {
+                // Inject the HTML content into the page
+                document.getElementById("navbarContainer").innerHTML = html;
+
+                // Execute JavaScript within the fetched HTML
+                const scripts = document.getElementById("navbarContainer").getElementsByTagName("script");
+                for (let i = 0; i < scripts.length; i++) {
+                    eval(scripts[i].innerHTML);
+                }
+            })
+            .catch(error => {
+                console.error("Error fetching navbar content:", error);
+            });
+    </script>
+   
 </body>
 </html>
