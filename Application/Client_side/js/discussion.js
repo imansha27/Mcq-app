@@ -1,4 +1,5 @@
-// Fetch and inject navbar contents
+//navbar
+
 fetch("./components/navbar_after_login.html")
 .then((response) => response.text())
 .then((html) => {
@@ -10,55 +11,72 @@ fetch("./components/navbar_after_login.html")
 
 
 
-console.log("Discussion ID:", localStorage.discussionId);
 
-document.getElementById("sendButton").addEventListener("click", function () {
-    // Get the input value
-    var commentText = document.getElementById("commentInput").value;
 
-    // If the input is not empty
-    if (commentText.trim() !== "") {
-        // Create a new message element
-        var messageElement = document.createElement("div");
-        messageElement.classList.add("message"); // Add the message class
+ console.log("Discussion ID:", localStorage.discussionId);
 
-        // Create a new paragraph element for the message content
-        var messageContent = document.createElement("p");
-        messageContent.textContent = commentText;
+ // Function to open the message modal
+ function openMessageModal() {
+     document.getElementById("messageModal").style.display = "block";
+ }
 
-        // Append the message content to the message element
-        messageElement.appendChild(messageContent);
 
-        // Append the message to the chat area
-        document.getElementById("chatMessages").appendChild(messageElement);
 
-        // Clear the input field
-        document.getElementById("commentInput").value = "";
-       
-        // Send comment to server
-        fetch("http://localhost:8000/savecomment", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                // Assuming you have a JWT token stored in localStorage
-                "Authorization": `Bearer ${localStorage.getItem("token")}`
-            },
+
+ // Function to close the message modal
+ function closeMessageModal() {
+     document.getElementById("messageModal").style.display = "none";
+     document.getElementById("messageContent").value = "";
+ }
+
+
+
+
+ // Function to send a message
+ function sendMessage() {
+     var messageText = document.getElementById("messageContent").value;
+     if (messageText.trim() !== "") {
+        
+
+         // Send message to server
+         fetch("http://localhost:8000/savecomment", {
+             method: "POST",
+             headers: {
+                 "Content-Type": "application/json",
+               
+                 "Authorization": `Bearer ${localStorage.getItem("token")}`
+             },
+             body: JSON.stringify({
+                 content: messageText,
+                 discussion_id: localStorage.getItem("discussionId")
+             })
+         })
+         .then(response => {
+             if (!response.ok) {
+                 throw new Error("Failed to post the reply");
+             }
             
-            body: JSON.stringify({
-                content: commentText,
-                discussion_id: localStorage.getItem("discussionId")
-              
-            })
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Failed to post the reply");
-            }
-            // Handle successful response if needed
-        })
-        .catch(error => {
-            console.error("Error saving comment:", error);
-            // Handle error if needed
-        });
-    }
-});
+             closeMessageModal();     
+         var messageElement = document.createElement("div");
+         messageElement.classList.add("message");
+         var messageContent = document.createElement("p");
+         messageContent.textContent = messageText;
+
+         // Append the message content to the message element
+         messageElement.appendChild(messageContent);
+
+         // Append the message to the chat area
+         document.getElementById("chatMessages").appendChild(messageElement);
+         })
+         .catch(error => {
+             console.error("Error saving comment:", error);
+             
+         });
+         
+         
+         alert("Your reply was posted succesfully!")
+     } else {
+        
+         alert("Please enter a message.");
+     }
+ }

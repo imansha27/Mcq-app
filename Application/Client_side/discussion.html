@@ -5,27 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/discussion.css">
     <link rel="stylesheet" href="styles/navbar.css">
-    <title>Quiz</title>
+    <title>Discussion</title>
 </head>
 <body>
+    <div class="navbar-container" id="navbarContainer"> </div>
     <div class="d-container">
-        <div class="navbar-container" id="navbarContainer"></div>
+       
         <div class="container">
-            <div class="discussion-details">
-              
-            </div>
+            
             <div class="chat-container">
+               
+              
+                </div>
+              
                 <div class="chat" id="chatMessages">
-                    <!-- Chat messages will be dynamically added here -->
+                   
+               
+                        <button id="sendButton" onclick="openMessageModal()">Send</button>
+                  
                 </div>
-                <div class="comment-input">
-                    <input type="text" id="commentInput" placeholder="Write a comment...">
-                    <button id="sendButton">Send</button>
-                </div>
-            </div>
+                
+            
         </div>
     </div>
-
+    <div id="messageModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeMessageModal()">&times;</span>
+            <h2>Enter Message</h2>
+            <textarea id="messageContent" name="messageContent" rows="4" cols="50"></textarea><br /><br />
+            <button onclick="sendMessage()">Send</button>
+            <button class="cancel-btn" onclick="closeMessageModal()">Cancel</button>
+        </div>
+    </div>
+    
  
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="js/discussion.js"></script>

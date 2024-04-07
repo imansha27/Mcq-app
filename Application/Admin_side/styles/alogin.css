@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica+SC&family=Inconsolata&display=swap');
+
+body{
+    background-image:url('../admin-images/g3.jpg');
+    background-size: cover;
+}
+.alg-container {
+   top: 500px;
+    width: 300px;
+    margin:170px  auto;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+/* Heading */
+.alg-container h1 {
+    font-family:'IM Fell DW Pica SC', serif;
+    text-align: center;
+    font-size: 54px;
+    margin-bottom: 20px;
+    margin-top: 1px;
+}
+
+/* Form */
+.alg-container form {
+  
+    display: flex;
+    flex-direction: column;
+}
+
+/* Input fields */
+.alg-container input {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Button */
+.alg-button {
+    padding: 10px 20px;
+    background-color: #2ecc71;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.alg-button:hover {
+    background-color:#27ae60;
+}
+
+/* Responsive */
+@media screen and (max-width: 480px) {
+    .alg-container {
+        width: 90%;
+    }
+}
