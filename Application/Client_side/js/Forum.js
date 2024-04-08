@@ -37,7 +37,7 @@ function fetchComments(discussionId) {
       if (!response.ok) {
         throw new Error("Failed to fetch comments");
       }
-      // Handle successful response if needed
+    
       return response.json();
     })
     .then((data) => {

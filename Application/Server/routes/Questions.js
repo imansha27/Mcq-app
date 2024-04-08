@@ -71,9 +71,9 @@ router.post('/submitques', verifyToken, upload, async (req, res) => {
 router.get('/quizques',verifyToken,async(req,res)=>{
     try {
         const question=await sques.find().limit(15);
-        res.json(question);
+       return res.json(question);
     } catch (error) {
-        res.status(500).json({message:error.message});
+        return res.status(500).json({message:error.message});
     }
 })
 
