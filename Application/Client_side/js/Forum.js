@@ -1,9 +1,26 @@
+//navbar
+for (var i = 0; i < localStorage.length; i++) {
+  var key = localStorage.key(i);
+  var value = localStorage.getItem(key);
+  console.log("Key:", key, "Value:", value);
+}
+
+
+
+
+
+
+
+
+
+
 function todiscuss(discussionId) {
     localStorage.setItem('discussionId', discussionId);
 
  
     window.location.href = `discussion.html?discussionId=${discussionId}`;
 }
+
 
 
 // Function to fetch comments for a given discussionId
@@ -20,7 +37,7 @@ function fetchComments(discussionId) {
       if (!response.ok) {
         throw new Error("Failed to fetch comments");
       }
-      // Handle successful response if needed
+    
       return response.json();
     })
     .then((data) => {
@@ -32,12 +49,9 @@ function fetchComments(discussionId) {
     });
 }
 
-// Iterate over all items in local storage and log them
-for (var i = 0; i < localStorage.length; i++) {
-  var key = localStorage.key(i);
-  var value = localStorage.getItem(key);
-  console.log("Key:", key, "Value:", value);
-}
+
+
+
 
 // Fetch and inject navbar content
 fetch("./components/navbar_after_login.html")

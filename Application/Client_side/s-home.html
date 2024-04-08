@@ -6,18 +6,23 @@
     <link rel="stylesheet" href="styles/s-home.css" />
     <link rel="stylesheet" href="styles/navbar.css" />
     <title>Quiz</title>
+  </head>
+  <body>
     <div ="h-container">
       <div class="navbar-container" id="navbarContainer"></div>
       <div class="q-container">
         <div class="qtn">
-          Question.
-          <div class="img-cont"></div>
+          <p id="Question"> </p>
+        
+          <div class="img-cont" id="img"></div>
           <div class="list">
             <ol>
-              <li>ans1</li>
-              <li>an2</li>
-              <li>an3</li>
-            </ol>
+              <li id="ch1"></li>
+              <li id="ch2"></li>
+              <li id="ch3"></li>
+              <li id="ch4"></li>
+              <li id="ch5"></li>
+          </ol>
           </div>
         </div>
         <div class="ans-btns">
@@ -31,8 +36,12 @@
       </div>
       
     </div>
-  </head>
-  <body>
+  
+    <script src="/Application/Client_side/components/js/navbar.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="js/s-home.js"></script>
+   
     <script>
       // Fetch and inject navbar contents
       fetch("./components/navbar_after_login.html")
@@ -43,16 +52,20 @@
         .catch((error) =>
           console.error("Error fetching navbar content:", error)
         );
-    </script>
+  
 
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script>
       $(document).ready(function () {
         $(".btn").click(function () {
-          $(".btn").removeClass("clicked"); // Remove the class from all buttons
-          $(this).addClass("clicked"); // Add the class to the clicked button
+          $(".btn").removeClass("clicked"); 
+          $(this).addClass("clicked");
         });
       });
+
+
+
+
+
+      
     </script>
   </body>
 </html>

@@ -5,9 +5,26 @@ for (var i = 0; i < localStorage.length; i++) {
   console.log("Key:", key, "Value:", value);
 }
 
+
+// Fetch and inject navbar content
+fetch("./components/navbar_before_login.html")
+  .then((response) => response.text())
+  .then((html) => {
+    document.getElementById("navbarContainer").innerHTML = html;
+  })
+  .catch((error) => console.error("Error fetching navbar content:", error));
+
+
+
+
+
+
+
+
+
 async function loginUser() {
   // Clear the localStorage before logging in
-  localStorage.clear();
+  //localStorage.clear();
 
   // Collect form data
   const username = document.getElementById("UserName").value;
@@ -50,10 +67,3 @@ async function loginUser() {
   }
 }
 
-// Fetch and inject navbar content
-fetch("./components/navbar_before_login.html")
-  .then((response) => response.text())
-  .then((html) => {
-    document.getElementById("navbarContainer").innerHTML = html;
-  })
-  .catch((error) => console.error("Error fetching navbar content:", error));
