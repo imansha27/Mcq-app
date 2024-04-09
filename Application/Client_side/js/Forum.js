@@ -1,56 +1,4 @@
 //navbar
-for (var i = 0; i < localStorage.length; i++) {
-  var key = localStorage.key(i);
-  var value = localStorage.getItem(key);
-  console.log("Key:", key, "Value:", value);
-}
-
-
-
-
-
-
-
-
-
-
-function todiscuss(discussionId) {
-    localStorage.setItem('discussionId', discussionId);
-
- 
-    window.location.href = `discussion.html?discussionId=${discussionId}`;
-}
-
-
-
-// Function to fetch comments for a given discussionId
-function fetchComments(discussionId) {
-  fetch(`http://localhost:8000/getcomment?discussionId=${discussionId}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-    },
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Failed to fetch comments");
-      }
-    
-      return response.json();
-    })
-    .then((data) => {
-      // Process fetched comments if needed
-    })
-    .catch((error) => {
-      console.error("Error fetching comments:", error);
-      // Handle error if needed
-    });
-}
-
-
-
 
 
 // Fetch and inject navbar content
@@ -60,6 +8,29 @@ fetch("./components/navbar_after_login.html")
     document.getElementById("navbarContainer").innerHTML = html;
   })
   .catch((error) => console.error("Error fetching navbar content:", error));
+
+
+
+
+
+for (var i = 0; i < localStorage.length; i++) {
+  var key = localStorage.key(i);
+  var value = localStorage.getItem(key);
+  console.log("Key:", key, "Value:", value);
+}
+
+
+
+
+function todiscuss(discussionId) {
+    localStorage.setItem('discussionId', discussionId);
+    window.location.href='discussion.html'
+}
+
+
+
+
+
 
 //"start a new discussion" window
 function openModal() {

@@ -35,14 +35,13 @@ router.get('/getcomments', verifyToken, async (req, res) => {
     try {
         const discussionId = req.query.discussionId; 
         
-        //console.log("Discussion ID:", discussionId); 
-        
+       
         const comments = await Comment.find({ discussion_id: discussionId });
         console.log("Comments:", comments); 
         
         return res.status(200).json(comments);
     } catch (error) {
-        console.error("Error:", error); // Log any errors that occur
+        console.error("Error:", error); 
         return res.status(500).json({ error: error.message });
     }
 });

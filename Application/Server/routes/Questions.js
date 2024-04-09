@@ -10,7 +10,7 @@ router.post('/submitques', verifyToken, upload, async (req, res) => {
     try {
       
         const username = req.username;
-
+        //console.log(username);
        
         const { Question, Choice1, Choice2, Choice3, Choice4, Choice5, Correctans, Category, source } = req.body;
         
@@ -55,27 +55,12 @@ router.post('/submitques', verifyToken, upload, async (req, res) => {
         return res.status(200).json({ success: "Question submitted successfully" });
     } catch (error) {
        
-        return res.status(400).json({ error: error.message });
+        //return res.status(400).json({ error: error.message });
     }
 });
 
 
 
-
-
-
-
-
-//pass questions for the quiz page
-
-router.get('/quizques',verifyToken,async(req,res)=>{
-    try {
-        const question=await sques.find().limit(15);
-       return res.json(question);
-    } catch (error) {
-        return res.status(500).json({message:error.message});
-    }
-})
 
 
 
