@@ -9,7 +9,7 @@
 //     }
 // }
 
-console.log("what?vvvv");
+
 
 // Retrieve user type from local storage and replace links
 window.addEventListener('DOMContentLoaded', function() {
@@ -23,16 +23,16 @@ window.addEventListener('DOMContentLoaded', function() {
 
 
 function replaceLinks(userType) {
-    console.log("what?");
+   
     console.log('Replacing links for user type:', userType);
     if (userType === 'Teacher') {
         const homeLink = document.getElementById('lnk-home');
         const profileLink = document.getElementById('lnk-profile');
-        console.log('Home link:', homeLink);
-        console.log('Profile link:', profileLink);
+        //console.log('Home link:', homeLink);
+        //console.log('Profile link:', profileLink);
         if (homeLink && profileLink) {
-            homeLink.href = 't-home.html'; // Update link href
-            profileLink.href = 't-profile.html'; // Update link href
+            homeLink.href = 't-home.html'; 
+            profileLink.href = 't-profile.html'; 
         } else {
             console.error('One or both links not found.');
         }
@@ -41,15 +41,6 @@ function replaceLinks(userType) {
 
 
 function clearUserLocalStorage() {
-    const username=localStorage.getItem('username');
-    console.log("nnnnnfnfnfn");
-    console.log(username)
-    if(username){
-      localSrorage.removeItem(username+"_token");
-       localSrorage.removeItem(username+"_userType");
+    localStorage.clear();
 
-        console.log("User data cleared for",username);
-    }else{
-        console.error('No user data found');
-    }
 }

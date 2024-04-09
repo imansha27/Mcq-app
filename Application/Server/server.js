@@ -27,6 +27,8 @@ const UserRoutes = require('./routes/Users');
 const QuesRoutes = require('./routes/Questions');
 const DiscusRoutes = require('./routes/Discussions');
 const commentsRoutes = require('./routes/comments');
+const QuizRoutes = require('./routes/Q-bank');
+
 
 
 // Routes
@@ -34,6 +36,7 @@ app.use(UserRoutes);
 app.use(QuesRoutes);
 app.use(DiscusRoutes);
 app.use(commentsRoutes);
+app.use(QuizRoutes);
 
 // Connect to database
 connectToDatabase();

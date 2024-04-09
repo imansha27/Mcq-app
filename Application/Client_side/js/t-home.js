@@ -9,13 +9,7 @@ fetch("./components/navbar_after_login.html")
 
 
 
-//token
-window.addEventListener("DOMContentLoaded", () => {
-// Retrieve token from local storage
-const token = localStorage.getItem("token");
-// Set the value of the hidden input field to the token
-document.getElementById("token").value = token;
-});
+
 
 
 
@@ -59,6 +53,9 @@ if (files.length > 0) {
 }
 }
 
+
+
+
 // Function to handle form submission
 async function submitQuestion() {
 try {
@@ -72,7 +69,6 @@ try {
   const correctAnswer = document.getElementById("corr").value;
   const category = document.getElementById("cate").value;
   const source = document.getElementById("source").value;
-  const token = document.getElementById("token").value;
   const imageInput = document.getElementById("imageInput").files[0]; // Get the image file
 
   // Prepare form data with the image
@@ -92,24 +88,23 @@ try {
   }
 
   // Make a POST request to submit the question
-  const response = await fetch("http://localhost:8000/submitques", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-    body: formData,
-  });
 
-  // Parse response
-  const result = await response.json();
-  if (response.ok) {
-    alert(result.success);
-  } else {
-    alert(result.error);
-  }
+   const response = await axios.post("http://localhost:8000/submitques", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data", // Set content type to multipart/form-data
+      "Authorization": `Bearer ${localStorage.getItem("token")}`
+    }
+  })
+
+  if (response.status === 200) {
+    alert("Question submitted successfully");
+  } 
+  
 } catch (error) {
-  console.error("Error submitting question:", error);
+alert("The Question already exists");
 }
+
+
 }
 
 // Attach submitQuestion function to submit button click event
