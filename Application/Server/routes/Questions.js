@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const sques = require('../models/SubQuestions');
+const sques = require('../models/Questions');
 const jwt = require('jsonwebtoken'); 
 const verifyToken = require('../middlewares/authMiddleware');
 const upload = require('../middlewares/fileUploadMiddleware'); // Require file upload middleware

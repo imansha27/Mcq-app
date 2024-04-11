@@ -134,6 +134,28 @@ body {
     border: 1px solid #ccc;
     border-radius: 4px;
   }
+
+
+  
+  #sendButton {
+    background-color: #007bff; 
+    color: #fff; 
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px; 
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+  
+  #sendButton:hover {
+    background-color: #355a82; 
+  }
+
+
+
   
   button {
     background-color: #4caf50;

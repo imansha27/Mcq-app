@@ -1,0 +1,53 @@
+import re
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+from nltk.stem import WordNetLemmatizer
+
+def extract_chemistry_keywords(text):
+    # Regular expressions to match chemical elements, compounds, and reaction notations
+    chemical_pattern = r'\b(?:[A-Z][a-z]*\d*)+\b(?!\s*=)'
+    reaction_pattern = r'\b(?:[A-Z][a-z]*\d*)+\s*[-=]?>+\s*(?:[A-Z][a-z]*\d*)+\b'
+    
+    ol_pattern = r'\b\w*ol\b'
+
+    # Initialize WordNet Lemmatizer
+    lemmatizer = WordNetLemmatizer()
+    
+    # List of specific chemistry-related terms, including plural forms
+    chemistry_terms_list = ['alcohol', 'alkene', 'acid', 'salt', 'aqueous', 'acidic', 'equi-molar', 'ideal gas', 'gaseous', 'temperature', 'pressure', 'volume', 'increasing','decreasing']
+    chemistry_terms_pattern = r'\b(?:' + '|'.join(chemistry_terms_list) + r')(?:s)?\b'
+    
+    # Tokenize the text
+    tokens = word_tokenize(text)
+    
+    # Lemmatize the tokens
+    lemmatized_tokens = [lemmatizer.lemmatize(token.lower()) for token in tokens]
+    
+    # Extract chemical elements, compounds, and reaction notations from the lemmatized tokens
+    chemicals = re.findall(chemical_pattern, ' '.join(tokens))
+    reactions = re.findall(reaction_pattern, ' '.join(tokens))
+
+    # Extract specific chemistry-related terms from both lemmatized and non-lemmatized tokens
+    chemistry_terms = re.findall(ol_pattern, ' '.join(tokens))
+    chemistry_terms += [word for word in lemmatized_tokens if word in chemistry_terms_list]
+    chemistry_terms = re.findall(chemistry_terms_pattern, ' '.join(tokens))
+
+    # Combine the extracted keywords
+    keywords = chemicals + reactions + chemistry_terms
+
+    # Filter out common English stopwords
+    english_stopwords = set(stopwords.words('english'))
+    keywords = [word for word in keywords if word.lower() not in english_stopwords]
+    
+    # Remove duplicates by converting the list to a set
+    keywords = list(set(keywords))
+
+    return keywords
+
+
+# Example text
+text = "onsider the following compounds.   a)СН3СОСН3   b)C6H5CONH2    c) CH3CH-CHCH3           c) CH3CH=CHCH3         d)C6H5CH3    Which of the above will be reduced by LiAIH4"
+
+# Extract chemistry-related keywords from the text
+keywords = extract_chemistry_keywords(text)
+print("Extracted Keywords:", keywords)

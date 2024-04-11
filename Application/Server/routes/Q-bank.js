@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const sques = require('../models/SubQuestions');
-const aques = require('../models/AppQuestion');
+const sques = require('../models/Questions');
 const jwt = require('jsonwebtoken'); 
 const verifyToken = require('../middlewares/authMiddleware');
 const upload = require('../middlewares/fileUploadMiddleware'); 
@@ -28,16 +27,16 @@ router.get('/getsubQ', verifyToken, async (req, res) => {
 
 
 //get all approved questions of a user
-router.get('/getAppQ', verifyToken, async (req, res) => {
-    try {
-        const UserName = req.username; 
-        const quiz = await aques.find({ submitby: UserName }); 
+// router.get('/getAppQ', verifyToken, async (req, res) => {
+//     try {
+//         const UserName = req.username; 
+//         const quiz = await aques.find({ submitby: UserName }); 
 
-        res.status(200).json({ questions: quiz }); 
-    } catch (error) {
-        return res.status(500).json({ message: error.message });
-    }
-});
+//         res.status(200).json({ questions: quiz }); 
+//     } catch (error) {
+//         return res.status(500).json({ message: error.message });
+//     }
+// });
 
 
 

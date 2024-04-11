@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const ApprovedQSchema = new mongoose.Schema({
+const QuestionSchema = new mongoose.Schema({
     Question: {
         type: String,
         required: true
@@ -27,7 +27,7 @@ const ApprovedQSchema = new mongoose.Schema({
     },
     Correctans: {
         type: String,
-        enum: ['Choice1', 'Choice2', 'Choice3', 'Choice4', 'Choice5'], //ensure that only these values be added to this field
+        enum: ['Choice1', 'Choice2', 'Choice3', 'Choice4', 'Choice5'],
         required: true
     },
     Category: {
@@ -50,9 +50,13 @@ const ApprovedQSchema = new mongoose.Schema({
     image: {
         filename: String,
         path: String
+    },
+    keywords: {
+        type: [String],
+        required:true 
     }
 }, {
-    collection: "SquesDetails"
+    collection: "quesDetails"
 });
 
-module.exports = mongoose.model("AppDetails", ApprovedQSchema);
+module.exports = mongoose.model("quesDetails", QuestionSchema);
