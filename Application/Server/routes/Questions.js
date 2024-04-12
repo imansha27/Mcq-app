@@ -1,20 +1,36 @@
 const express = require('express');
 const router = express.Router();
-const sques = require('../models/SubQuestions');
+const sques = require('../models/Questions');
 const jwt = require('jsonwebtoken'); 
 const verifyToken = require('../middlewares/authMiddleware');
-const upload = require('../middlewares/fileUploadMiddleware'); // Require file upload middleware
+const upload = require('../middlewares/fileUploadMiddleware');
+const { exec } = require('child_process'); // Import exec from child_process
 
-// submit new question
+const pythonScriptPath = './keyword_extraction.py';
+
+
+function extractKeywordsPythonScript(data, callback) {
+    exec(`python ${pythonScriptPath} "${data}"`, (error, stdout, stderr) => {
+        if (error) {
+            console.error(`Error executing Python script: ${error}`);
+            return callback(error, null);
+        }
+        if (stderr) {
+            console.error(`Python script stderr: ${stderr}`);
+            return callback(new Error(stderr), null);
+        }
+        // Extracted keywords are in stdout
+        const keywords = stdout.trim().split('\n');
+        callback(null, keywords);
+    });
+}
+
+
 router.post('/submitques', verifyToken, upload, async (req, res) => {
     try {
-      
         const username = req.username;
-        //console.log(username);
-       
         const { Question, Choice1, Choice2, Choice3, Choice4, Choice5, Correctans, Category, source } = req.body;
         
-        //  image file exists
         let image = null;
         if (req.file) {
             image = {
@@ -26,6 +42,28 @@ router.post('/submitques', verifyToken, upload, async (req, res) => {
         if (!Question || !Choice1 || !Choice2 || !Choice3 || !Choice4 || !Choice5 || !Correctans || !Category || !source ) {
             return res.status(400).json({ error: "All fields are required including image." });
         } 
+
+       
+             // Concatenate question and choices into a single string
+             const dataForExtraction = `${Question} ${Choice1} ${Choice2} ${Choice3} ${Choice4} ${Choice5}`;
+
+             // Extract keywords from the question and choices using Python script
+             const keywords = await new Promise((resolve, reject) => {
+                 extractKeywordsPythonScript(dataForExtraction, (error, keywords) => {
+                     if (error) {
+                         console.error(`Error extracting keywords: ${error.message}`);
+                         reject("Keyword extraction failed");
+                     } else {
+                         resolve(keywords);
+                     }
+                 });
+             });
+     
+             // Keywords extracted successfully, proceed with saving the question
+             const existingQuestion = await sques.findOne({ Question });
+             if (existingQuestion) {
+                 return res.status(400).json({ error: "Question already exists" });
+             }
 
         const newQues = new sques({
             Question,
@@ -39,32 +77,15 @@ router.post('/submitques', verifyToken, upload, async (req, res) => {
             source,
             image, 
             submitby: username,
+            keywords: keywords // Add extracted keywords to the keywords field
         });
-     
 
-     
-        const existingQuestion = await sques.findOne({ Question });
-        if (existingQuestion) {
-            return res.status(400).json({ error: "Question already exists" });
-        }
-
-       
         await newQues.save();
-        
-  
         return res.status(200).json({ success: "Question submitted successfully" });
     } catch (error) {
-       
-        //return res.status(400).json({ error: error.message });
+        return res.status(500).json({ error: error.message });
     }
 });
-
-
-
-
-
-
-
 
 
 module.exports = router;
