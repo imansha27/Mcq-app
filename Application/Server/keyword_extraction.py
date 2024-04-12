@@ -45,9 +45,22 @@ def extract_chemistry_keywords(text):
     return keywords
 
 
-# Example text
-text = "onsider the following compounds.   a)СН3СОСН3   b)C6H5CONH2    c) CH3CH-CHCH3           c) CH3CH=CHCH3         d)C6H5CH3    Which of the above will be reduced by LiAIH4"
+
 
 # Extract chemistry-related keywords from the text
-keywords = extract_chemistry_keywords(text)
-print("Extracted Keywords:", keywords)
+#keywords = extract_chemistry_keywords(text)
+#print("Extracted Keywords:", keywords)
+
+
+# Example text
+# text = ""
+
+
+if __name__ == "__main__":
+    import sys
+
+    # Extract keywords from command-line arguments
+    if len(sys.argv) > 1:
+        text = ' '.join(sys.argv[1:])
+        keywords = extract_chemistry_keywords(text)
+        print('\n'.join(keywords))
