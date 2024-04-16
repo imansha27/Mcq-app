@@ -4,7 +4,7 @@ const sques = require('../models/Questions');
 const jwt = require('jsonwebtoken'); 
 const verifyToken = require('../middlewares/authMiddleware');
 const upload = require('../middlewares/fileUploadMiddleware');
-const { exec } = require('child_process'); // Import exec from child_process
+const { exec } = require('child_process'); 
 
 const pythonScriptPath = './keyword_extraction.py';
 
@@ -29,8 +29,8 @@ function extractKeywordsPythonScript(data, callback) {
 router.post('/submitques', verifyToken, upload, async (req, res) => {
     try {
         const username = req.username;
-        const { Question, Choice1, Choice2, Choice3, Choice4, Choice5, Correctans, Category, source } = req.body;
-        
+        const { Question, Choice1, Choice2, Choice3, Choice4, Choice5, Correctans,difficulty,Category, source,hint,unit } = req.body;
+        //console.log(req.body);
         let image = null;
         if (req.file) {
             image = {
@@ -39,7 +39,7 @@ router.post('/submitques', verifyToken, upload, async (req, res) => {
             };
         }
 
-        if (!Question || !Choice1 || !Choice2 || !Choice3 || !Choice4 || !Choice5 || !Correctans || !Category || !source ) {
+        if (!Question || !Choice1 || !Choice2 || !Choice3 || !Choice4 || !Choice5 || !Correctans || !Category || !source ||!difficulty||!hint||!unit) {
             return res.status(400).json({ error: "All fields are required including image." });
         } 
 
@@ -73,11 +73,14 @@ router.post('/submitques', verifyToken, upload, async (req, res) => {
             Choice4,
             Choice5,
             Correctans,
+            difficulty,
             Category,
             source,
+            unit,
+            hint,
             image, 
             submitby: username,
-            keywords: keywords // Add extracted keywords to the keywords field
+            keywords: keywords 
         });
 
         await newQues.save();

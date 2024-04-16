@@ -15,7 +15,7 @@
 
  function getsubQ() {
    
-    fetch('http://localhost:8000/adminsubQ', {
+    fetch('http://localhost:8000/getAppQ', {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -45,7 +45,7 @@
                 <td>${question.status}</td>
                 <td>
                     <button class="delete-btn">Delete</button>
-                    <button class="edit-btn">Edit</button>
+                  
                 </td>
             `;
             const removeButton =tableRow.querySelector('.delete-btn');
@@ -60,20 +60,6 @@
                     tableRow.remove();
                 }
             });
-
-
-
-            const editButton = tableRow.querySelector('.edit-btn');
-            editButton.addEventListener('click', (event) => {
-                const tableRow = event.target.closest('tr'); 
-                const questionId = tableRow.dataset.questionId;
-                showEditModal(questionId);
-            });
-
-
-
-
-
             document.getElementById('submittedQuestionsBody').appendChild(tableRow);
         });
     })
@@ -84,7 +70,7 @@
 
 
 function deleQuestion(questionId){
-    fetch("http://localhost:8000/delesubQ", {
+    fetch("http://localhost:8000/deleappQ", {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -100,48 +86,8 @@ function deleQuestion(questionId){
     .catch((error) => {
       console.error("There was a problem with the fetch operation:", error);
     });
-
+ 
 }
-
-
-
-function showEditModal(questionId) {
-    fetch("http://localhost:8000//getquestion", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ question_id: questionId }),
-      })
-        .then(response => response.json())
-        .then(question => {
-            // Get the modal element
-            const modal = document.getElementById('editModal');
-
-            // Populate the modal fields with the question details
-            modal.querySelector('#editQuestion').value = question.Question;
-            modal.querySelector('#editChoice1').value = question.Choice1;
-            modal.querySelector('#editChoice2').value = question.Choice2;
-            modal.querySelector('#editChoice3').value = question.Choice3;
-            modal.querySelector('#editChoice4').value = question.Choice4;
-            modal.querySelector('#editCorrectAns').value = question.Correctans;
-            modal.querySelector('#editCategory').value = question.Category;
-            modal.querySelector('#editKeywords').value = question.keywords;
-            modal.querySelector('#editImage').value = question.image;
-            modal.querySelector('#editSource').value = question.source;
-            modal.querySelector('#editStatus').value = question.status;
-
-            // Show the modal
-            modal.style.display = 'block';
-        })
-        .catch(error => {
-            console.error("Error fetching question details:", error);
-        });
-}
-
 
 getsubQ();
-
-
-
 

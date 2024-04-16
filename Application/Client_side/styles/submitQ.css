@@ -1,0 +1,74 @@
+h1{
+ margin-top:65px;
+ font-family: 'IM FELL DW Pica SC';
+ text-decoration: underline;
+
+}
+
+.sQ{
+    padding: 5px;
+}
+#submittedQuestionsTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+#submittedQuestionsTable th {
+    background-color: #3CB371; 
+    color: white;
+    padding: 10px;
+    text-align: left;
+}
+
+
+#submittedQuestionsTable td, #submittedQuestionsTable th {
+    border: 1px solid #dddddd;
+    padding: 8px;
+}
+
+
+#submittedQuestionsTable tbody tr:nth-child(odd) {
+    background-color: #F0FFF0; /* Honeydew */
+}
+
+
+#submittedQuestionsTable tbody tr:nth-child(even) {
+    background-color: #98FB98; 
+}
+
+
+.edit-btn {
+    background-color: #585757; 
+    color: white;
+    border: none;
+    padding: 5px 17px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 2px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.delete-btn {
+    background-color: #FF6347; 
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 2px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+
+.edit-btn:hover {
+    background-color: #363535; 
+}
+
+.delete-btn:hover{
+    background-color: #FF4500; 
+}

@@ -38,6 +38,15 @@ const QuestionSchema = new mongoose.Schema({
     source: {
         type: String,
         required: true
+    }, 
+     hint: {
+        type: String,
+        required: true
+    },
+    unit: {
+        type: String,
+        enum: ['Unit 01 Atomic structure', 'Unit 02 Structure and bonding', 'Unit 03 Chemical calculations', 'Unit 04 Gaseous state of matter', 'Unit 05 Energetics', 'Unit 06 Chemistry of s,p and d block elements', 'Unit 07 Basic concepts of organic chemistry', 'Unit 08 Hydrocarbons and halohydrocarbons', 'Unit 09 Oxygen containing organic compounds', 'Unit 10 Nitrogen containing organic compounds', 'Unit 11 Chemical kinetics', 'Unit 12 Equilibrium', 'Unit 13 Electro chemistry', 'Unit 14 Industrial chemistry and Environmental pollution'],
+        required: true
     },
     submitby: {
         type: String,
@@ -50,6 +59,11 @@ const QuestionSchema = new mongoose.Schema({
     image: {
         filename: String,
         path: String
+    },
+    difficulty: {
+        type: String,
+        enum: ['Easy', 'Medium', 'Hard'],
+        required: true
     },
     keywords: {
         type: [String],
