@@ -4,16 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="styles/dashboard.css">
+    <link rel="stylesheet" href="styles/subq.css">
 </head>
 <body>
     <div class="navbar-container" id="navbarContainer"></div>
    
-    <div class="container">
-        <h1>Users</h1>
+    <div class="a-container">
+        <div class="aQ">
+            <h1>Users</h1>
+            <table id="userTable">
+                <thead>
+                    <tr>
+                        <th id="UserName">UserName</th>
+                        <th id="UserType">UserType</th>
+                        <th id="Email">Email</th>
+                        <th id="FirstName">FirstName</th>
+                        <th id="LastName">LastName</th>
+                        <th id="School">School</th>
+                        <th>Remove the user
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="userBody">
+                    
+                </tbody>
+            </table>
+        </div>
     </div>
     
-   
+   <script src="js/dashboard.js"></script>
     <script>
         fetch("./components/adminnavbar.html")
             .then(response => response.text())

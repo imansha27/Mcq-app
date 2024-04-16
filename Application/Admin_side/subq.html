@@ -3,16 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="styles/dashboard.css">
+    <title>Submitted Question</title>
+    <link rel="stylesheet" href="styles/subq.css">
 </head>
 <body>
     <div class="navbar-container" id="navbarContainer"></div>
    
-    <div class="container">
-        <h1>Submitted Question</h1>
-        
+    <div class="a-container">
+        <div class="aQ">
+            <h1>Submitted Questions</h1>
+            <table id="submittedQuestionsTable">
+                <thead>
+                    <tr>
+                        <th id="Question">Question</th>
+                        <th id="Options">Options for the Question</th>
+                        <th id="Correct">Correct Answer</th>
+                        <th id="Cat">Category</th>
+                        <th id="Keywords">Keywords</th>
+                        <th id="img">image</th>
+                        <th id="Source">Source</th>
+                        <th id>Status</th>
+                        <th>Approve Question
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="submittedQuestionsBody">
+                    
+                </tbody>
+            </table>
+        </div>
     </div>
+    <script src="js/subq.js"></script>
     <script>
         fetch("./components/adminnavbar.html")
 .then((response) => response.text())
@@ -24,5 +45,6 @@
 );
 
     </script>
+     
 </body>
 </html>

@@ -11,7 +11,7 @@
     <div class="h-container">
       <div class="navbar-container" id="navbarContainer"></div>
     </div>
-    <h1>Add MCQ from here :</h1>
+    <h1>Add new MCQ from here :</h1>
     <div class="t-container">
       <div class="quest">
         <div class="input-box">
@@ -60,9 +60,10 @@
         </div>
 
         <div class="choice-row2">
-          <h3>Correct Answer:</h3>
+          <h3 style="margin-top: 4px;">Correct Answer:</h3>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <select id="corr" name="correct">
+            <option value=""></option>
             <option value="Choice1">Choice 1</option>
             <option value="Choice2">Choice 2</option>
             <option value="Choice3">Choice 3</option>
@@ -72,14 +73,49 @@
         </div>
 
         <div class="choice-row2">
-          <h3>Question Category:</h3>
+          <h3 style="margin-top: 3px;">Question Category:</h3>
           &nbsp;
           <select id="cate" name="cat">
+            <option value=""></option>
             <option value="Organic">Organic</option>
             <option value="Inorganic">Inorganic</option>
             <option value="Physical">Physical</option>
           </select>
         </div>
+
+        <div class="choice-row2">
+          <h3  style="margin-top: 6px;">Question Difficulty:</h3>
+          &nbsp;
+          <select id="dif" name="dif">
+            <option value=""></option>
+            <option value="Easy">Easy</option>
+            <option value="Medium">Medium</option>
+            <option value="Hard">Hard</option>
+          </select>
+        </div>
+
+        <div class="choice-row2">
+          <h3 style="margin-top: 6px;">Subject Unit:</h3>
+          &nbsp;
+          <select id="unit" name="unit">
+              <option value=""></option>
+              <option value="Unit 01 Atomic structure">Unit 01 Atomic structure</option>
+              <option value="Unit 02 Structure and bonding">Unit 02 Structure and bonding</option>
+              <option value="Unit 03 Chemical calculations">Unit 03 Chemical calculations</option>
+              <option value="Unit 04 Gaseous state of matter">Unit 04 Gaseous state of matter</option>
+              <option value="Unit 05 Energetics">Unit 05 Energetics</option>
+              <option value="Unit 06 Chemistry of s,p and d block elements">Unit 06 Chemistry of s,p and d block elements</option>
+              <option value="Unit 07 Basic concepts of organic chemistry">Unit 07 Basic concepts of organic chemistry</option>
+              <option value="Unit 08 Hydrocarbons and halohydrocarbons">Unit 08 Hydrocarbons and halohydrocarbons</option>
+              <option value="Unit 09 Oxygen containing organic compounds">Unit 09 Oxygen containing organic compounds</option>
+              <option value="Unit 10 Nitrogen containing organic compounds">Unit 10 Nitrogen containing organic compounds</option>
+              <option value="Unit 11 Chemical kinetics">Unit 11 Chemical kinetics</option>
+              <option value="Unit 12 Equilibrium">Unit 12 Equilibrium</option>
+              <option value="Unit 13 Electro chemistry">Unit 13 Electro chemistry</option>
+              <option value="Unit 14 Industrial chemistry and Environmental pollution">Unit 14 Industrial chemistry and Environmental pollution</option>
+          </select>
+        </div>
+      
 
         <h3 style="padding-left: 10px">
           Source (E.g: Model Paper, 2001 Past Paper):
@@ -89,14 +125,20 @@
           <input id="source" type="text" placeholder="Source" />
         </div>
 
+
+        <h3 style="padding-left: 10px">
+          Provide a clue to help solving the problem :
+        </h3>
+
+        <div class="choice-row5">
+          <input id="hint" type="text" placeholder="hint" />
+        </div>
+
+
         <div class="button-container">
           <button type="submit" id="sub">Submit</button>
           <button type="button" id="dele" onclick="discard()">Discard</button>
         </div>
-        <h3 style="padding-left: 10px">
-          The submitted questions will be reviewed before being added to the
-          database.
-        </h3>
       </div>
     </div>
   

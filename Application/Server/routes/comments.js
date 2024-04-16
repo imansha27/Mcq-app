@@ -5,13 +5,13 @@ const jwt = require('jsonwebtoken');
 const verifyToken = require('../middlewares/authMiddleware');
 const upload = require('../middlewares/fileUploadMiddleware'); 
 const Discussion = require('../models/Discussion');
-const comments = require('../models/comments');
+
 
 router.post('/savecomment', verifyToken, async (req, res) => {
     try {
         // Retrieve data from request body
         const { content, discussion_id } = req.body;
-        const author = req.username; // Assuming req.username holds the username
+        const author = req.username; 
         
         // Create a new Comment instance
         const newComment = new Comment({
@@ -29,6 +29,8 @@ router.post('/savecomment', verifyToken, async (req, res) => {
         res.status(500).json({ error: "Failed to save comment" });
     }
 });
+
+
 
 
 router.get('/getcomments', verifyToken, async (req, res) => {

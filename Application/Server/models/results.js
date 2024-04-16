@@ -27,6 +27,10 @@ const quizresultSchema =new mongoose.Schema({
     answeredCorrectly:{
         type:Boolean,
         required:true
+    },
+    time:{
+        type:Number,
+        required:true
     }
 }]
 });

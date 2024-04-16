@@ -70,6 +70,9 @@ function sendMessage() {
   }
 }
 
+
+
+
 function GetMessage() {
   // Get discussionId from localStorage
   const discussionId = localStorage.getItem("discussionId");

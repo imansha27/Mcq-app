@@ -26,7 +26,10 @@ document.getElementById("imageInput").value = "";
 document.getElementById("imagePreview").style.backgroundImage = "";
 document.getElementById("corr").value = "";
 document.getElementById("cate").value = "";
+document.getElementById("dif").value = "";
 document.getElementById("source").value = "";
+document.getElementById("hint").value = "";
+document.getElementById("unit").value = "";
 }
 
 //Function to show the image preview
@@ -68,8 +71,12 @@ try {
   const choice5 = document.getElementById("choice1Input5").value;
   const correctAnswer = document.getElementById("corr").value;
   const category = document.getElementById("cate").value;
+  const difficulty = document.getElementById("dif").value;
   const source = document.getElementById("source").value;
+  const hint =document.getElementById("hint").value;
+  const unit =document.getElementById("unit").value;
   const imageInput = document.getElementById("imageInput").files[0]; // Get the image file
+
 
   // Prepare form data with the image
   const formData = new FormData();
@@ -81,7 +88,10 @@ try {
   formData.append("Choice5", choice5);
   formData.append("Correctans", correctAnswer);
   formData.append("Category", category);
+  formData.append("difficulty", difficulty);
   formData.append("source", source);
+  formData.append("hint", hint);
+  formData.append("unit", unit);
 
   if (imageInput) {
     formData.append("image", imageInput);
@@ -97,7 +107,7 @@ try {
   })
 
   if (response.status === 200) {
-    alert("Question submitted successfully");
+    alert("Question submitted successfully!,The submitted questions will be reviewed before being added to the database");
   } 
   
 } catch (error) {

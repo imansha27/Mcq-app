@@ -8,14 +8,14 @@ body {
 }
 
 .t-container {
-    margin: 0;
+    
     left: 130px;
     position: relative;
-    margin-top: 5px;
-    margin-bottom: 7px;
-    height: 500px;
+
+   
+    height: 530px;
     width: 1000px;
-    display: flex; /* Added */
+    display: flex; 
  
 
 }
@@ -30,6 +30,7 @@ body {
 }
 
 .fields {
+   
     width: 40%;
     height: 100%;
     background-color: #c4e1c4;
@@ -67,7 +68,16 @@ body {
 
 
 .choice-row2{
-    margin: 10px;
+
+    margin:-10px 10px;
+    display: flex;
+
+}
+
+
+.choice-row3{
+   
+    margin-left: 10px;
     display: flex;
 
 }
@@ -84,27 +94,37 @@ h3{
     flex-direction: column;
     width: 56%;
     padding: 1px;
-    height: 30px;
-    margin-top: 15px;
+    height: 23px;
+    margin-top: 7px;
     border-radius: 4px;
     vertical-align: top; 
     margin-left: 10px;
 }
 
 
-#cate{
+#cate,#unit{
     display: flex;
     flex-direction: column;
     width: 56%;
     padding: 1px;
-    height: 30px;
-    margin-top: 15px;
+    height: 23px;
+    margin-top: 7px;
     border-radius: 4px;
     vertical-align: top; 
     margin-left: 10px;
 }
 
-
+#dif{
+    display: flex;
+    flex-direction: column;
+    width: 36%;
+    padding: 1px;
+    height: 23px;
+    margin-top: 7px;
+    border-radius: 4px;
+    vertical-align: top; 
+    margin-left: 10px;
+}
 
 .input-box {
     width: 748px;
@@ -126,12 +146,12 @@ textarea {
     box-sizing: border-box; /* Include padding and border in total width/height */
 }
 
-#source{
+#source,#hint{
         display: flex;
         flex-direction: column;
         width: 90%;
         padding: 1px;
-        height: 30px;
+        height: 24px;
         border-radius: 4px;
         vertical-align: top; 
         margin-left: 10px;

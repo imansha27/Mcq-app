@@ -1,45 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles/approveQ.css">
-  <link rel="stylesheet" href="styles/navbar.css">
-  <title>Quiz</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/submitQ.css">
+    <link rel="stylesheet" href="styles/navbar.css">
+    <title>Approved Questions</title>
 </head>
 <body>
-  <div class="h-container">
-    <div class="navbar-container" id="navbarContainer"></div>
-    <div class="aQ">
-      <div class="Arec1">
-        <div class="qrow">
-          <div class="question-field">Question:</div>
-          <div class="choice-field">Choice1:</div>
-          <div class="choice-field">Choice2:</div>
-          <div class="choice-field">Choice3:</div>
-          <div class="choice-field">Choice4:</div>
-          <div class="choice-field">Choice5:</div>
-          <div class="field-container"> 
-            <div class="correct-ans-field">Correct ans:</div>
-            <div class="category-field">Category:</div>
-          </div>
-          <div class="source-field">Source:</div>
-          <div class="image-field">Image:</div>
-          <div class="delete-button">Delete</div>
+    <div class="h-container">
+        <div class="navbar-container" id="navbarContainer"></div>
+        <div class="sQ">
+            <h1>Approved Questions</h1>
+            <table id="submittedQuestionsTable">
+                <thead>
+                    <tr>
+                        <th id="Question">Question 1</th>
+                        <th id="Options">Options for the Question</th>
+                        <th id="Correct">Correct Answer</th>
+                        <th id="Cat">Category</th>
+                        <th id="Keywords">Keywords</th>
+                        <th id="img">image</th>
+                        <th id="Source">Source</th>
+                        <th id>Status</th>
+                        <th>Edit/Delete
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="submittedQuestionsBody">
+                    
+                </tbody>
+            </table>
         </div>
-      </div>
     </div>
-  </div>
-  <script>
-    // Fetch and inject navbar contents
-    fetch("./components/Teacher_navbar.html")
-      .then((response) => response.text())
-      .then((html) => {
-        document.getElementById("navbarContainer").innerHTML = html;
-      })
-      .catch((error) =>
-        console.error("Error fetching navbar content:", error)
-      );
-  </script>
+
+    <script src="/Application/Client_side/components/js/navbar.js"></script>
+    <script src="js/apprQ.js"></script>
+   
 </body>
 </html>
+
