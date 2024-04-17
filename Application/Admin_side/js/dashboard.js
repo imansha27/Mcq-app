@@ -41,7 +41,7 @@ function getusers() {
             `;
         const removeButton = tableRow.querySelector(".remove-btn");
         removeButton.addEventListener("click", (event) => {
-          const tableRow = event.target.closest("tr"); // Get the closest table row
+          const tableRow = event.target.closest("tr");
           const userId = tableRow.dataset.userId;
           console.log(userId);
           const confirmed = confirm("Are you sure you want to remove user?");

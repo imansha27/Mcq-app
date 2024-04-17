@@ -47,15 +47,27 @@ h1{
     background-color: #585757; 
     color: white;
     border: none;
+    padding: 5px 11px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 5px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.reject-btn{
+
+    background-color: #FF6347; 
+    color: white;
+    border: none;
     padding: 5px 17px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    margin: 2px 2px;
+    margin: 5px 2px;
     cursor: pointer;
     border-radius: 4px;
 }
-
 .delete-btn,.remove-btn {
     background-color: #FF6347; 
     color: white;
@@ -64,7 +76,7 @@ h1{
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    margin: 2px 2px;
+    margin: 5px 2px;
     cursor: pointer;
     border-radius: 4px;
 }
@@ -78,6 +90,9 @@ h1{
     background-color: #FF4500; 
 }
 
+.reject-btn:hover{
+    background-color: #FF4500; 
+}
 
 #userTable {
     width: 100%;

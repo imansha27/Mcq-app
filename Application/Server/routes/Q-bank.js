@@ -11,7 +11,7 @@ router.get('/getsubQ', verifyToken, async (req, res) => {
     try {
         const UserName = req.username; 
         //console.log(UserName);
-        const quiz = await sques.find({ submitby: UserName, status: "submit" });
+        const quiz = await sques.find({ submitby: UserName, status: { $in: ["submit", "reject"] } });
 
         //console.log(quiz);
         res.status(200).json({ questions: quiz }); 
@@ -76,14 +76,65 @@ router.delete('/deleappQ',async(req,res)=>{
 
 //pass questions for the quiz page
 
-router.get('/quizques',verifyToken,async(req,res)=>{
+// router.get('/quizques',verifyToken,async(req,res)=>{
+//     try {
+//         const question=await sques.find().limit(9);
+//        return res.json(question);
+//     } catch (error) {
+//         return res.status(500).json({message:error.message});
+//     }
+// })
+
+
+
+
+router.get('/quizques', verifyToken, async (req, res) => {
     try {
-        const question=await sques.find().limit(15);
-       return res.json(question);
+        
+        const inorganicQuestions = await sques.aggregate([
+            { $match: { Category: "Inorganic", status: "approve" } },
+            { $sample: { size: 3 } }
+        ]);
+
+        const organicQuestions = await sques.aggregate([
+            { $match: { Category: "Organic", status: "approve" } },
+            { $sample: { size: 3 } }
+        ]);
+
+        const physicalQuestions = await sques.aggregate([
+            { $match: { Category: "Physical", status: "approve" } },
+            { $sample: { size: 3 } }
+        ]);
+
+        // Combine the questions 
+        const questions = [
+            ...inorganicQuestions,
+            ...organicQuestions,
+            ...physicalQuestions
+        ];
+
+        // Shuffle the  questions array to randomize the order
+       
+        questions.sort(() => Math.random() - 0.5);
+
+        return res.json(questions);
     } catch (error) {
-        return res.status(500).json({message:error.message});
+        return res.status(500).json({ message: error.message });
     }
-})
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //delete submitted question
 router.delete('/delesubQ',async(req,res)=>{

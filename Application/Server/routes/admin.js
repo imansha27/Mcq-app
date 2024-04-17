@@ -100,7 +100,24 @@ router.post('/approveQ', async (req, res) => {
     }
 });
 
+//reject submited questions
 
+
+router.post('/rejectQ', async (req, res) => {
+    //console.log(req.body)
+    const { question_id } = req.body;
+    try {
+       
+        const updatedQuestion = await sques.findByIdAndUpdate(question_id, { status: "reject" }, { new: true });
+        if (!updatedQuestion) {
+            return res.status(404).json({ message: "Question not found" });
+        }
+        res.status(200).json({ message: "Question status updated successfully", updatedQuestion });
+    } catch (error) {
+        //console.error(error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+});
 
 //get all the users 
 

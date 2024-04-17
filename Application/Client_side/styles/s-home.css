@@ -12,6 +12,7 @@
     left: 140px;
     top: 140px;
     background: rgba(217, 217, 217, 0.5);
+    border: 1px solid #000;
 
 }
 
@@ -30,6 +31,7 @@
     font-size: 20px;
     box-shadow: 0px 4px 4px -2px rgba(0, 0, 0, 0.25); 
     border: none;
+    border: 1px solid #000;
     
 }
 
@@ -50,7 +52,7 @@
 }
 
 .btn{
-    background:#fff;
+    background:#ffffff;
     color:#222;
     font-weight:500;
     font-style: bold;
@@ -102,12 +104,100 @@
 
   #next-btn{
     position: absolute;
+    background-color:#51bc2d; ;
     bottom: 0;
     right: 0;
     width: 70px;
   height: 30px;
  
   }
-  
-  
 
+
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+}
+
+
+
+/* Close button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px; /* Adjust the max-width as needed */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Box shadow */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+/* Buttons container */
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* Buttons */
+.modal-content button {
+  width: 48%; /* Adjust width to leave some space between buttons */
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #4CAF50; /* Green */
+  color: white;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.modal-content button:hover {
+  background-color: #45a049; /* Darker green */
+}
+
+/* Results */
+.modal-content p {
+  margin: 10px 0;
+}
+
+/* Result values */
+.modal-content span {
+  font-weight: bold;
+}
+
+/* Check details button */
+#closeDetailsBtn {
+  background-color: #f44336; /* Red */
+}
+
+#closeDetailsBtn:hover {
+  background-color: #d32f2f; /* Darker red */
+}
