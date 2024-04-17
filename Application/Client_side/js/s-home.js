@@ -18,6 +18,9 @@
 //     document.getElementById("ch3").innerText = data.choice1;
 //     document.getElementById("ch4").innerText = data.choice1;
 //     document.getElementById("ch5").innerText = data.choice1;
+
+
+
    
  
 //   })
@@ -146,6 +149,7 @@ $("#next-btn").click(() => {
       // You can send this data in the req.body to your server or perform other actions
       calculateCorrectAnswersByCategory();
       openMessageModal()
+      submitresults()
     
     
       
@@ -177,14 +181,26 @@ function closeMessageModal() {
 }
 
 function submitresults(){
+  console.log("sending...");
   fetch('http://localhost:8000/saveresults',{
     method:"POST",
     headers:{
       "Content-Type":"application/json",
       Authorization:`Bearer ${localStorage.getItem("token")}`,
-    }
+    },
+    body:JSON.stringify({answer:requestBody.answers}),
+    
   })
-  .then()
+  .then((response)=>{
+    if(!response.ok){
+      throw new Error("Failed to save results");
+    }
+    return response.json();
+  }).catch((error)=>{
+    console.log("There was a problen saving results:",error);
+  })
+
+  console.log(requestBody);
 }
 
 

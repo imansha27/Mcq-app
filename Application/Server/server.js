@@ -29,6 +29,7 @@ const DiscusRoutes = require('./routes/Discussions');
 const commentsRoutes = require('./routes/comments');
 const QuizRoutes = require('./routes/Q-bank');
 const adminRoutes = require('./routes/admin');
+const resultsRoutes = require('./routes/results');
 
 
 
@@ -39,6 +40,7 @@ app.use(DiscusRoutes);
 app.use(commentsRoutes);
 app.use(QuizRoutes);
 app.use(adminRoutes);
+app.use(resultsRoutes);
 
 // Connect to database
 connectToDatabase();
