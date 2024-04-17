@@ -30,10 +30,11 @@ function getsubQ() {
               <td>${question.status}</td>
               <td>
                   <button class="approve-btn">Approve</button>
+                  <button class="reject-btn">Reject</button>
               </td>
           `;
-          const removeButton = tableRow.querySelector(".approve-btn");
-          removeButton.addEventListener('click', (event) => {
+          const approveButton = tableRow.querySelector(".approve-btn");
+          approveButton.addEventListener('click', (event) => {
               const tableRow = event.target.closest('tr'); // Get the closest table row
               const questionId = tableRow.dataset.questionId; 
               console.log(questionId);
@@ -44,6 +45,23 @@ function getsubQ() {
                   tableRow.remove();
               }
           });
+
+
+          const  removeButton = tableRow.querySelector(".reject-btn");
+          removeButton.addEventListener('click', (event) => {
+              const tableRow = event.target.closest('tr'); // Get the closest table row
+              const questionId = tableRow.dataset.questionId; 
+              console.log(questionId);
+              const confirmed = confirm("Are you sure you want to Reject this submitted question?");
+              if (confirmed) {
+                  console.log("Question ID:", questionId); // Log the question id
+                  updateQuestionStatus2(questionId);
+                  tableRow.remove();
+              }
+          });
+
+
+
           document.getElementById("submittedQuestionsBody").appendChild(tableRow);
         });
       })
@@ -55,6 +73,29 @@ function getsubQ() {
 
 function updateQuestionStatus(questionId) {
   fetch("http://localhost:8000/approveQ", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ question_id: questionId }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      console.log("Question status updated successfully");
+    })
+    .catch((error) => {
+      console.error("There was a problem with the fetch operation:", error);
+    });
+  console.log(questionId);
+}
+
+
+
+
+function updateQuestionStatus2(questionId) {
+  fetch("http://localhost:8000/rejectQ", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

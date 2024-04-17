@@ -15,12 +15,13 @@
 
  function getsubQ() {
    
-    fetch('http://localhost:8000/adminsubQ', {
+    fetch('http://localhost:8000/getsubQ', {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
+       
     })
     .then((response) => {
         if (!response.ok) {
@@ -34,6 +35,7 @@
         questionsArray.forEach((question) => {
           const tableRow = document.createElement("tr");
           tableRow.dataset.questionId = question._id; 
+       
             tableRow.innerHTML= `
             <td>${question.Question}</td>
                 <td>${question.Choice1}, ${question.Choice2}, ${question.Choice3}, ${question.Choice4}</td>
@@ -48,6 +50,14 @@
                     <button class="edit-btn">Edit</button>
                 </td>
             `;
+
+            if(question.status==="submit"){
+                tableRow.style.backgroundColor="#F0FFF0";
+            }else if (question.status==="reject"){
+                tableRow.style.backgroundColor="#f43434"; 
+            }
+            
+
             const removeButton =tableRow.querySelector('.delete-btn');
             removeButton.addEventListener('click', (event) => {
                 const tableRow = event.target.closest('tr'); 
@@ -106,7 +116,7 @@ function deleQuestion(questionId){
 
 
 function showEditModal(questionId) {
-    fetch("http://localhost:8000//getquestion", {
+    fetch("http://localhost:8000/getquestion", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

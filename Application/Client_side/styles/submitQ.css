@@ -11,6 +11,7 @@ h1{
 #submittedQuestionsTable {
     width: 100%;
     border-collapse: collapse;
+    
 }
 
 
@@ -28,14 +29,7 @@ h1{
 }
 
 
-#submittedQuestionsTable tbody tr:nth-child(odd) {
-    background-color: #F0FFF0; /* Honeydew */
-}
 
-
-#submittedQuestionsTable tbody tr:nth-child(even) {
-    background-color: #98FB98; 
-}
 
 
 .edit-btn {
