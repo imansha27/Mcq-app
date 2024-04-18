@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/s-index.css">
+    <link rel="stylesheet" href="styles/navbar.css">
+    <title>Home</title>
+</head>
+<body>
+    
+    <div class="navbar-container" id="navbarContainer"></div>
+   
+    <div class="container">
+        <div class="left-panel">
+            <img src="./images/pg1.png" alt="Image" />
+        </div>
+        <div class="right-panel">
+            <div class="button-strip">
+                <div class="button-panel">
+                    <img src="./images/r.png" alt="Image 1" style="margin-right: 40px;margin-left: 30px;">
+                    <a href="s-home.html" class="button" style="margin-right: 50px; font-size: 25px;">Take the Quiz</a>
+                </div>
+            </div>
+            <div class="button-strip">
+                <div class="button-panel">
+                    <img src="./images/r.png" alt="Image 2" style="margin-right: 40px;margin-left: 30px;">
+                    <a href=".html" class="button" style="margin-right: 53px; font-size: 25px;">Practice questions</a>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+     <script>
+        // Fetch and inject navbar content
+        fetch('./components/navbar_after_login.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('navbarContainer').innerHTML = html;
+            })
+            .catch(error => console.error('Error fetching navbar content:', error));
+    </script>
+    </body>
+    </html>

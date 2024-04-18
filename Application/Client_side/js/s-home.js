@@ -1,25 +1,3 @@
-// // Fetch question details
-// const token = localStorage.getItem("token");
-// console.log(token);
-// // Retrieve token from local storage
-// axios
-//   .get("http://localhost:8000/quizques", {
-//     headers: {
-//       Authorization: `Bearer ${token}`,
-//     },
-//   })
-//   .then((response) => {
-//     console.log(response.data.data);
-//     const data = response.data.data;
-//     document.getElementById("img").src = data.image;
-//     document.getElementById("Question").innerText = data.question;
-//     document.getElementById("ch1").innerText = data.choice1;
-//     document.getElementById("ch2").innerText = data.choice1;
-//     document.getElementById("ch3").innerText = data.choice1;
-//     document.getElementById("ch4").innerText = data.choice1;
-//     document.getElementById("ch5").innerText = data.choice1;
-
-
 
    
  
@@ -142,14 +120,14 @@ $("#next-btn").click(() => {
   //console.log("Request body:", requestBody); // For testing
   // Now you can send this data in the req.body to your server
 
-  if (currentQuestionIndex == 8) {
+  if (currentQuestionIndex ==8 ) {
     $("#next-btn").text("Finish").off("click").on("click", () => {
       // Perform finish actions here
       console.log("Quiz finished. Sending data to server:", requestBody);
       // You can send this data in the req.body to your server or perform other actions
       calculateCorrectAnswersByCategory();
       openMessageModal()
-      submitresults()
+    
     
     
       
@@ -178,6 +156,7 @@ function closeMessageModal() {
   document.getElementById("organicResult").value = "";
   document.getElementById("inorganicResult").value = "";
   document.getElementById("physicalResult").value = "";
+  window.location.reload();
 }
 
 function submitresults(){
@@ -201,6 +180,7 @@ function submitresults(){
   })
 
   console.log(requestBody);
+
 }
 
 

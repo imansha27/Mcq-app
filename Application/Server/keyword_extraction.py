@@ -11,7 +11,7 @@ def extract_chemistry_keywords(text):
 
     # Initialize WordNet Lemmatizer
     lemmatizer = WordNetLemmatizer()
-    chemistry_terms_list = ['alcohol', 'alkene', 'acid', 'salt', 'aqueous', 'acidic', 'equi-molar', 'ideal gas', 'gaseous', 'temperature', 'pressure', 'volume', 'increasing','decreasing']
+    chemistry_terms_list = ['alcohol', 'alkene', 'acid', 'salt', 'aqueous', 'acidic', 'equi-molar', 'ideal gas', 'gaseous', 'temperature', 'pressure', 'volume', 'increasing','decreasing', ' ideally behaving gas']
     chemistry_terms_pattern = r'\b(?:' + '|'.join(chemistry_terms_list) + r')(?:s)?\b'
     
     
