@@ -85,7 +85,7 @@ router.post('/login', async (req, res) => {
 
         // Send the token to the frontend along with the response
         if (user.UserType === 'Student') {
-            return res.json({ success: 'Login successful. Redirecting to s-home', redirect: '/Application/Client_side/s-home.html', token });
+            return res.json({ success: 'Login successful. Redirecting to s-home', redirect: '/Application/Client_side/s-index.html', token });
         } else if (user.UserType === 'Teacher') {
             return res.json({ success: 'Login successful. Redirecting to t-home', redirect: '/Application/Client_side/t-home.html', token });
         } else {
