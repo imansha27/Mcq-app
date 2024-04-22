@@ -1,0 +1,144 @@
+Student_ID,Question,Round,Category,Difficulty_Level,Keywords,Correctness
+660e224f2577d04ccfbecc71,"Which one of the following statements is true for alcohols, in general?",1,Organic,Easy, alcohol,0
+660e224f2577d04ccfbecc71,Which one of the following reagents could be used to distinguish chemically between CH3CH2CHO and HCHO?,1,Organic,Medium," CH3CH2CHO ,HCHO",0
+660e224f2577d04ccfbecc71,"Which arrangement of compounds given below, gives the correct increasing order of acid strength.",1,Organic,Hard,"increasing ,acid",0
+660e224f2577d04ccfbecc71,Which of the following statements is true with regard to s-block elements (Group I. Li to Cs and Group II. Be to Ba) in the periodic table?,1,Inorganic,Easy,"s-block ,Group I , Group II ,periodic table",1
+660e224f2577d04ccfbecc71,What is the electron configuration of chromium (Cr)?,1,Inorganic,Easy,"Electron configuration, Chromium",1
+660e224f2577d04ccfbecc71,Which of the following compounds gives NO? on heating?,1,Inorganic,Medium," Heating, Nitrites, Nitrate compounds, NO? ",0
+660e224f2577d04ccfbecc71,"An ideally behaving gas of relative molecular mass M is kept at a temperature of T under a pressure of P. The density of the gas is,",1,Physical,Medium," relative molecular mass, temperature, ideally behaving gas,pressure",1
+660e224f2577d04ccfbecc71,"At a temperature of 300 K and under a pressure of 1 atmosphere, which is the gas that is most likely to have a density nearest to that of N2?(relative atomic masses : He=1, C=12, N=14, O= 16, F = 19)",1,Physical,Medium,"relative atomic mass,gas,temperature",0
+660e224f2577d04ccfbecc71,"1 mol of a gas at 27°C and under a certain pressure, is kept inside in vessel of variable volume. Another 1.5 mol of the same gas was introduced to the vessel and it was heated to a certain temperature.",1,Physical,Hard,"gas,temperature , pressure,volume",1
+661e3d0b1741a36959ce1624,On heating the product obtained from the reaction of an organic compound X with excess ammonia Y was obtained. The compound Y when heated with P2O5 formed an alkyl cyanide. Which of the following is likely to be X?,1,Organic,Medium,"organic ,ammonia,P2O5,alkyl cyanide",1
+661e3d0b1741a36959ce1624,"A = Benzene acid, B = Ethanoic acid, C =Acetone, D = Ethanol. Which of the following represent the correct increasing order of boiling points of the corresponds A, B, C and D?",1,Organic,Hard,"Butanone,Dehydrogenation,Butan-2-ol,Oxidation,Butan-1-ol,Hydrogenation,Butanoic acid,Reduction,Butanoyl chloride",0
+661e3d0b1741a36959ce1624,"Which one of the following statements is true for alcohols, in general?",1,Organic,Easy, alcohol,1
+661e3d0b1741a36959ce1624,"when Br2 and CCl4 are added to a solution of an Iodide and shaken,the CCl4 layer is ",1,Inorganic,Hard,"Br?,CCl?,Iodide,Shaken,CCl? ,layer",1
+661e3d0b1741a36959ce1624,When bleaching powder is heated in the presence of Ca(OCl)2 the gas evolved is ,1,Inorganic,Medium,"Bleaching powder,Ca(OCl)?,Heating,Gas",0
+661e3d0b1741a36959ce1624, The geometry of CLO?? ion is ,1,Inorganic,Medium,"ion ,geometry",1
+661e3d0b1741a36959ce1624,"Below are the shapes of graphs that can be obtained from initial
+rate experiments.
+The order of the reaction can be deduced by drawing the
+relevant graphs.
+The correct statement about the above graph is,",1,Physical,Medium,initial rate,0
+661e3d0b1741a36959ce1624,"The false statement regarding the compressibility of an ideal gas and a real gas is,",1,Physical,Medium,"ideal gas,real gas,compressibility",1
+661e3d0b1741a36959ce1624,HA and HB are two weak monobasic acids with concentrations of 0.10 mol dm^-3. Their dissociation constants are Ka1 and Ka2 respectively (Ka1 < Ka2). 25.00 cm^3 of each of these solutions are taken into separate titration flasks and titrated with 0.10 mol dm^-3 Ba(OH)2 solution. The graph showing the variation of pH values in the two flasks is: [Insert graph here],1,Physical,Hard,"weak monobasic acids,titration,concentrations,solution",1
+661e3d581741a36959ce162a,"Organic compound A contain C,H and N only.The complete combution of 0.88g of A gave 1.76g of CO2 and 1.08g of H2O.In separate experiments,0.88g of A gave 0.34g of NH3 (C=12.0,H=1.0,N=13.0,0=16)Which of the following statements is ,most apprpriate deduction?",1,Organic,Hard," organic compound, combustion, CO2, H2O, NH3, deduction",1
+661e3d581741a36959ce162a,"Butanone can be obtained as follows, (a)Dehychogenation of butan-2-ol (b) Oxidation of butan - 1 - ol (c) Hydrogenation of butanoic acid (d) Reduction of butanoyichloride",1,Organic,Hard,"butanone, synthesis, dehydrogenation, oxidation, hydrogenation, reduction, organic chemistry",1
+661e3d581741a36959ce162a,"Compound A (C7H6O2) undergoes a series of reactions as follows:
+
+Reaction with bromine in the presence of FeBr3 yields a product B (C7H5Br2O).
+Product B reacts with NaNH2 to give compound C (C7H5NH2).
+Compound C reacts with acetyl chloride to form compound D (C9H9NO).
+Compound D, upon treatment with sodium borohydride (NaBH4) in ethanol, undergoes reduction to form compound E (C9H11NO).
+Identify the structures of compounds A and E.",1,Organic,Hard,"bromination, FeBr3, NaNH2, acetyl chloride, NaBH4, ethanol, molecular formula, structural identification",0
+661e3d581741a36959ce162a,"Among the following compounds, which one exhibits sp³ hybridization?",1,Inorganic,Medium,"Hybridization, sp³, Compounds",1
+661e3d581741a36959ce162a,"The details of the products obtained from the hydrolysis of 3 covalent chlorides A, B, and C are as follows
+A – The solution from hydrolysis is acidic.
+B – Hydrolysis gives a weak acid and a weak base.
+C – Hydrolysis yields a compound with a strong acid and a giant covalent molecular structure.
+A, B, and C chlorides respectively,",1,Inorganic,Medium,"Hydrolysis,Covalent chlorides,Acidic solution,Weak acid and,weak base,Strong acid,Giant covalent molecular structure",1
+661e3d581741a36959ce162a,Which of the following statements is correct regarding the group 14 and 15 of the periodic table?,1,Inorganic,Easy,"group 14 ,group 15, periodic table",1
+661e3d581741a36959ce162a,"The reaction A ? B+C is a first order reaction. It takes 30 minutes to decrease the concentration
+of A by 75%. Time taken to reduce the concentration by 98.4375 % , in minutes is",1,Physical,Medium,"first order reaction, concentration decrease, time, percentage reduction",1
+661e3d581741a36959ce162a,It has become necessary to prepare 1120 ml of ethyne of s. t. p. It ethyne behave as an ideal gas how much of calcium carbide is necessary for this purpose? (Ca=40 ; C=12),1,Physical,Medium,"ethyne, ideal gas, STP, calcium carbide, preparation, volume, molarity, stoichiometry",0
+661e3d581741a36959ce162a,"1 mol of a gas at 27°C and under a certain pressure, is kept inside in vessel of variable volume. Another 1.5 mol of the same gas was introduced to the vessel and it was heated to a certain temperature.",1,Physical,Hard," gas, moles, temperature, pressure, variable volume, vessel, heating",0
+661e3da01741a36959ce1630,a) (CH3)3CCOOCH        b)CHCH2COOH      c)Cl2CHCOOH       d)  ICH2COOH          The acidic strength of the above acids decreases as follows.,1,Organic,Medium," (CH3)3CCOOCH ,CHCH2COOH ,Cl2CHCOOH , ICH2COOH,acid",0
+661e3da01741a36959ce1630,Which one of the following could be used to obtain C6H5COCH2CH3 from C6H5CH2CH2CH3?,1,Organic,Medium,"C6H5COCH2CH3 ,C6H5CH2CH2CH3",0
+661e3da01741a36959ce1630,"Which of the following properties are consistent with the structure of buternedoic acid?  (A)It shows isomerism   (B) It liberates CO2 with a solution of NaHCO3  (C)It decolories Br2 water.   (D) It reacts with LiAIH4 to form butane - 1, 4-diol",1,Organic,Medium,"butanedioic acid, properties, isomerism, liberates CO2, NaHCO3, decolorizes Br2 water, reacts with LiAlH4, butane-1,4-diol",0
+661e3da01741a36959ce1630,Which of the following elements is a metalloid?,1,Inorganic,Easy,"Metalloid, Elements",1
+661e3da01741a36959ce1630,Which of the following statement of Al2O3 is not completely correct,1,Inorganic,Easy,Al2O3,1
+661e3da01741a36959ce1630,When Copper reacts with conc.HNO3 the gas produced is ,1,Inorganic,Easy,"HNO3,Copper,gas",1
+661e3da01741a36959ce1630,"The false statement regarding the compressibility of an ideal gas and a real gas is,",1,Physical,Medium,"ideal gas,real gas,compressibility",1
+661e3da01741a36959ce1630,Aluminium reacts with aqueous sodium bydroxide and liberates hydrogen gas (AI = 27; H = 1) . The amount of hydrogen given by 1.8 g aluminium,1,Physical,Medium,"Aluminium, aqueous sodium hydroxide, hydrogen gas, liberation",1
+661e3da01741a36959ce1630,"1 mol of a gas at 27°C and under a certain pressure, is kept inside in vessel of variable volume. Another 1.5 mol of the same gas was introduced to the vessel and it was heated to a certain temperature.",1,Physical,Hard," gas, moles, temperature, pressure, variable volume, vessel, heating",0
+661e3dc01741a36959ce1634,Which one of the following reagents could be used to distinguish chemically between CH3CH2CHO and HCHO?,1,Organic,Hard," reagents, distinguish, CH3CH2CHO, HCHO, chemical tests",0
+661e3dc01741a36959ce1634,"Which one of the following statements is true for alcohols, in general?",1,Organic,Easy,alcohol,1
+661e3dc01741a36959ce1634,Which one of the following could be used to obtain C6H5COCH2CH3 from C6H5CH2CH2CH3?,1,Organic,Medium,"conversion, C6H5CH2CH2CH3, C6H5COCH2CH3, reagents, reactions",0
+661e3dc01741a36959ce1634,"The inorganic solid X gives a colourless gas and a colluded solution when treated with dilute HCl.
+This gas decolourises an acidified solution of KMnO4
+, forming a colourless solution. X forms a
+yellow-coloured solution when treated with concentrated HCl. When a solution of KI is added to an
+aqueous solution of X, a white precipitate and a reddish-brown solution are formed. Which of the
+following correctly represents the formula of X, ",1,Inorganic,Hard,"inorganic, dilute HCl, colourless gas, colluded solution, decolourises KMnO4, HCl, KI, white precipitate, ",0
+661e3dc01741a36959ce1634,Which of the following is not oxidized by MnO2,1,Inorganic,Easy,"oxidized ,MnO2",1
+661e3dc01741a36959ce1634,As atomic number increseas from F2 to I2 the trend not seen is ,1,Inorganic,Medium,"atomic number,increases,F2,I2",0
+661e3dc01741a36959ce1634,Aluminium reacts with aqueous sodium bydroxide and liberates hydrogen gas (AI = 27; H = 1) . The amount of hydrogen given by 1.8 g aluminium,1,Physical,Medium,"Aluminium, aqueous sodium hydroxide, hydrogen gas, liberation",0
+661e3dc01741a36959ce1634,"250 cm^3 of oxygen was collected by the downward displacement of water at a temperature of 25°C and a pressure of 750 mm Hg. If the oxygen thus collected is dried at a temperature of 25°C and 750 mm Hg pressure, what volume will it occupy?(Saturated vapour pressure of water at 25°C =50 mm Hg)",1,Physical,Hard,"oxygen collection, downward displacement of water, temperature, pressure, drying, saturated vapor pressure",0
+661e3dc01741a36959ce1634,Which gas law describes the relationship between pressure and volume at constant temperature?,1,Physical,Easy,"gas law, pressure, volume, constant temperature",1
+660e224f2577d04ccfbecc71,Which of the following reacts/react with phenol?  a)Bromine   b)Aqueous KOH  c)Formaldehyde  d)Aqueous KHCO3,2,Organic,Easy,"phenol, bromine, aqueous KOH, formaldehyde, aqueous KHCO3",0
+660e224f2577d04ccfbecc71,"A) CH3CH2CH2CH2OH   B) CH3CH2CH2OH   C) CH3CH2CH2CHO    D) CH3CH2CH2CH2Cl  , The increasing order of the solubility of the above compunds in water is,",2,Organic,Hard,"solubility, water, alcohols, aldehydes, chlorides, increasing order",0
+660e224f2577d04ccfbecc71,Consider the following compounds.   a)??3????3   b)C6H5CONH2             c) CH3CH=CHCH3         d)C6H5CH3    Which of the above will be reduced by LiAIH4,2,Organic,Medium,"compounds, reduction, LiAlH4, organic chemistry",0
+660e224f2577d04ccfbecc71,Which of the following is the anhydride of HClO4,2,Inorganic,Medium,"HClO4,anhydride",1
+660e224f2577d04ccfbecc71,One of the products of the reaction between solid KMnO4 and conc.HCl is ,2,Inorganic,Medium,"conc.HCl,KMnO4,reaction",0
+660e224f2577d04ccfbecc71,Which of the following statements is true with regard to s-block elements (Group I. Li to Cs and Group II. Be to Ba) in the periodic table?,2,Inorganic,Easy," s-block ,Group I,Group II,periodic table",1
+660e224f2577d04ccfbecc71,Which term describes the tendency of a system to attain the lowest possible energy state?,2,Physical,Easy,"system, lowest energy state, entropy, enthalpy, Gibbs free energy, spontaneity",1
+660e224f2577d04ccfbecc71,"164.6 g of sodium amalgam on complete reaction with water liberates a gas whose volume measured at 511° is 2.24 dm^3. Assume that the gas behaves ideally,(Relative molar masses Na = 23, Hg = 200),The mole fraction of Na in the amalgam is,",2,Physical,Hard,"sodium amalgam, reaction with water, liberated gas, volume measurement, temperature, ideal gas behavior, relative molar masses, mole fraction",0
+660e224f2577d04ccfbecc71,"At a temperature of 300 K and under a pressure of 1 atmosphere, which is the gas that is most likely to have a density nearest to that of N2?(relative atomic masses : He=1, C=12, N=14, O= 16, F = 19)",2,Physical,Hard,"temperature, pressure, gas density, relative atomic masses,  N2, He, C, N, O, F",0
+661e3d0b1741a36959ce1624,Consider the following conversion. (CH3)2CHCH2OH  --> (CH3)2CHCHO   which one of the following is most suitable for this purpose ?,2,Organic,Medium,"conversion, organic chemistry, suitable reagent",1
+661e3d0b1741a36959ce1624,which one of the following cannot be used to convert ethanol to ethanal ?,2,Organic,Easy," ethanol,ethanal",1
+661e3d0b1741a36959ce1624,"The compound A with the molecular formula C5
+H10 does not show enantiomerism or diasteriomerism
+. The product B formed by the reaction of A with HBr Shows enantiomerism. The product D formed
+by the reaction of B with aqueous KOH shows enantiomerism. The product E is formed by D when
+treated with tollen’s reagent . The compounds A and E respectively are,",2,Organic,Hard,"molecular formula, enantiomerism, diastereomerism, reaction products, HBr, aqueous KOH, Tollen's reagent",0
+661e3d0b1741a36959ce1624,Which one of the following can be used to distinguish between Mg(NO3)2 and Ba(NO3)2,2,Inorganic,Easy,"distinguish, Mg(NO3)2, Ba(NO3)2, chemical tests",1
+661e3d0b1741a36959ce1624,Which of the following react / reacts with aqueous KOH?    a)Fe   b)Mg   c)Al   d)Si,2,Inorganic,Easy," react,aqueous KOH, Fe, Mg, Al, Si",1
+661e3d0b1741a36959ce1624,"The principal products obtained when Li, Na, K and Mg react with excess oxygen at atmospheric pressure are respectively.",2,Inorganic,Medium," Li, Na, K ,Mg,excess oxygen ",0
+661e3d0b1741a36959ce1624,"The concentration of a gas at pressure of 1 atm is 1.0 mol/L. If the gas behaves ideally the conditions that corresponds to this situation,",2,Physical,Medium,"concentration, gas, pressure, ideal behavior",1
+661e3d0b1741a36959ce1624,"An ideally behaving gas of relative molecular mass M is kept at a temperature of T under a pressure of P. The density of the gas is,",2,Physical,Easy,"ideal gas, relative molecular mass, temperature, pressure, density",0
+661e3d0b1741a36959ce1624,"The reaction A (g) + 2B (g) ? C(g) + D(g) is an elementary reaction.
+The initial partial pressures of A and B are PA = 0.60 atm and PB = 0.80 atm respectively. After 30
+seconds, the partial pressure of C , PC = 0.20 atm. The rate of the reaction after 30 seconds, with
+respect to the initial rate is (temperature remains constant during the period of the reaction)",2,Physical,Hard,"elementary reaction, initial partial pressures, partial pressure of products, rate of reaction, constant temperature",0
+661e3d581741a36959ce162a,Which one of the following statements concerning ethanal is most appropriate?,2,Organic,Medium,"ethanal, properties, statements, appropriateness
+",1
+661e3d581741a36959ce162a,"Which of the following reacts/ react with 2,4-dinitrophenol?  (a) Aqueous hydroiodic acid  (b) Aqueous sodium bicarbonate  (c) Ethanolic sodium ethaxide  (d) Aqueous hydrobromic acid",2,Organic,Medium,"2,4-dinitrophenol, hydroiodic acid, sodium bicarbonate, sodium ethoxide, hydrobromic acid",0
+661e3d581741a36959ce162a,Ammoniacal silver nitrate can be used to distinguish aldehydes from ketones because,2,Organic,Easy,"ammoniacal silver nitrate, aldehydes, ketones, distinction",1
+661e3d581741a36959ce162a,Which of the following is the true statement/statement related to the extraction of X block elements,2,Inorganic,Medium,X block elements,0
+661e3d581741a36959ce162a,"Among the following compounds, which one exhibits sp³ hybridization?",2,Inorganic,Medium,"Hybridization, sp³, Compounds",1
+661e3d581741a36959ce162a,Which one of the following will not give NO2 on heating ?,2,Inorganic,Easy,"NO2, heating, identification",1
+661e3d581741a36959ce162a,A gas occupies 2.5 liters at 27°C and 1 atm pressure. What volume will it occupy at 100°C and 2 atm pressure?,2,Physical,Medium,"gas, volume, temperature, pressure, calculation",1
+661e3d581741a36959ce162a,"A mixture of gases contains 2 moles of oxygen and 3 moles of nitrogen. If the total pressure is 4 atm and the temperature is 300 K, what is the partial pressure of nitrogen?",2,Physical,Medium,"mixture, gases, moles, pressure, temperature, partial pressure, calculation",1
+661e3d581741a36959ce162a,"Calculate the enthalpy change when 50 grams of water at 25°C is heated to form steam at 100°C. (Specific heat of water = 4.18 J/g°C, enthalpy of vaporization of water = 2260 J/g)",2,Physical,Hard,"enthalpy change, heating, water, steam, specific heat, vaporization, calculation",1
+661e3da01741a36959ce1630,Which one of the following statements concerning ethanal is most appropriate?,2,Organic,Easy,ethanal,1
+661e3da01741a36959ce1630,"Which arrangement of compounds given below, gives the correct increasing order of acid strength.",2,Organic,Easy,"increasing,acid",1
+661e3da01741a36959ce1630,Consider the following conversion. (CH3)2CHCH2OH  --> (CH3)2CHCHO   which one of the following is most suitable for this purpose ?,2,Organic,Easy,"(CH3)2CHCH2OH , (CH3)2CHCHO",1
+661e3da01741a36959ce1630,The color of transition metal compounds is due to:,2,Inorganic,Easy,"Transition metals, Color, Electronic transitions",0
+661e3da01741a36959ce1630,"The principal products obtained when Li, Na, K and Mg react with excess oxygen at atmospheric pressure are respectively.",2,Inorganic,Medium," Li, Na, K ,Mg,excess oxygen ",1
+661e3da01741a36959ce1630,Which of the following transition metal ions exhibits the highest oxidation state?,2,Inorganic,Hard,"Transition metal ions, Oxidation state, Highest",1
+661e3da01741a36959ce1630,Calculate the volume occupied by 2 moles of an ideal gas at STP (Standard Temperature and Pressure).,2,Physical,Easy,"volume, ideal gas, STP, calculation",0
+661e3da01741a36959ce1630,"Calculate the density of a gas at 27°C and 3 atm pressure, if its molar mass is 32 g/mol.",2,Physical,Easy,"density, gas, temperature, pressure, molar mass, calculation",0
+661e3da01741a36959ce1630,"Given the reaction:
+C(graphite) + O2(g) ? CO2(g)
+Calculate the enthalpy change when 5 moles of carbon react with excess oxygen to form carbon dioxide. (Enthalpy of formation of CO2(g) = -393.5 kJ/mol)",2,Physical,Hard," enthalpy change, reaction, carbon, oxygen, carbon dioxide, enthalpy of formation, calculation",0
+661e3dc01741a36959ce1634,Which one of the following statements concerning CH3OH and (CH3)2CHOH is most appropriate?,2,Organic,Hard,"CH3OH, (CH3)2CHOH, comparison, appropriateness",0
+661e3dc01741a36959ce1634,a) (CH3)3CCOOCH        b)CHCH2COOH      c)Cl2CHCOOH       d)  ICH2COOH          The acidic strength of the above acids decreases as follows.,2,Organic,Hard," acidic strength, carboxylic acids, comparison",0
+661e3dc01741a36959ce1634,"Which arrangement of compounds given below, gives the correct increasing order of acid strength.",2,Organic,Easy,acid,1
+661e3dc01741a36959ce1634,Which one of the following will not give NO2 on heating ?,2,Inorganic,Easy,"NO2, heating, identification",1
+661e3dc01741a36959ce1634,Which of the following statements is true with regard to s-block elements (Group I. Li to Cs and Group II. Be to Ba) in the periodic table?,2,Inorganic,Easy,"s-block elements, Group I, Group II, periodic table, properties",1
+661e3dc01741a36959ce1634,Which of the following gives / give NO2 on heating?   a)CsNO3    b)Ba(NO3)2    c)Ni(NO3)2     d)NH4NO3,2,Inorganic,Hard," heating, NO2, decomposition, compound",0
+661e3dc01741a36959ce1634,Which of the following statements about the Gibbs-Duhem equation is true?,2,Physical,Hard,"Gibbs-Duhem equation, thermodynamics, properties",0
+661e3dc01741a36959ce1634,"The reaction A (g) + 2B (g) ? C(g) + D(g) is an elementary reaction.
+The initial partial pressures of A and B are PA = 0.60 atm and PB = 0.80 atm respectively. After 30
+seconds, the partial pressure of C , PC = 0.20 atm. The rate of the reaction after 30 seconds, with
+respect to the initial rate is (temperature remains constant during the period of the reaction)",2,Physical,Hard,"elementary reaction, initial partial pressures, partial pressure of products, rate of reaction, constant temperature",0
+661e3dc01741a36959ce1634,"164.6 g of sodium amalgam on complete reaction with water liberates a gas whose volume measured at 511° is 2.24 dm^3. Assume that the gas behaves ideally,(Relative molar masses Na = 23, Hg = 200),The mole fraction of Na in the amalgam is,",2,Physical,Hard,"sodium amalgam, water reaction, gas volume, ideal behavior, mole fraction, relative molar masses",0
+660e224f2577d04ccfbecc71,"A,B and C are three organic compound containing C, H and O. All three compounds give H2
+ gas
+when reacted with Na. Only A and C react with NaOH. Only A reacts with NaHCO3
+ liberating CO2
+.
+ A, B and C respectively are,",3,Organic,Medium,"organic compounds, C, H, O, reaction with Na, reaction with NaOH, reaction with NaHCO3, liberation of CO2, formation of H2 gas",1
+660e224f2577d04ccfbecc71,"Which of the following is not a product formed when the mixture of CH3
+CH2
+COCH3
+ and C6
+H5
+CHO
+is reacted with an aqueous solution of NaOH? ",3,Organic,Hard,"CH3CH2COCH3, C6H5CHO, aqueous NaOH",0
+660e224f2577d04ccfbecc71,Which of the following statement about C6H5NH2 is false ?,3,Organic,Medium,C6H5NH2,1
+660e224f2577d04ccfbecc71,Which of the following gives / give NO2 on heating?   a)CsNO3    b)Ba(NO3)2    c)Ni(NO3)2     d)NH4NO3,3,Inorganic,Medium," heating, NO2, decomposition, compound",0
+660e224f2577d04ccfbecc71,Which one of the following can be used to distinguish between Mg(NO3)2 and Ba(NO3)2,3,Inorganic,Easy,"distinguish, Mg(NO3)2, Ba(NO3)2, chemical tests",1
+660e224f2577d04ccfbecc71,Which of the following react / reacts with aqueous KOH?    a)Fe   b)Mg   c)Al   d)Si,3,Inorganic,Easy," react,aqueous KOH, Fe, Mg, Al, Si",1
+660e224f2577d04ccfbecc71,"The concentration of a gas at pressure of 1 atm is 1.0 mol/L. If the gas behaves ideally the conditions that corresponds to this situation,",3,Physical,Medium,"concentration, gas, pressure, ideal behavior",1
+660e224f2577d04ccfbecc71,"Describe the relationship between temperature and the rate constant of a reaction using the Arrhenius equation, mentioning activation energy and frequency factor.",3,Physical,Medium,"temperature, rate constant, Arrhenius equation, activation energy, frequency factor",1
+660e224f2577d04ccfbecc71,"250 cm^3 of oxygen was collected by the downward displacement of water at a temperature of 25°C and a pressure of 750 mm Hg. If the oxygen thus collected is dried at a temperature of 25°C and 750 mm Hg pressure, what volume will it occupy?(Saturated vapour pressure of water at 25°C =50 mm Hg)",3,Physical,Hard,"oxygen collection, downward displacement of water, temperature, pressure, drying, saturated vapor pressure",1
