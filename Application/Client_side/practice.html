@@ -10,11 +10,7 @@
   <body>
     <div ="h-container">
       <div class="navbar-container" id="navbarContainer"></div>
-   <div class="r-container"> 
-    <h2>round no: <span id="round"></span> </h2>
-   </div>
       <div class="q-container">
-        
         <div class="qtn">
           <p id="Question"> </p>
         
@@ -53,7 +49,7 @@
     <p>Physical: <span id="physicalResult"></span></p>
     <p>To check the results in details check the profile page !</p>
     <div class="button-container">
-      <button id="nextRoundBtn" onclick="submitresults(); closeMessageModal();" >Next Round</button>
+      <button id="nextRoundBtn" onclick="closeMessageModal(); " >Next Round</button>
       <button id="closeDetailsBtn" onclick=" closeMessageModal()">Close the window</button>
   </div>
   </div>

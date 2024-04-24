@@ -4,7 +4,7 @@ const sques = require('../models/Questions');
 const jwt = require('jsonwebtoken'); 
 const verifyToken = require('../middlewares/authMiddleware');
 const upload = require('../middlewares/fileUploadMiddleware'); 
-
+const QuizResult = require('../models/results');
 
 //get all submitted questiona of a user 
 router.get('/getsubQ', verifyToken, async (req, res) => {
@@ -88,38 +88,97 @@ router.delete('/deleappQ',async(req,res)=>{
 
 
 
+// router.get('/quizques', verifyToken, async (req, res) => {
+//     try {
+        
+        
+//         const inorganicQuestions = await sques.aggregate([
+//             { $match: { Category: "Inorganic", status: "approve" } },
+//             { $sample: { size: 3 } }
+//         ]);
+
+//         const organicQuestions = await sques.aggregate([
+//             { $match: { Category: "Organic", status: "approve" } },
+//             { $sample: { size: 3 } }
+//         ]);
+
+//         const physicalQuestions = await sques.aggregate([
+//             { $match: { Category: "Physical", status: "approve" } },
+//             { $sample: { size: 3 } }
+//         ]);
+
+//         // Combine the questions 
+//         const questions = [
+//             ...inorganicQuestions,
+//             ...organicQuestions,
+//             ...physicalQuestions
+//         ];
+
+//         // Shuffle the  questions array to randomize the order
+       
+//         questions.sort(() => Math.random() - 0.5);
+
+//         return res.json(questions);
+//     } catch (error) {
+//         return res.status(500).json({ message: error.message });
+//     }
+// });
+
+
+
 router.get('/quizques', verifyToken, async (req, res) => {
     try {
-        
+       
+        const userId = req.userId;
+        console.log("User ID:", userId);
+
+        const lastResult = await QuizResult.findOne({ UserId: userId }).sort({ roundNo: -1 });
+
+        console.log("Last Result:", lastResult);
+
+      
+        let roundNo = 1;
+
+        if (lastResult) {
+            roundNo = lastResult.roundNo + 1;
+        }
+        console.log("Round Number:", roundNo);
+
+    
         const inorganicQuestions = await sques.aggregate([
             { $match: { Category: "Inorganic", status: "approve" } },
             { $sample: { size: 3 } }
         ]);
+        console.log("Inorganic Questions:", inorganicQuestions);
 
+  
         const organicQuestions = await sques.aggregate([
             { $match: { Category: "Organic", status: "approve" } },
             { $sample: { size: 3 } }
         ]);
+        console.log("Organic Questions:", organicQuestions);
 
+     
         const physicalQuestions = await sques.aggregate([
             { $match: { Category: "Physical", status: "approve" } },
             { $sample: { size: 3 } }
         ]);
+        console.log("Physical Questions:", physicalQuestions);
 
-        // Combine the questions 
         const questions = [
             ...inorganicQuestions,
             ...organicQuestions,
             ...physicalQuestions
         ];
 
-        // Shuffle the  questions array to randomize the order
-       
         questions.sort(() => Math.random() - 0.5);
 
-        return res.json(questions);
+        // Return questions and round number
+        return res.json({ questions, roundNo });
+        //return res.json(questions);
     } catch (error) {
-        return res.status(500).json({ message: error.message });
+        console.error("Error fetching questions:", error);
+        return res.status(500).json({ message: "Error fetching questions" });
     }
 });
 
@@ -127,6 +186,33 @@ router.get('/quizques', verifyToken, async (req, res) => {
 
 
 
+
+
+
+
+
+
+
+
+
+//edit submited questions
+
+router.post('/editsubQ', verifyToken,async(req,res)=>{
+    const updatedQuestionData=req.body;
+    const{_id,...update}=updatedQuestionData;
+try{
+const updatedQuestion =await sques.findByIdAndUpdate(_id,update,{new:true});
+
+if(!updatedQuestion){
+    return res.status(404).json({error:"There no similar question"})
+}
+
+res.json({message:"Question updated successfully",updatedQuestion});
+}catch(error){
+    console.error("Error updating the question",error);
+    res.status(500).json({message:"Internal Server Error"});
+}
+});
 
 
 
@@ -150,6 +236,8 @@ router.delete('/delesubQ',async(req,res)=>{
         res.status(500).json({message:"Internal Server Error"});
     }
 })
+
+
 
 //get a question by its id 
 router.get('/getquestion',async(req,res)=>{
