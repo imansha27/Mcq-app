@@ -12,16 +12,13 @@
 
 
 
-
  function getsubQ() {
-   
     fetch('http://localhost:8000/getsubQ', {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
-       
     })
     .then((response) => {
         if (!response.ok) {
@@ -33,11 +30,11 @@
         console.log(data);
         const questionsArray = data.questions;
         questionsArray.forEach((question) => {
-          const tableRow = document.createElement("tr");
-          tableRow.dataset.questionId = question._id; 
-       
-            tableRow.innerHTML= `
-            <td>${question.Question}</td>
+            const tableRow = document.createElement("tr");
+            tableRow.dataset.questionId = question._id; 
+            
+            tableRow.innerHTML = `
+                <td>${question.Question}</td>
                 <td>${question.Choice1}, ${question.Choice2}, ${question.Choice3}, ${question.Choice4}</td>
                 <td>${question.Correctans}</td>
                 <td>${question.Category}</td>
@@ -47,18 +44,17 @@
                 <td>${question.status}</td>
                 <td>
                     <button class="delete-btn">Delete</button>
-                    <button class="edit-btn">Edit</button>
+                    ${question.status !== "reject" ? '<button class="edit-btn">Edit</button>' : ''}
                 </td>
             `;
-
-            if(question.status==="submit"){
-                tableRow.style.backgroundColor="#F0FFF0";
-            }else if (question.status==="reject"){
-                tableRow.style.backgroundColor="#f43434"; 
+            
+            if (question.status === "submit") {
+                tableRow.style.backgroundColor = "#F0FFF0";
+            } else if (question.status === "reject") {
+                tableRow.style.backgroundColor = "#f43434"; 
             }
             
-
-            const removeButton =tableRow.querySelector('.delete-btn');
+            const removeButton = tableRow.querySelector('.delete-btn');
             removeButton.addEventListener('click', (event) => {
                 const tableRow = event.target.closest('tr'); 
                 const questionId = tableRow.dataset.questionId; 
@@ -71,24 +67,82 @@
                 }
             });
 
+            if (question.status !== "reject") {
+                const editButton = tableRow.querySelector('.edit-btn');
+                editButton.addEventListener('click', (event) => {
+                    const tableRow = event.target.closest('tr'); 
+                    const questionId = tableRow.dataset.questionId;
 
+                    //show the submit button
+                    const editCell = tableRow.querySelector('.edit-btn').parentNode;
+                    editCell.innerHTML = '<button class="submit-btn">Submit</button>';
 
-            const editButton = tableRow.querySelector('.edit-btn');
-            editButton.addEventListener('click', (event) => {
-                const tableRow = event.target.closest('tr'); 
-                const questionId = tableRow.dataset.questionId;
-                showEditModal(questionId);
-            });
+                    const cells = tableRow.querySelectorAll('td');
+                    const questionData = {
+                        question: cells[0].textContent,
+                        choices: cells[1].textContent.split(',').join('\n'),
+                        correctAnswer: cells[2].textContent,
+                        category: cells[3].textContent,
+                        keywords: cells[4].textContent,
+                        image: cells[5].textContent,
+                        source: cells[6].textContent,
+                        status: cells[7].textContent
+                    };
 
+                    cells[0].innerHTML = `<input type="text" value="${questionData.question}">`;
+                    cells[1].innerHTML = `<textarea>${questionData.choices}</textarea>`;
+                    cells[2].innerHTML = `<input type="text" value="${questionData.correctAnswer}">`;
+                    cells[3].innerHTML = `<input type="text" value="${questionData.category}">`;
+                    cells[4].innerHTML = `<input type="text" value="${questionData.keywords}">`;
+                    cells[5].innerHTML = `<input type="text" value="${questionData.image}">`;
+                    cells[6].innerHTML = `<input type="text" value="${questionData.source}">`;
+                    cells[7].innerHTML = `<input type="text" value="${questionData.status}">`;
 
+                    const submitButton = tableRow.querySelector('.submit-btn');
+                    submitButton.addEventListener('click', () => {
+                        const updatedQuestionData = {
+                            _id: questionId,
+                            Question: cells[0].querySelector('input').value,
+                            Choice1: cells[1].querySelector('textarea').value.split('\n')[0],
+                            Choice2: cells[1].querySelector('textarea').value.split('\n')[1],
+                            Choice3: cells[1].querySelector('textarea').value.split('\n')[2],
+                            Choice4: cells[1].querySelector('textarea').value.split('\n')[3],
+                            Correctans: cells[2].querySelector('input').value,
+                            Category: cells[3].querySelector('input').value,
+                            keywords: cells[4].querySelector('input').value,
+                            image: cells[5].querySelector('input').value,
+                            source: cells[6].querySelector('input').value,
+                            status: cells[7].querySelector('input').value
+                        };
 
+                        fetch("http://localhost:8000/editsubQ", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                Authorization: `Bearer ${localStorage.getItem("token")}`,
+                            },
+                            body: JSON.stringify(updatedQuestionData)
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            alert("Question details updated successfully!");
+                            window.location.reload();
+                            console.log(data);
+                        })
+                        .catch(error => {
+                            console.error("Error updating question:", error);
+                        });
+                    });
 
+                    showEditModal(questionId);
+                });
+            }
 
             document.getElementById('submittedQuestionsBody').appendChild(tableRow);
         });
     })
-    .catch((error)=>{
-        console.error("Error fetching data:",error);
+    .catch((error) => {
+        console.error("Error fetching data:", error);
     });
 }
 
@@ -97,7 +151,8 @@ function deleQuestion(questionId){
     fetch("http://localhost:8000/delesubQ", {
     method: "DELETE",
     headers: {
-      "Content-Type": "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
     body: JSON.stringify({ question_id: questionId }),
   })
@@ -119,7 +174,8 @@ function showEditModal(questionId) {
     fetch("http://localhost:8000/getquestion", {
         method: "PUT",
         headers: {
-          "Content-Type": "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify({ question_id: questionId }),
       })
@@ -148,6 +204,9 @@ function showEditModal(questionId) {
             console.error("Error fetching question details:", error);
         });
 }
+
+
+
 
 
 getsubQ();

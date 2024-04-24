@@ -24,24 +24,26 @@ router.get('getrounds ',verifyToken,async(req,res)=>{
 router.post('/saveresults', verifyToken, async (req, res) => {
     console.log("receivinging...");
     const { answer } = req.body;
-    console.log(answer);
-    const userId = req.userId; // Corrected to req.userId
+    //console.log(answer);
+    const userId = req.userId; 
     try {
-        const lastResult = await QuizResult.findOne({ UserId: userId }).sort({ createdAt: -1 }).limit(1); // Added await before QuizResult.findOne
+        const lastResult = await QuizResult.findOne({ UserId: userId }).sort({ roundNo: -1 });
+
+
         let roundNo = 1;
 
         if (lastResult) {
             roundNo = lastResult.roundNo + 1;
         }
-        console.log(roundNo);
+        //console.log(roundNo);
 
-        const result = new QuizResult({ // Corrected to QuizResult instead of results
+        const result = new QuizResult({
             UserId: userId,
             roundNo: roundNo,
             answers: answer
         });
 
-        await result.save(); // Saving the result to the database
+        await result.save(); 
 
         res.status(200).json({ success: true, message: 'Results saved successfully.' });
     } catch (error) {
