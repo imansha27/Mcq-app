@@ -251,7 +251,21 @@ router.get('/getquestion',async(req,res)=>{
 });
 
 
-//prctice questions 
+router.get('/practice', async (req, res) => {
+    try {
+      const category = req.query.category; // Extract category from query parameter
+      //console.log("Category:", category);
+      const questions = await sques.aggregate([
+        { $match: { Category: category, status: "approve" } },
+        { $sample: { size: 9 } }
+      ]);
+  
+      res.json({ questions });
+    } catch (error) {
+      console.error("Error fetching practice questions:", error);
+      return res.status(500).json({ message: "Error fetching practice questions" });
+    }
+  });
 
 
 
