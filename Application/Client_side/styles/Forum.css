@@ -1,104 +1,94 @@
-
-* {
- 
-  padding: 0;
-  box-sizing: border-box;
+/* Color Theme */
+:root {
+  --primary-color: #2c7b08; /* Primary color */
+  --secondary-color: #4eb951; /* Secondary color */
+  --background-color: #ffffff; /* Background color */
+  --text-color: #080808; /* Text color */
 }
-
 
 body {
-
-  margin-top: 80px;
+  margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
+  display: flex; /* Use flex layout */
+  background-color: var(--background-color); /* Set background color */
+  color: var(--text-color); /* Set text color */
 }
 
-h1, h2, h3, h4, h5, h6 {
-  margin: 10px 0;
-  
-}
-
-.container {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-.box {
+.flex-container {
+  margin-top: 60px;
   display: flex;
-  border-bottom: 1px solid #ddd;
-  padding: 10px;
-  margin-bottom: 20px;
-}
-
-.img {
-  margin-right: 20px; 
+  flex: 1;
   
+  
+
 }
 
-.img img {
-  max-width: 100px;
-  height: 100px;
+.smaller-side {
+  margin-top: 70px; /* Adjust as needed */
+  flex: 2;
+  position: relative;
+  font-size: 20px;
+ 
+}
+
+.larger-side {
+  flex: 3;
+  background-color: var(--background-color); /* Set background color */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 10px 0;
 }
 
 .details {
   margin-bottom: 10px;
-  flex-grow: 1; 
-  
+  flex-grow: 1;
 }
 
 .sub-details {
-
-  color: #080808;
- 
+  color: var(--text-color); /* Set text color */
   justify-content: space-between; /* Align items horizontally */
   align-items: center; /* Align items vertically */
-}
-/* .box {
-  border-bottom: 1px solid #ddd;
-  padding: 20px;
-  margin-bottom: 20px;
-}
-
-.img {
-  margin-bottom: 10px;
-}
-
-.img img {
-  max-width: 100px;
-  height: 100px;
-}
-
-.details {
-  margin-bottom: 10px;
-}
-
-.sub-details {
-  font-size: 10px;
-  color: #888;
-} */
-
-.comment {
-  margin-right: 10px;
-  color: #888;
 }
 
 .comment i {
   margin-right: 5px;
 }
 
-
-
-
-
-
 .close {
   color: #aaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
+}
+
+#discussionContainer {
+  margin-top: 200px;
+  max-width: 600px;
+  margin: 0 auto;
+  max-height: 530px;
+  overflow-y: scroll; /* Add a vertical scroll bar */
+}
+
+.discussion-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 1px;
+  margin-top: 1px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.discussion-button:hover {
+  background-color: #d6d6d6;
 }
 
 .close:hover,
@@ -108,52 +98,24 @@ h1, h2, h3, h4, h5, h6 {
   cursor: pointer;
 }
 
-
 .start-discussion-btn {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  margin-top: -70px;
+
   z-index: 999;
-  padding: 20px 20px;
-  background-color: #1666fa; 
+  padding: 27px;
+  background-color: var(--primary-color); /* Set primary color */
   color: #fff;
   border: none;
-  border-radius: 10px;
+ width: 463px;
   cursor: pointer;
 }
 
-
-.view-button {
-  background-color: #007bff; 
-  color: #fff; 
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px; 
-  cursor: pointer;
-  margin-left: 540px; 
+.start-discussion-btn:hover {
+  background-color: #3cb300;
 }
-
-.view-button:hover {
-  background-color: #355a82; 
-}
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* Modal Styles */
-
-
-
-
 .modal {
   display: none;
   position: fixed;
@@ -174,22 +136,9 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   width: 80%;
   max-width: 500px;
-
-
-  
-
-}
-
-
-
-
-
-.start-discussion-btn:hover {
-  background-color: #0056b3;
 }
 
 input[type="text"],
-input[type="file"],
 textarea {
   width: 100%;
   padding: 10px;
@@ -197,19 +146,6 @@ textarea {
   box-sizing: border-box;
   border: 1px solid #ccc;
   border-radius: 4px;
-}
-
-button {
-  background-color: #4caf50;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #45a049;
 }
 
 .cancel-btn {
@@ -221,4 +157,65 @@ button:hover {
   background-color: #bbb;
 }
 
+/* Chat Comments */
+#chatMessages {
+  max-height: 415px;
+  overflow-y: auto;
+  padding: 10px;
+  border-radius: 8px;
+}
 
+.bubble {
+  margin-top: 30px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #121010;
+  padding: 10px;
+  position: relative;
+}
+
+/* Fix position of the send button */
+#sendButton {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  padding: 10px 20px;
+  background-color: var(--primary-color); /* Set primary color */
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* Style on hover */
+#sendButton:hover {
+  background-color: #3cb300;
+
+}
+
+.author-circle {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: var(--secondary-color); /* Set secondary color */
+  color: white;
+  text-align: center;
+  line-height: 30px;
+  margin-right: 10px; /* Adjust spacing */
+}
+
+.bubble .author-circle {
+  position: absolute;
+  top: -22px;
+}
+
+.username {
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+.bubble.author-container {
+  display: flex;
+  align-items: center;
+}

@@ -27,10 +27,7 @@ const fetchQuestions = () => {
     })
     .then((response) => {
       questionsData = response.data.questions;
-      roundNo=response.data.roundNo;
-      document.getElementById("round").innerText=roundNo;
       console.log("Questions Data:", questionsData);
-      console.log("round:",roundNo);
       displayQuestion(currentQuestionIndex);
      
     })
@@ -55,34 +52,30 @@ const requestBody = {
 };
 
 const correctAnswersByCategory = {
-  "Inorganic": 0,
-  "Organic": 0,
-  "Physical": 0
+    "Inorganic": 0,
+    "Organic": 0,
+    "Physical": 0
 };
 
 // Function to calculate correct answers by category
 const calculateCorrectAnswersByCategory = () => {
 
-  questionsData.forEach((question, index) => {
+    questionsData.forEach((question, index) => {
  
-    const category = question.Category;
-    
-    // Get the correctness of the answer for this question
-    const answeredCorrectly = requestBody.answers[index].answeredCorrectly;
+        const category = question.Category;
+        
+        // Get the correctness of the answer for this question
+        const answeredCorrectly = requestBody.answers[index].answeredCorrectly;
 
-    // Increment the correct answer count for the corresponding category
-    if (answeredCorrectly) {
-      correctAnswersByCategory[category]++;
-    }
-  });
+        // Increment the correct answer count for the corresponding category
+        if (answeredCorrectly) {
+            correctAnswersByCategory[category]++;
+        }
+    });
 
-
-
-  // Output the results
-  console.log("Correct Answers by Category:");
-  console.log("Inorganic:", correctAnswersByCategory["Inorganic"]);
-  console.log("Organic:", correctAnswersByCategory["Organic"]);
-  console.log("Physical:", correctAnswersByCategory["Physical"]);
+    // Calculate total correct answers
+    const totalCorrectAnswers = Object.values(correctAnswersByCategory).reduce((total, count) => total + count, 0);
+    console.log("Total Correct Answers:", totalCorrectAnswers);
 }
 
 
@@ -146,9 +139,8 @@ $("#next-btn").click(() => {
 
 function openMessageModal() {
   document.getElementById("myModal").style.display = "block";
-  document.getElementById("organicResult").innerText = correctAnswersByCategory["Organic"];
-  document.getElementById("inorganicResult").innerText = correctAnswersByCategory["Inorganic"];
-  document.getElementById("physicalResult").innerText = correctAnswersByCategory["Physical"];
+  document.getElementById("Total Correct").innerText = correctAnswersByCategory["totalCorrectAnswers"];
+  document.getElementById("Total Time").innerText = timeSpent.toFixed(2) + " minutes";
 }
 
 // Function to close the message modal
@@ -164,31 +156,20 @@ function closeMessageModal() {
   }, 1000);
 }
 
-function submitresults(){
-  console.log("sending...");
-  fetch('http://localhost:8000/saveresults',{
-    method:"POST",
-    headers:{
-      "Content-Type":"application/json",
-      Authorization:`Bearer ${localStorage.getItem("token")}`,
-    },
-    body:JSON.stringify({answer:requestBody.answers}),
-    
-  })
-  .then((response)=>{
-    if(!response.ok){
-      throw new Error("Failed to save results");
-    }
-    return response.json();
-  }).catch((error)=>{
-    console.log("There was a problen saving results:",error);
-  })
 
-  console.log(requestBody);
 
+// Function to set the category in local storage and highlight the selected button
+const setCategory = (category) => {
+    localStorage.setItem("pqCategory", category);
+    $(".category-button").removeClass("highlighted");
+    $("#" + category.toLowerCase() + "Button").addClass("highlighted");
+};
+
+// Check if a category is already selected in local storage
+const selectedCategory = localStorage.getItem("pqCategory");
+if (selectedCategory) {
+    $("#" + selectedCategory.toLowerCase() + "Button").addClass("highlighted");
 }
-
-
 
 
 

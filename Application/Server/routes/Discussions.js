@@ -13,13 +13,7 @@ router.post('/newdiscuss', verifyToken, upload, async (req, res) => {
         const username = req.username;
         const { title, content } = req.body;
 
-        let image = null;
-        if (req.file) {
-            image = {
-                filename: req.file.filename,
-                path: req.file.path
-            };
-        }
+       
 
         if (!title || !content) {
             return res.status(400).json({ error: "Both Title and Content are required" });
@@ -28,7 +22,6 @@ router.post('/newdiscuss', verifyToken, upload, async (req, res) => {
         const newdiscuss = new Discussion({
             title,
             content,
-            image,
             author: username,
         });
 
@@ -56,6 +49,27 @@ router.get('/discussions',async(req,res)=>{
       return res.status(500).json({error:error.message});
     }
 });
+
+
+
+
+router.get('/selectdiscussion',verifyToken, async (req, res) => {
+    try {
+        const discussionId = req.query.discussionId;
+
+       console.log(discussionId);
+       const discuss = await Discussion.findOne({ discussionId });
+       
+       if (!discuss) {
+          return res.status(404).json({ error: 'Discussion not found' });
+       }
+       
+       return res.status(200).json({ discussion: discuss });
+    } catch (error) {
+       return res.status(500).json({ error: error.message });
+    }
+ });
+ 
 
 module.exports = router;
 
