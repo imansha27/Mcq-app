@@ -242,3 +242,34 @@
 
 
 }
+
+
+.category-buttons{
+ 
+  padding: 20px;
+  font-size: 20px;
+  top: 300px;
+
+ 
+}
+
+.category-buttons button{
+ background-color: #06531e; 
+  color: white;
+  border: none;
+  padding-top: 6px;
+  padding-right: 10px;
+  padding-left: 10px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+
+ 
+
+}
+
+.category-buttons button:hover {
+  background-color: #4CAF50;
+}

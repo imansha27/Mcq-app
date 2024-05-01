@@ -1,18 +1,26 @@
+
+
+
+
+
 const express =require('express');
 const router =express.Router();
-const results=require('../models/results');
+//const results=require('../models/results');
 const verifyToken= require('../middlewares/authMiddleware');
 const QuizResult = require('../models/results');
 
 
 //get all the question rounds
-router.get('getrounds ',verifyToken,async(req,res)=>{
-    try {
-        
-    } catch (error) {
-        
+router.get('/getrounds',verifyToken,async(req,res)=>{
+    const userId = req.userId;
+    const Result = await QuizResult.find({ UserId: userId });
+
+    if(!Result){
+        return res.status(404).json({error:'Error fetching results'});
     }
-})
+    res.json(Result);
+    //console.log(Result);
+});
 
 
 
