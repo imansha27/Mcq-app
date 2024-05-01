@@ -10,7 +10,17 @@
   <body>
     <div ="h-container">
       <div class="navbar-container" id="navbarContainer"></div>
+  <div class="r-container"> 
+  
+  </div>
+  <div class="category-buttons" style="margin-left: 40px;">
+    <button class="category-button" id="organicButton" onclick="setCategory('Organic')">Organic</button>
+    <button class="category-button" id="inorganicButton" onclick="setCategory('Inorganic')">Inorganic</button>
+    <button class="category-button" id="physicalButton" onclick="setCategory('Physical')">Physical</button>
+    
+  </div></div>
       <div class="q-container">
+        
         <div class="qtn">
           <p id="Question"> </p>
         
@@ -34,7 +44,10 @@
         </div>
         <button id="next-btn">NEXT</button>
       </div>
-      
+      <div class="hint">
+        <div class="box"> <h2>hint: </h2>
+          <p id="qhint"></p></div>
+      </div>
     </div>
 
 
@@ -49,7 +62,7 @@
     <p>Physical: <span id="physicalResult"></span></p>
     <p>To check the results in details check the profile page !</p>
     <div class="button-container">
-      <button id="nextRoundBtn" onclick="closeMessageModal(); " >Next Round</button>
+      <button id="nextRoundBtn" onclick=" closeMessageModal();" >Next Round</button>
       <button id="closeDetailsBtn" onclick=" closeMessageModal()">Close the window</button>
   </div>
   </div>
@@ -58,7 +71,7 @@
     <script src="/Application/Client_side/components/js/navbar.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="js/s-home.js"></script>
+    <script src="js/practice.js"></script>
    
     <script>
       // Fetch and inject navbar contents

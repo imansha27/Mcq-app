@@ -7,25 +7,26 @@
 
 .q-container {
     position: absolute;
-    width: 1000px;
-    height: 400px;
-    left: 140px;
-    top: 140px;
+    width: 900px;
+    height: 450px;
+    left: 50px;
+    top: 150px;
     background: rgba(217, 217, 217, 0.5);
     border: 1px solid #000;
 
 }
 
 .qtn #Question{
-  width: 800px;
+  width: 500px;
   white-space: normal; 
   text-overflow: ellipsis;
 }
 
 .qtn{
     position: absolute;
-    width: 960px;
+    width: 860px;
     height: auto;
+    max-height: 600px;
     padding-right: 20px;
     padding-left: 20px;
     font-size: 20px;
@@ -45,7 +46,7 @@
     position: absolute;
     padding: 20px;
     font-size: 20px;
-    top: 250px;
+    top: 300px;
   
     display: flex; 
   
@@ -163,7 +164,7 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 40px;
 }
 
 /* Buttons */
@@ -204,5 +205,40 @@
 
 .r-container{
   margin-top: 100px;
-  margin-left: 130px;
+  margin-left: 40px;
+}
+.hint {
+  position: absolute;
+  right: -42px;
+  top: 130px;
+  width: 390px;
+  height: 390px;
+
+  background: url('../images/st.png') center/cover no-repeat;
+}
+
+.hint h2{
+  font-family: 'IM Fell DW Pica SC', serif;
+  font-size: 30px;
+  color: #000;
+  text-align: center;
+  margin-top: 80px;
+}
+
+.hint p{
+ 
+  font-size: 14px;
+  color: #000;
+  text-align: justify;
+  margin-top: -30px;
+}
+
+.hint .box{
+  width: 210px;
+  height: 200px;
+  margin-left: 80px;
+  margin-right: 86px;
+  
+
+
 }

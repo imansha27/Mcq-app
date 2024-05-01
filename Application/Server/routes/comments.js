@@ -39,7 +39,7 @@ router.get('/getcomments', verifyToken, async (req, res) => {
         
        
         const comments = await Comment.find({ discussion_id: discussionId });
-        console.log("Comments:", comments); 
+        //console.log("Comments:", comments); 
         
         return res.status(200).json(comments);
     } catch (error) {

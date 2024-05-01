@@ -41,8 +41,6 @@ function closeModal() {
   document.getElementById("modal").style.display = "none";
   document.getElementById("title").value = "";
   document.getElementById("content").value = "";
-  document.getElementById("imageInput").value = "";
-  document.getElementById("imagePreview").innerHTML = "";
   document.getElementById("modal").style.display = "none";
 }
 
@@ -53,20 +51,23 @@ window.addEventListener("DOMContentLoaded", () => {
   document.getElementById("token").value = token;
 });
 
+
+
+
+
+
+
 async function saveDiscussion() {
   try {
     const title = document.getElementById("title").value;
     const content = document.getElementById("content").value;
-    const imageInput = document.getElementById("imageInput").files[0];
     const token = document.getElementById("token").value;
 
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
 
-    if (imageInput) {
-      formData.append("image", imageInput);
-    }
+    console.log(formData)
 
     const response = await fetch("http://localhost:8000/newdiscuss", {
       method: "POST",
@@ -74,11 +75,13 @@ async function saveDiscussion() {
         Authorization: `Bearer ${token}`,
       },
       body: formData,
+    
     });
 
     const result = await response.json();
     if (response.ok) {
       alert(result.success);
+      location.reload();
     } else {
       alert(result.error);
     }
@@ -89,122 +92,291 @@ async function saveDiscussion() {
   closeModal();
 }
 
-//image preview on the window
-
-function previewImage(event) {
-  const fileInput = event.target;
-  const files = fileInput.files;
-
-  if (files.length > 0) {
-    const file = files[0];
-    const reader = new FileReader();
-
-    reader.onload = function (e) {
-      const imagePreview = document.getElementById("imagePreview");
-      imagePreview.style.backgroundImage = `url(${e.target.result})`;
-      imagePreview.style.backgroundSize = "contain"; // Adjusted to 'contain'
-      imagePreview.style.backgroundRepeat = "no-repeat";
-    };
-
-    reader.readAsDataURL(file);
-  } else {
-    // Clear the preview if no file selected
-    const imagePreview = document.getElementById("imagePreview");
-    imagePreview.style.backgroundImage = "none";
-  }
-}
 
 // Load discussions when the page loads
+// window.addEventListener("DOMContentLoaded", async () => {
+//   try {
+//     const response = await fetch("http://localhost:8000/discussions");
+//     const discussions = await response.json();
+//     const discussionContainer = document.getElementById("discussionContainer");
+
+//     discussions.forEach((discussion) => {
+//       const discussionButton = document.createElement("button");
+//       discussionButton.classList.add("discussion-button");
+
+//       // Create elements for the discussion title, author, and excerpt
+//       const titleElement = document.createElement("h3");
+//       titleElement.style.fontWeight = "bold";
+//       titleElement.textContent = discussion.title;
+
+//       const authorElement = document.createElement("div");
+//       authorElement.textContent = "By: " + discussion.author;
+
+//       const excerptElement = document.createElement("p");
+//       excerptElement.textContent = discussion.content.substring(0, 100) + "..."; // Display first 100 characters of content
+
+//       // Append elements to the button
+//       discussionButton.appendChild(titleElement);
+//       discussionButton.appendChild(authorElement);
+//       discussionButton.appendChild(excerptElement);
+
+//       // Add click event to the button
+//       discussionButton.onclick = function () {
+//         //todiscuss(discussion._id);
+//         localStorage.setItem('discussionId', discussion._id); 
+//       };
+
+//       discussionContainer.appendChild(discussionButton);
+//     });
+//   } catch (error) {
+//     console.error("Error loading discussions:", error);
+//   }
+// });
 window.addEventListener("DOMContentLoaded", async () => {
   try {
     const response = await fetch("http://localhost:8000/discussions");
     const discussions = await response.json();
     const discussionContainer = document.getElementById("discussionContainer");
 
-    discussions.forEach((discussion) => {
-      const discussionBox = document.createElement("div");
-      discussionBox.classList.add("box");
+    discussions.forEach((discussion, index) => {
+      const discussionButton = document.createElement("button");
+      discussionButton.classList.add("discussion-button");
+      discussionButton.style.borderBottom = "2px solid green";
+     
 
-      const imgDiv = document.createElement("div");
-      imgDiv.classList.add("img");
+      const titleElement = document.createElement("h3");
+      titleElement.style.fontWeight = "bold";
+      titleElement.textContent = discussion.title;
 
-      const img = document.createElement("img");
+      const authorElement = document.createElement("div");
+      authorElement.textContent = "By: " + discussion.author;
 
-      // Check if discussion.image exists before accessing its properties
-      if (discussion.image) {
-        img.src = discussion.image.path;
-      } else {
-        // Provide a default image source if discussion.image is null
-        img.src = "./images/logo.png";
+      const excerptElement = document.createElement("p");
+      excerptElement.textContent = discussion.content.substring(0, 100) + "...";
+
+      discussionButton.appendChild(titleElement);
+      discussionButton.appendChild(authorElement);
+      discussionButton.appendChild(excerptElement);
+
+      discussionButton.onclick = async function () {
+        localStorage.setItem('discussionId', discussion._id);
+      
+        const buttons = document.querySelectorAll(".discussion-button");
+        buttons.forEach(button => {
+          button.classList.remove("selected");
+        });
+        discussionButton.classList.add("selected");
+      
+        GetMessage();
+      
+       
+        displayDiscussionDetails(discussion);
+      };
+      
+      discussionContainer.appendChild(discussionButton);
+
+      if (index === 0) {
+        discussionButton.click();
       }
-
-      imgDiv.appendChild(img);
-
-      const detailsDiv = document.createElement("div");
-      detailsDiv.classList.add("details");
-
-      const contentP = document.createElement("p");
-      contentP.textContent = discussion.content;
-
-      const titleH3 = document.createElement("h3");
-      titleH3.textContent = discussion.title;
-
-      const subDetailsDiv = document.createElement("div");
-      subDetailsDiv.classList.add("sub-details");
-
-      const authorSpan = document.createElement("div");
-      authorSpan.textContent = discussion.author;
-
-      const createdAtSpan = document.createElement("div");
-      createdAtSpan.textContent = discussion.created_at.slice(0, 10);
-
-      const commentDiv = document.createElement("div");
-      commentDiv.classList.add("comment");
-
-      const commentIcon = document.createElement("i");
-      commentIcon.classList.add("fa-solid", "fa-comment");
-
-      const commentCountSpan = document.createElement("span");
-      commentCountSpan.textContent = discussion.commentCount;
-
-      commentDiv.appendChild(commentIcon);
-      commentDiv.appendChild(commentCountSpan);
-
-      const viewButton = document.createElement("button");
-      viewButton.classList.add("view-button");
-      viewButton.textContent = "View";
-      viewButton.onclick = function () {
-        todiscuss(discussion._id);
-        localStorage.setItem('discussionId', discussion._id); 
-    };
-    
-      subDetailsDiv.appendChild(authorSpan);
-      subDetailsDiv.appendChild(createdAtSpan);
-
-      const actionContainer = document.createElement("div");
-
-      actionContainer.classList.add("action-container");
-
-      // Append commentDiv and viewButton to actionContainer
-      actionContainer.appendChild(commentDiv);
-      actionContainer.appendChild(viewButton);
-
-      // Append actionContainer to subDetailsDiv
-      subDetailsDiv.appendChild(actionContainer);
-
-      // subDetailsDiv.appendChild(commentDiv);
-      // subDetailsDiv.appendChild(viewButton);
-
-      detailsDiv.appendChild(titleH3);
-      detailsDiv.appendChild(contentP);
-      detailsDiv.appendChild(subDetailsDiv);
-
-      discussionBox.appendChild(imgDiv);
-      discussionBox.appendChild(detailsDiv);
-
-      discussionContainer.appendChild(discussionBox);
     });
   } catch (error) {
     console.error("Error loading discussions:", error);
   }
 });
+
+console.log("Discussion ID:", localStorage.discussionId);
+
+for (var i = 0; i < localStorage.length; i++) {
+  var key = localStorage.key(i);
+  var value = localStorage.getItem(key);
+  console.log("Key:", key, "Value:", value);
+}
+
+function openMessageModal() {
+  document.getElementById("messageModal").style.display = "block";
+}
+
+function closeMessageModal() {
+  document.getElementById("messageModal").style.display = "none";
+  document.getElementById("messageContent").value = "";
+}
+
+function sendMessage() {
+  var messageText = document.getElementById("messageContent").value;
+  if (messageText.trim() !== "") {
+    fetch("http://localhost:8000/savecomment", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify({
+        content: messageText,
+        discussion_id: localStorage.getItem("discussionId"),
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to post the reply");
+        }
+        closeMessageModal();
+        var messageElement = document.createElement("div");
+        messageElement.classList.add("message");
+        var messageContent = document.createElement("p");
+        var bubble = document.createElement("div");
+        bubble.classList.add("bubble");
+
+        var authorContainer = document.createElement("div");
+        authorContainer.classList.add("author-container");
+
+        var authorCircle = document.createElement("div");
+        authorCircle.classList.add("author-circle");
+        authorCircle.textContent = comment.author.charAt(0).toUpperCase();
+        authorContainer.appendChild(authorCircle);
+
+        var usernameElement = document.createElement("div");
+        usernameElement.textContent = comment.author;
+        usernameElement.classList.add("username");
+        authorContainer.appendChild(usernameElement);
+
+        bubble.appendChild(authorContainer);
+
+        var contentElement = document.createElement("div");
+        contentElement.textContent = comment.content;
+        contentElement.style.marginLeft = "50px";
+        contentElement.style.marginBottom = "20px";
+        bubble.appendChild(contentElement);
+
+        messageElement.appendChild(bubble);
+        document.getElementById("chatMessages").appendChild(messageElement);
+      })
+      .catch((error) => {
+        console.error("Error saving comment:", error);
+      });
+
+    alert("Your reply was posted successfully!");
+  } else {
+    alert("Please enter a message.");
+  }
+}
+
+function GetMessage() {
+  const discussionId = localStorage.getItem("discussionId");
+  fetch(`http://localhost:8000/getcomments?discussionId=${discussionId}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Failed to fetch comments");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      const chatMessages = document.getElementById("chatMessages");
+      chatMessages.innerHTML = "";
+      data.forEach((comment) => {
+        const bubble = document.createElement("div");
+        bubble.classList.add("bubble");
+        
+        const authorContainer = document.createElement("div");
+        authorContainer.classList.add("author-container");
+
+        const authorCircle = document.createElement("div");
+        authorCircle.classList.add("author-circle");
+        authorCircle.textContent = comment.author.charAt(0).toUpperCase();
+        authorContainer.appendChild(authorCircle);
+
+        const usernameElement = document.createElement("div");
+        usernameElement.textContent = comment.author;
+        usernameElement.classList.add("username");
+        authorContainer.appendChild(usernameElement);
+
+        bubble.appendChild(authorContainer);
+
+        const contentElement = document.createElement("div");
+        contentElement.textContent = comment.content;
+        contentElement.style.marginLeft = "50px";
+        contentElement.style.marginBottom = "20px";
+        bubble.appendChild(contentElement);
+
+        chatMessages.appendChild(bubble);
+      });
+    })
+    .catch((error) => {
+      console.error("Error fetching comments:", error);
+    });
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  GetMessage();
+});
+
+
+
+
+async function getDiscussionDetails() {
+  try {
+    const discussionId = localStorage.getItem("discussionId");
+    fetch(`http://localhost:8000/selectdiscussion?discussionId=${discussionId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch discussion details");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        // Process the data here
+      })
+      .catch((error) => {
+        console.error("Error fetching discussion details:", error);
+      });
+  } catch (error) {
+    console.error("Error fetching discussion details:", error);
+  }
+}
+
+
+function displayDiscussionDetails(discussionDetails) {
+  const discussionDetailsContainer = document.querySelector(".discussionDetailsContainer");
+  discussionDetailsContainer.innerHTML = "";
+  discussionDetailsContainer.style.marginLeft = "30px";
+  discussionDetailsContainer.style.width = "93%";
+ discussionDetailsContainer.style.borderBottom = "4px solid #3cb300";
+ // discussionDetailsContainer.style.boxShadow = " 0 10px 10px -5px rgba(0, 255, 0, 0.5)";
+  discussionDetailsContainer.style.fontWeight = "bold";
+  discussionDetailsContainer.style.fontStyle = "italic";
+
+  const titleElement = document.createElement("h1");
+  titleElement.textContent = discussionDetails.title;
+
+  const authorElement = document.createElement("div");
+  authorElement.textContent = "By: " + discussionDetails.author;
+
+  const contentElement = document.createElement("p");
+  contentElement.textContent = discussionDetails.content;
+
+  // Convert UTC time to local time
+  const date = new Date(discussionDetails.created_at);
+  const localDate = date.toLocaleString(); // Converts to local time format
+
+  const dateElement = document.createElement("div");
+  dateElement.textContent = "Date: " + localDate;
+  dateElement.style.marginBottom = "20px";
+
+  discussionDetailsContainer.appendChild(titleElement);
+  discussionDetailsContainer.appendChild(authorElement);
+  discussionDetailsContainer.appendChild(contentElement);
+  discussionDetailsContainer.appendChild(dateElement);
+}
+
+
