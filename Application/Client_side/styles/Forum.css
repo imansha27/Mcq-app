@@ -51,9 +51,9 @@ h6 {
 }
 
 .sub-details {
-  color: var(--text-color); /* Set text color */
-  justify-content: space-between; /* Align items horizontally */
-  align-items: center; /* Align items vertically */
+  color: var(--text-color); 
+  justify-content: space-between; 
+  align-items: center; 
 }
 
 .comment i {
@@ -72,7 +72,7 @@ h6 {
   max-width: 600px;
   margin: 0 auto;
   max-height: 530px;
-  overflow-y: scroll; /* Add a vertical scroll bar */
+  overflow-y: scroll;
 }
 
 .discussion-button {
@@ -104,10 +104,10 @@ h6 {
 
   z-index: 999;
   padding: 27px;
-  background-color: var(--primary-color); /* Set primary color */
+  background-color: var(--primary-color); 
   color: #fff;
   border: none;
- width: 463px;
+ width: 511px;
   cursor: pointer;
 }
 
@@ -159,7 +159,7 @@ textarea {
 
 /* Chat Comments */
 #chatMessages {
-  max-height: 415px;
+  max-height: 350px;
   overflow-y: auto;
   padding: 10px;
   border-radius: 8px;

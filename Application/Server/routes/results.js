@@ -1,28 +1,51 @@
-
-
-
-
-
 const express =require('express');
 const router =express.Router();
 //const results=require('../models/results');
 const verifyToken= require('../middlewares/authMiddleware');
 const QuizResult = require('../models/results');
+const sques = require('../models/Questions');
 
 
 //get all the question rounds
-router.get('/getrounds',verifyToken,async(req,res)=>{
+router.get('/getrounds', verifyToken, async (req, res) => {
     const userId = req.userId;
     const Result = await QuizResult.find({ UserId: userId });
 
-    if(!Result){
-        return res.status(404).json({error:'Error fetching results'});
+    if (!Result) {
+        return res.status(404).json({ error: 'Error fetching results' });
     }
-    res.json(Result);
-    //console.log(Result);
+
+    const updatedResult = Result.map(async (round) => {
+        const updatedAnswers = await Promise.all(round.answers.map(async (answer) => {
+            const question = await sques.findOne({ _id: answer.questionId });
+            return {
+                ...answer,
+                category: question.Category,
+                source:question.source,
+                hint:question.hint,
+                Correctans:question.Correctans,
+                Question:question.Question,
+                Choice1:question.Choice1,   
+                Choice2:question.Choice2,
+                Choice3:question.Choice3,
+                Choice4:question.Choice4,
+                Choice5:question.Choice5,
+                unit:question.unit,
+                submitby:question.submitby,
+                difficulty:question.difficulty
+            };
+            
+        }));
+      
+        return {
+            roundNo: round.roundNo,
+            answers: updatedAnswers
+        };
+    });
+
+    res.json(await Promise.all(updatedResult));
+   
 });
-
-
 
 
 
