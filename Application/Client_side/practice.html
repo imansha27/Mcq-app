@@ -14,6 +14,7 @@
   
   </div>
   <div class="category-buttons" style="margin-left: 40px; bottom: 200px;">
+    <button class="category-button" id="allButton" onclick="setCategory('All')">All</button>
     <button class="category-button" id="organicButton" onclick="setCategory('Organic')">Organic</button>
     <button class="category-button" id="inorganicButton" onclick="setCategory('Inorganic')">Inorganic</button>
     <button class="category-button" id="physicalButton" onclick="setCategory('Physical')">Physical</button>
@@ -51,22 +52,21 @@
     </div>
 
 
-<div id="myModal" class="modal">
-  <div class="modal-content">
-   
-    <h1>Quiz Completed!</h1>
-    <p>Thank you for taking the quiz.</p>
-    <p>The quiz had a total of 9 questions, 3 from each category Organic, Inorganic, and Physical. And your results are as below:</p>
-    <p>Organic: <span id="organicResult"></span></p>
-    <p>Inorganic: <span id="inorganicResult"></span></p>
-    <p>Physical: <span id="physicalResult"></span></p>
-    <p>To check the results in details check the profile page !</p>
-    <div class="button-container">
-      <button id="nextRoundBtn" onclick=" closeMessageModal();" >Next Round</button>
-      <button id="closeDetailsBtn" onclick=" closeMessageModal()">Close the window</button>
-  </div>
-  </div>
-</div>
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <p>Here's the results of your practice Quiz!</p>
+        <p>The quiz had a total of 9 questions, And your results are as below:</p>
+        <p>Total correct answers: <span id="Result"></span></p>
+        <p>Total time: <span id="time"></span></p>
+        <div class="answer-container">
+        
+        </div>
+        <div class="button-container" style="margin-left: 250px;">
+          <button id="nextRoundBtn" onclick="closeMessageModal();">Continue practice</button>
+        </div>
+      </div>
+    </div>
+    
 
     <script src="/Application/Client_side/components/js/navbar.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>

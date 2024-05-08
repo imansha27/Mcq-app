@@ -255,8 +255,12 @@ router.get('/practice', async (req, res) => {
     try {
       const category = req.query.category; // Extract category from query parameter
       //console.log("Category:", category);
+      let matchQuery = { status: "approve" };
+      if (category !== "All") {
+        matchQuery.Category = category;
+      }
       const questions = await sques.aggregate([
-        { $match: { Category: category, status: "approve" } },
+        { $match: matchQuery },
         { $sample: { size: 9 } }
       ]);
   
