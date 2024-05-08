@@ -129,8 +129,10 @@ $("#next-btn").click(() => {
       calculateCorrectAnswersByCategory();
       openMessageModal()
     
+    ///Set the category in localStorage to the least correct category
+    let leastCorrectCategory = Object.keys(correctAnswersByCategory).reduce((a, b) => correctAnswersByCategory[a] < correctAnswersByCategory[b] ? a : b);
     
-    
+    localStorage.setItem("category", leastCorrectCategory);
       
     });
   }
