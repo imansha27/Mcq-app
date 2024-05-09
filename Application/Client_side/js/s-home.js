@@ -28,9 +28,11 @@ const fetchQuestions = () => {
     .then((response) => {
       questionsData = response.data.questions;
       roundNo=response.data.roundNo;
+      predictions=response.data.predictions;
       document.getElementById("round").innerText=roundNo;
       console.log("Questions Data:", questionsData);
       console.log("round:",roundNo);
+      console.log("predictions:",predictions);
       displayQuestion(currentQuestionIndex);
      
     })
@@ -47,6 +49,12 @@ const displayQuestion = (index) => {
     document.getElementById("ch4").innerText = data.Choice4;
     document.getElementById("ch5").innerText = data.Choice5;
     document.getElementById("qhint").innerText = data.hint;
+    const prediction = predictions[index]; 
+    if (prediction === 0) {
+      document.getElementById("qhint").innerText = data.hint; 
+    } else {
+      document.getElementById("qhint").innerText = ""; // Hide hint
+    }
   }
 };
 
@@ -85,9 +93,6 @@ const calculateCorrectAnswersByCategory = () => {
   console.log("Physical:", correctAnswersByCategory["Physical"]);
 }
 
-
-
-
 $("#next-btn").click(() => {
   const currentTime = new Date().getTime();
   const timeSpent = (currentTime - startTime) / (1000 * 60); 
@@ -100,38 +105,32 @@ $("#next-btn").click(() => {
     return; 
   }
 
-
   const correctAnswer = currentQuestion.Correctans;
-  
-
   const answeredCorrectly = (clickedButtonId === correctAnswer);
 
+  // Get the prediction for the current question
+  const prediction = predictions[currentQuestionIndex];
 
+  // Construct answer data with prediction
   const answerData = {
     questionId: currentQuestion._id,
     questionNo: currentQuestionIndex + 1,
     givenanswer: clickedButtonId,
     answeredCorrectly: answeredCorrectly,
-    time: timeSpent
+    time: timeSpent,
+    prediction: prediction // Add prediction to answer data
   };
-  console.log(currentQuestionIndex);
+
   // Push the data for the current question into the array
   requestBody.answers.push(answerData);
 
-  //console.log("Request body:", requestBody);
-
-
-  if (currentQuestionIndex ==8 ) {
+  if (currentQuestionIndex == 8) {
     $("#next-btn").text("Finish").off("click").on("click", () => {
-   
       console.log("Quiz finished. Sending data to server:", requestBody);
-      
       calculateCorrectAnswersByCategory();
-      openMessageModal()
-    
-    
-    
-      
+      openMessageModal();
+      let leastCorrectCategory = Object.keys(correctAnswersByCategory).reduce((a, b) => correctAnswersByCategory[a] < correctAnswersByCategory[b] ? a : b);
+      localStorage.setItem("category", leastCorrectCategory);
     });
   }
 
@@ -143,13 +142,92 @@ $("#next-btn").click(() => {
 
 
 
+// $("#next-btn").click(() => {
+//   const currentTime = new Date().getTime();
+//   const timeSpent = (currentTime - startTime) / (1000 * 60); 
+
+//   const clickedButtonId = $(".btn.clicked").attr("id"); 
+//   const currentQuestion = questionsData[currentQuestionIndex]; 
+
+//   if (!clickedButtonId) {
+//     alert("Select an answer before proceeding");
+//     return; 
+//   }
+
+
+//   const correctAnswer = currentQuestion.Correctans;
+  
+
+//   const answeredCorrectly = (clickedButtonId === correctAnswer);
+
+
+//   const answerData = {
+//     questionId: currentQuestion._id,
+//     questionNo: currentQuestionIndex + 1,
+//     givenanswer: clickedButtonId,
+//     answeredCorrectly: answeredCorrectly,
+//     time: timeSpent
+//   };
+//   console.log(currentQuestionIndex);
+//   // Push the data for the current question into the array
+//   requestBody.answers.push(answerData);
+
+//   //console.log("Request body:", requestBody);
+
+
+//   if (currentQuestionIndex ==8 ) {
+//     $("#next-btn").text("Finish").off("click").on("click", () => {
+   
+//       console.log("Quiz finished. Sending data to server:", requestBody);
+      
+//       calculateCorrectAnswersByCategory();
+//       openMessageModal()
+    
+//     ///Set the category in localStorage to the least correct category
+//     let leastCorrectCategory = Object.keys(correctAnswersByCategory).reduce((a, b) => correctAnswersByCategory[a] < correctAnswersByCategory[b] ? a : b);
+    
+//     localStorage.setItem("category", leastCorrectCategory);
+      
+//     });
+//   }
+
+//   startTime = currentTime; 
+//   currentQuestionIndex++;
+//   displayQuestion(currentQuestionIndex);
+//   $(".btn").removeClass("clicked");
+// });
+
+
+
 
 function openMessageModal() {
   document.getElementById("myModal").style.display = "block";
+
+  // Calculate total correct predictions
+  const totalCorrectPredictions = requestBody.answers.reduce((total, answer) => {
+    // If the answer was predicted correctly, increment the total
+    return total + (answer.prediction === 1 ? 1 : 0);
+  }, 0);
+
+  // Display total correct predictions in the modal
+  document.getElementById("totalCorrectPredictions").innerText = totalCorrectPredictions;
+
+  // You can customize the message based on the total correct predictions
+  let message;
+  if (totalCorrectPredictions === 0) {
+    message = "We predicted that you would not get any correct answers.";
+  } else {
+    message = `We predicted that you would get ${totalCorrectPredictions} correct answers.`;
+  }
+
+  // Display the message in the modal
+  document.getElementById("predictionMessage").innerText = message;
+
   document.getElementById("organicResult").innerText = correctAnswersByCategory["Organic"];
   document.getElementById("inorganicResult").innerText = correctAnswersByCategory["Inorganic"];
   document.getElementById("physicalResult").innerText = correctAnswersByCategory["Physical"];
 }
+
 
 // Function to close the message modal
 function closeMessageModal() {

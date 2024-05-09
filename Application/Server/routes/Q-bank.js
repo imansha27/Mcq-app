@@ -126,45 +126,41 @@ router.delete('/deleappQ',async(req,res)=>{
 
 
 
+////////////////////////////////////////////////////
+
+const { spawn } = require('child_process');
+
 router.get('/quizques', verifyToken, async (req, res) => {
     try {
-       
         const userId = req.userId;
-        console.log("User ID:", userId);
+       
 
         const lastResult = await QuizResult.findOne({ UserId: userId }).sort({ roundNo: -1 });
+        
 
-        console.log("Last Result:", lastResult);
-
-      
         let roundNo = 1;
-
         if (lastResult) {
             roundNo = lastResult.roundNo + 1;
         }
-        console.log("Round Number:", roundNo);
+      
 
-    
         const inorganicQuestions = await sques.aggregate([
             { $match: { Category: "Inorganic", status: "approve" } },
             { $sample: { size: 3 } }
         ]);
-        console.log("Inorganic Questions:", inorganicQuestions);
+       
 
-  
         const organicQuestions = await sques.aggregate([
             { $match: { Category: "Organic", status: "approve" } },
             { $sample: { size: 3 } }
         ]);
-        console.log("Organic Questions:", organicQuestions);
+      
 
-     
         const physicalQuestions = await sques.aggregate([
             { $match: { Category: "Physical", status: "approve" } },
             { $sample: { size: 3 } }
         ]);
-        console.log("Physical Questions:", physicalQuestions);
-
+     
         const questions = [
             ...inorganicQuestions,
             ...organicQuestions,
@@ -172,15 +168,136 @@ router.get('/quizques', verifyToken, async (req, res) => {
         ];
 
         questions.sort(() => Math.random() - 0.5);
+        console.log("Questions:", questions.keywords);
+        const keywordsToString = (keywords) => {
+            console.log("Questions:", keywords);
+            if (Array.isArray(keywords)) {
+            return keywords.join(',');
+            }
+            return ''; 
+        };
+        
+        // Prepare data to send to Python script
+        const newData = {
+            Student_ID: questions.map(question => question._id),
+            Round: questions.map(question => 3),
+            Category: questions.map(question => question.Category),
+            Difficulty_Level: questions.map(question => question.difficulty),
+            Keywords: questions.map(question => keywordsToString(question.Keywords))
+        };
+        console.log("Data to send to Python script:", newData);
 
-        // Return questions and round number
-        return res.json({ questions, roundNo });
-        //return res.json(questions);
+        // Call Python script
+        const pythonProcess = spawn('python', ['./predict.py']); 
+
+
+        pythonProcess.stdin.write(JSON.stringify(newData));
+        pythonProcess.stdin.end();
+
+        pythonProcess.stdout.on('data', (data) => {
+            const predictions = JSON.parse(data.toString());
+            console.log("Predictions:", predictions);
+
+            // Return questions, round number, and predictions
+            return res.json({ questions, roundNo, predictions });
+        });
+
+        pythonProcess.stderr.on('data', (data) => {
+            console.error(`Error from Python script: ${data}`);
+            return res.status(500).json({ message: "Error executing Python script" });
+        });
+
     } catch (error) {
         console.error("Error fetching questions:", error);
         return res.status(500).json({ message: "Error fetching questions" });
     }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// router.get('/quizques', verifyToken, async (req, res) => {
+//     try {
+       
+//         const userId = req.userId;
+//         console.log("User ID:", userId);
+
+//         const lastResult = await QuizResult.findOne({ UserId: userId }).sort({ roundNo: -1 });
+
+//         console.log("Last Result:", lastResult);
+
+      
+//         let roundNo = 1;
+
+//         if (lastResult) {
+//             roundNo = lastResult.roundNo + 1;
+//         }
+//         console.log("Round Number:", roundNo);
+
+    
+//         const inorganicQuestions = await sques.aggregate([
+//             { $match: { Category: "Inorganic", status: "approve" } },
+//             { $sample: { size: 3 } }
+//         ]);
+//         console.log("Inorganic Questions:", inorganicQuestions);
+
+  
+//         const organicQuestions = await sques.aggregate([
+//             { $match: { Category: "Organic", status: "approve" } },
+//             { $sample: { size: 3 } }
+//         ]);
+//         console.log("Organic Questions:", organicQuestions);
+
+     
+//         const physicalQuestions = await sques.aggregate([
+//             { $match: { Category: "Physical", status: "approve" } },
+//             { $sample: { size: 3 } }
+//         ]);
+//         console.log("Physical Questions:", physicalQuestions);
+
+//         const questions = [
+//             ...inorganicQuestions,
+//             ...organicQuestions,
+//             ...physicalQuestions
+//         ];
+
+//         questions.sort(() => Math.random() - 0.5);
+
+//         // Return questions and round number
+//         return res.json({ questions, roundNo });
+//         //return res.json(questions);
+//     } catch (error) {
+//         console.error("Error fetching questions:", error);
+//         return res.status(500).json({ message: "Error fetching questions" });
+//     }
+// });
 
 
 
