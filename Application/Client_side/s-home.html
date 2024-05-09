@@ -50,6 +50,7 @@
    
     <h1>Quiz Completed!</h1>
     <p>Thank you for taking the quiz.</p>
+    <p><span id="predictionMessage"></span></p>
     <p>The quiz had a total of 9 questions, 3 from each category Organic, Inorganic, and Physical. And your results are as below:</p>
     <p>Organic: <span id="organicResult"></span></p>
     <p>Inorganic: <span id="inorganicResult"></span></p>
@@ -57,7 +58,7 @@
     <p>To check the results in details check the profile page !</p>
     <div class="button-container">
       <button id="nextRoundBtn" onclick="submitresults(); closeMessageModal();" >Next Round</button>
-      <button id="closeDetailsBtn" onclick="window.location.href = 'practice.html'">Practice Question</button>
+      <button id="closeDetailsBtn" onclick="window.location.href = 'practice.html';submitresults();">Practice Question</button>
   </div>
   </div>
 </div>
