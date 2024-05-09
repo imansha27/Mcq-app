@@ -10,55 +10,6 @@ fetch('./components/navbar_after_login.html')
 
 
 
-
-
-
-
-
-document
-.getElementById("upload-button")
-.addEventListener("click", function () {
-  document.getElementById("profile-image-input").click();
-});
-
-document
-.getElementById("edit-teaches-at")
-.addEventListener("click", function () {
-  // Show input field for editing "Teaches At"
-  document.getElementById("teaches-at-value").style.display = "none";
-  document.getElementById("teaches-at-input").style.display =
-    "inline-block";
-  document.getElementById("save-teaches-at").style.display =
-    "inline-block";
-  this.style.display = "none"; // Hide the "Edit" button
-});
-
-document
-.getElementById("save-teaches-at")
-.addEventListener("click", function () {
-  // Handle saving of "Teaches At"
-  const newTeachesAt =
-    document.getElementById("teaches-at-input").value;
-  // Send request to backend to save the newTeachesAt data
-  // After successful response, update UI accordingly
-  axios
-    .post("/api/save-teaches-at", { teachesAt: newTeachesAt })
-    .then((response) => {
-      document.getElementById("teaches-at-value").innerText =
-        newTeachesAt;
-      document.getElementById("teaches-at-value").style.display =
-        "inline-block";
-      document.getElementById("teaches-at-input").style.display =
-        "none";
-      document.getElementById("edit-teaches-at").style.display =
-        "inline-block";
-      this.style.display = "none"; // Hide the "Save" button
-    })
-    .catch((error) =>
-      console.error('Error saving "Teaches At":', error)
-    );
-});
-
 // Fetch user details
 const token = localStorage.getItem("token");
 console.log(token);
@@ -72,69 +23,109 @@ axios
 .then((response) => {
   console.log(response.data.data);
   const data = response.data.data;
-  document.getElementById("profile-image").src = data.image;
+  document.getElementById("profile-image").src = data.image || "/Application/Client_side/images/pro.png";
   document.getElementById("username").innerText = data.UserName;
   document.getElementById("name").innerText =
     "Name: " + data.FirstName + " " + data.LastName;
   document.getElementById("email").innerText = "Email: " + data.Email;
   document.getElementById("usertype").innerText =
     "User Type: " + data.UserType;
-  const teachesAtValue = document.getElementById("teaches-at-value");
-  if (data.TeachesAt) {
-    teachesAtValue.innerText = data.TeachesAt;
-  } else {
-    teachesAtValue.innerText = "(Not set)";
-  }
+ document.getElementById("school").innerText = "School: " + data.School;
 })
+  
+
 .catch((error) => console.error("Error fetching user details:", error));
 
-//Upload userprofile image
-document
-.getElementById("profile-image-input")
-.addEventListener("change", function (event) {
+
+
+
+
+
+
+
+
+
+// Upload user profile image and update user details
+document.getElementById("upload-button").addEventListener("click", function () {
+  document.getElementById("profile-image-input").click();
+});
+
+document.getElementById("profile-image-input").addEventListener("change", function (event) {
   const file = event.target.files[0];
   if (file) {
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      document.getElementById("profile-image").src = e.target.result;
-    };
-    reader.readAsDataURL(file);
-    // Send the file to the backend for upload
-    const formData = new FormData();
-    formData.append("image", file);
-    axios
-      .post("/api/upload-image", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) =>
-        console.log("Image uploaded successfully:", response)
-      )
-      .catch((error) => console.error("Error uploading image:", error));
+      const reader = new FileReader();
+      reader.onload = function (e) {
+          document.getElementById("profile-image").src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+
+      
   }
+});
+
+// Click event for the edit-s button
+document.getElementById("edit-s").addEventListener("click", function() {
+  // Show the upload button
+  document.getElementById("upload-button").style.display = "block";
+  
+  // Hide the edit button
+  document.getElementById("edit-s").style.display = "none";
+  
+  // Show the save button
+  document.getElementById("save-s").style.display = "block";
+  
+  // Enable the email and school input fields for editing
+  document.getElementById("email-input").style.display = "block";
+  document.getElementById("school-input").style.display = "block";
 });
 
 
 
 
 
+// Click event for the save-s button
+document.getElementById("save-s").addEventListener("click", function() {
+  // Hide the upload button
+  document.getElementById("upload-button").style.display = "none";
+  
+  // Show the edit button
+  document.getElementById("edit-s").style.display = "block";
+  
+  // Hide the save button
+  document.getElementById("save-s").style.display = "none";
+  
+  // Disable the email and school input fields to prevent editing
+  document.getElementById("email-input").style.display = "none";
+  document.getElementById("school-input").style.display = "none";
 
+  // Prepare form data with image, email, and school
+  const formData = new FormData();
+  const fileInput = document.getElementById("profile-image-input");
+  if (fileInput.files.length > 0) {
+      const file = fileInput.files[0];
+      formData.append("image", file);
+  }
+  formData.append("Email", document.getElementById("email-input").value);
+  formData.append("School", document.getElementById("school-input").value);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+  // Send the data to the backend for update
+  axios.put("http://localhost:8000/edit-profile", formData, {
+    method: "PUT",
+      headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+  })
+  .then((response) => {
+      console.log("User details updated successfully:", response.data);
+      location.reload();
+      console.log(formData);
+  })
+  .catch((error) => {
+      console.error("Error updating user details:", error);
+      // Handle error and update UI if needed
+  });
+});
 
 
 

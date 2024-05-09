@@ -22,10 +22,10 @@ for (var i = 0; i < localStorage.length; i++) {
 
 
 
-function todiscuss(discussionId) {
-    localStorage.setItem('discussionId', discussionId);
-    window.location.href='discussion.html'
-}
+// function todiscuss(discussionId) {
+//     localStorage.setItem('discussionId', discussionId);
+//     window.location.href='discussion.html'
+// }
 
 
 
@@ -132,6 +132,36 @@ async function saveDiscussion() {
 //     console.error("Error loading discussions:", error);
 //   }
 // });
+
+// Function to update the background color of the discussion button based on discussion ID
+function updateDiscussionButtonColor() {
+  const discussionId = localStorage.getItem('discussionId');
+  const buttons = document.querySelectorAll(".discussion-button");
+  buttons.forEach(button => {
+    if (button.dataset.discussionId === discussionId) {
+      button.style.backgroundColor = "lightgrey";
+    } else {
+      button.style.backgroundColor = ""; // Reset to default
+    }
+  });
+}
+
+// Add event listener for storage changes
+window.addEventListener('storage', updateDiscussionButtonColor);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 window.addEventListener("DOMContentLoaded", async () => {
   try {
     const response = await fetch("http://localhost:8000/discussions");
@@ -142,6 +172,7 @@ window.addEventListener("DOMContentLoaded", async () => {
       const discussionButton = document.createElement("button");
       discussionButton.classList.add("discussion-button");
       discussionButton.style.borderBottom = "2px solid green";
+      discussionButton.dataset.discussionId = discussion._id;
      
 
       const titleElement = document.createElement("h3");
@@ -168,6 +199,7 @@ window.addEventListener("DOMContentLoaded", async () => {
         discussionButton.classList.add("selected");
       
         GetMessage();
+        updateDiscussionButtonColor();
       
        
         displayDiscussionDetails(discussion);
@@ -190,6 +222,7 @@ for (var i = 0; i < localStorage.length; i++) {
   var key = localStorage.key(i);
   var value = localStorage.getItem(key);
   console.log("Key:", key, "Value:", value);
+ 
 }
 
 function openMessageModal() {
@@ -255,6 +288,7 @@ function sendMessage() {
       });
 
     alert("Your reply was posted successfully!");
+    location.reload();
   } else {
     alert("Please enter a message.");
   }
@@ -380,3 +414,4 @@ function displayDiscussionDetails(discussionDetails) {
 }
 
 
+updateDiscussionButtonColor()

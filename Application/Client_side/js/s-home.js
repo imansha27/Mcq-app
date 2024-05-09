@@ -53,7 +53,7 @@ const displayQuestion = (index) => {
     if (prediction === 0) {
       document.getElementById("qhint").innerText = data.hint; 
     } else {
-      document.getElementById("qhint").innerText = ""; // Hide hint
+      document.getElementById("qhint").innerText = "We predicted that you will get this question correct without a hint 😊😊😊"; 
     }
   }
 };
@@ -130,7 +130,9 @@ $("#next-btn").click(() => {
       calculateCorrectAnswersByCategory();
       openMessageModal();
       let leastCorrectCategory = Object.keys(correctAnswersByCategory).reduce((a, b) => correctAnswersByCategory[a] < correctAnswersByCategory[b] ? a : b);
-      localStorage.setItem("category", leastCorrectCategory);
+      const leastCorrectCategories = Object.keys(correctAnswersByCategory).filter(category => correctAnswersByCategory[category] === correctAnswersByCategory[leastCorrectCategory]);
+      const category = leastCorrectCategories.length > 1 ? "All" : leastCorrectCategories[0];
+      localStorage.setItem("category", category);
     });
   }
 

@@ -3,6 +3,7 @@
 
 .body {
     margin: 0;
+ 
 }
 
 .q-container {
@@ -203,15 +204,26 @@
   background-color: #d32f2f; /* Darker red */
 }
 
+
+#detailsbtn{
+  background-color: #000000; /* Red */
+}
+
+#detailsbtn:hover {
+  background-color: #383a38; /* Darker red */
+}
+
+
+
 .r-container{
   margin-top: 100px;
   margin-left: 40px;
 }
 .hint {
   position: absolute;
-  right: -42px;
+  right: -0px;
   top: 130px;
-  width: 390px;
+  width: 300px;
   height: 390px;
 
   background: url('../images/st.png') center/cover no-repeat;
@@ -236,8 +248,9 @@
 .hint .box{
   width: 210px;
   height: 200px;
-  margin-left: 80px;
-  margin-right: 86px;
+  margin-left: 40px;
+
+ 
   
 
 

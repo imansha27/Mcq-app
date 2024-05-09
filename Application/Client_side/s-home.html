@@ -55,9 +55,11 @@
     <p>Organic: <span id="organicResult"></span></p>
     <p>Inorganic: <span id="inorganicResult"></span></p>
     <p>Physical: <span id="physicalResult"></span></p>
-    <p>To check the results in details check the profile page !</p>
+    <p>To check the results in details click the <strong>Result in Details</strong> button</p>
+    <p>To practice more questions on your least correct category click the <strong>Practice Question</strong> button </p>
     <div class="button-container">
       <button id="nextRoundBtn" onclick="submitresults(); closeMessageModal();" >Next Round</button>
+      <button id="detailsbtn" onclick="window.location.href = 's-profile.html';submitresults();">Result in Details</button>
       <button id="closeDetailsBtn" onclick="window.location.href = 'practice.html';submitresults();">Practice Question</button>
   </div>
   </div>

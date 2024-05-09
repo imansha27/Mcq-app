@@ -47,9 +47,9 @@
     height: 160px;
     border-radius: 50%;
     overflow: hidden;
-   margin-left: 30px;
-   margin-top: 25px;
-    background-color: blue; /* Add margin below the profile icon */
+   margin-left: 40px;
+   margin-top: 30px;
+    background-color: rgba(164, 169, 149, 0.781); /* Add margin below the profile icon */
 }
 
 .profile-icon img {
@@ -64,11 +64,12 @@
     left: 90%; /* Center the button horizontally */
     transform: translateX(-50%);
     border-radius: 40px;
+    display: none;
 
 }
 #username{
     font-family: 'IM FELL DW Pica SC';
-    margin-left: 85px;
+    margin-left: 80px;
     margin-top: 10px;
     margin-right:75px;
     font-size: 30px;
@@ -82,3 +83,18 @@
   padding-left: 10px;
 }
 
+#edit-s,#save-s{
+    font-family: 'IM FELL DW Pica SC';
+    margin-left: 60px;
+    margin-top: 10px;
+    margin-right:75px;
+    font-size: 20px;
+    width: 90px;
+    text-align: center;
+    align-items: center;
+    color: #ffffff; /* Text color */
+    font-style: bold;
+    border-radius: 10px;
+    background-color: rgb(16, 85, 27); /* Background color */
+  padding-left: 10px;
+}
