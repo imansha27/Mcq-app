@@ -200,17 +200,24 @@ $("#next-btn").click(() => {
 
 
 
+
 function openMessageModal() {
-  document.getElementById("myModal").style.display = "block";
 
   // Calculate total correct predictions
-  const totalCorrectPredictions = requestBody.answers.reduce((total, answer) => {
-    // If the answer was predicted correctly, increment the total
-    return total + (answer.prediction === 1 ? 1 : 0);
-  }, 0);
+const totalCorrectPredictions = requestBody.answers.reduce((ptotal, answer) => {
+  if (answer.prediction === 1) {
+    return ptotal + 1;
+  }
+  return ptotal;
+
+}, 0);
+
+console.log("Total Correct Predictions:", totalCorrectPredictions);
+  document.getElementById("myModal").style.display = "block";
+
 
   // Display total correct predictions in the modal
-  document.getElementById("totalCorrectPredictions").innerText = totalCorrectPredictions;
+  //document.getElementById("totalCorrectPredictions").innerText = totalCorrectPredictions;
 
   // You can customize the message based on the total correct predictions
   let message;

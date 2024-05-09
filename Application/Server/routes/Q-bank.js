@@ -168,25 +168,24 @@ router.get('/quizques', verifyToken, async (req, res) => {
         ];
 
         questions.sort(() => Math.random() - 0.5);
-        console.log("Questions:", questions.keywords);
+        
         const keywordsToString = (keywords) => {
-            console.log("Questions:", keywords);
             if (Array.isArray(keywords)) {
-            return keywords.join(',');
+                return keywords.map(keyword => keyword.replace(/\r/g, '')).join(',');
             }
-            return ''; 
+            return '';
         };
         
         // Prepare data to send to Python script
         const newData = {
             Student_ID: questions.map(question => question._id),
-            Round: questions.map(question => 3),
+            Round: questions.map(() => roundNo),
             Category: questions.map(question => question.Category),
             Difficulty_Level: questions.map(question => question.difficulty),
-            Keywords: questions.map(question => keywordsToString(question.Keywords))
+            Keywords: questions.map(question => keywordsToString(question.keywords))
         };
         console.log("Data to send to Python script:", newData);
-
+      
         // Call Python script
         const pythonProcess = spawn('python', ['./predict.py']); 
 
