@@ -123,6 +123,7 @@ router.get('/profile', verifyToken, async (req, res) => {
 
 router.put('/edit-profile', verifyToken, upload.single('image'), async (req, res) => {
     try {
+        console.log("started................");
         const userId = req.userId;
         const { Email, School } = req.body; 
         console.log(req.body);
@@ -149,6 +150,18 @@ router.put('/edit-profile', verifyToken, upload.single('image'), async (req, res
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
+
+
+
+
+
+
+
+
+
+
+
 
 module.exports = router;
 

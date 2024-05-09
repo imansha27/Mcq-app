@@ -24,7 +24,7 @@ const UserDetailsSchema = new mongoose.Schema({
     },
     School: {
         type: String,
-       
+        default: null
     },
     UserType: {
         type: String,
