@@ -1,6 +1,6 @@
 import sys
 import pandas as pd
-from sklearn.neighbors import KNeighborsClassifier
+from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import LabelEncoder
 import joblib
 import io
@@ -8,11 +8,11 @@ import json
 
 # Function to make predictions
 def make_predictions(new_data):
-    # Load the KNN model from the joblib file
+    # Load the LR model from the joblib file
     try:
-        knn_model = joblib.load('KNN_model.pkl')
-        if not isinstance(knn_model, KNeighborsClassifier):
-            raise ValueError("Error: The loaded model is not an instance of KNeighborsClassifier.")
+        LR_model = joblib.load('LR_model.pkl')
+        if not isinstance(LR_model, LogisticRegression):
+            raise ValueError("Error: The loaded model is not an instance of LogisticRegression.")
     except FileNotFoundError:
         print("Error: Model file not found.")
         return None
@@ -49,7 +49,7 @@ def make_predictions(new_data):
     # Drop the original 'Category', 'Difficulty_Level', 'Keywords', and 'Student_ID' columns
     new_data.drop(['Category', 'Difficulty_Level', 'Keywords', 'Student_ID'], axis=1, inplace=True)
 
-    # Make predictions using the KNN model
+    # Make predictions using the LR model
     try:
         # Get the feature names from the training data
         feature_names = new_data.columns.tolist()
@@ -58,7 +58,7 @@ def make_predictions(new_data):
         new_data = new_data[feature_names]
 
         # Make predictions
-        predictions = knn_model.predict(new_data)
+        predictions = LR_model.predict(new_data)
         return predictions.tolist()  # Convert predictions to list for serialization
     except AttributeError as e:
         print("Error: Unable to make predictions using the loaded model. Details:", str(e))
