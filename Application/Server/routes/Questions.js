@@ -19,7 +19,7 @@ function extractKeywordsPythonScript(data, callback) {
             console.error(`Python script stderr: ${stderr}`);
             return callback(new Error(stderr), null);
         }
-        // Extracted keywords are in stdout
+        // Extracted keywords 
         const keywords = stdout.trim().split('\n');
         callback(null, keywords);
     });
@@ -40,7 +40,7 @@ router.post('/submitques', verifyToken, upload, async (req, res) => {
         }
 
         if (!Question || !Choice1 || !Choice2 || !Choice3 || !Choice4 || !Choice5 || !Correctans || !Category || !source ||!difficulty||!hint||!unit) {
-            return res.status(400).json({ error: "All fields are required including image." });
+            return res.status(400).json({ error: "All fields are required." });
         } 
 
        
