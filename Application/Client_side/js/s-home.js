@@ -15,6 +15,8 @@ $(document).ready(function () {
 });
 
 const fetchQuestions = () => {
+  const difficulty = window.localStorage.getItem("difficulty");
+  console.log("Selected difficulty1:", difficulty);
   const token = window.localStorage.getItem("token");
   console.log(token);
   axios
@@ -23,21 +25,22 @@ const fetchQuestions = () => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
-      
+      params: { difficulty: difficulty }
     })
     .then((response) => {
       questionsData = response.data.questions;
       roundNo=response.data.roundNo;
-      predictions=response.data.predictions;
+    
       document.getElementById("round").innerText=roundNo;
       console.log("Questions Data:", questionsData);
       console.log("round:",roundNo);
-      console.log("predictions:",predictions);
+     
       displayQuestion(currentQuestionIndex);
      
     })
     .catch((error) => console.error("Error fetching Questions:", error));
 };
+predictions = [];
 
 const displayQuestion = (index) => {
   const data = questionsData[index];
@@ -49,12 +52,13 @@ const displayQuestion = (index) => {
     document.getElementById("ch4").innerText = data.Choice4;
     document.getElementById("ch5").innerText = data.Choice5;
     document.getElementById("qhint").innerText = data.hint;
-    const prediction = predictions[index]; 
+    const prediction =  data.predictions; 
     if (prediction === 0) {
       document.getElementById("qhint").innerText = data.hint; 
     } else {
       document.getElementById("qhint").innerText = "We predicted that you will get this question correct without a hint 😊😊😊"; 
     }
+    predictions.push(prediction); 
   }
 };
 
@@ -275,6 +279,27 @@ function submitresults(){
 
 }
 
+
+// Function to set the difficulty in local storage and highlight the selected button
+const setDifficulty = (difficulty) => {
+  localStorage.setItem("difficulty", difficulty);
+   
+  $(".difficulty-button").removeClass("highlighted");
+  $("#" + difficulty.toLowerCase() + "Button").addClass("highlighted");
+  $("#" + difficulty.toLowerCase() + "Button").css("background-color", "gray"); 
+  location.reload(); 
+};
+
+// Check if a difficulty is already selected in local storage
+const selectedDifficulty = localStorage.getItem("difficulty");
+if (selectedDifficulty) {
+  $("#" + selectedDifficulty.toLowerCase() + "Button").addClass("highlighted");
+  $("#" + selectedDifficulty.toLowerCase() + "Button").css("background-color", "gray");
+} else {
+  setDifficulty("All"); 
+  $("#allButton").addClass("highlighted"); 
+  $("#allButton").css("background-color", "gray"); 
+}
 
 
 
