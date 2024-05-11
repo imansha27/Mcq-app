@@ -6,6 +6,10 @@ const verifyToken = require('../middlewares/authMiddleware');
 const upload = require('../middlewares/fileUploadMiddleware'); 
 const QuizResult = require('../models/results');
 
+
+
+
+
 //get all submitted questiona of a user 
 router.get('/getsubQ', verifyToken, async (req, res) => {
     try {
@@ -19,6 +23,12 @@ router.get('/getsubQ', verifyToken, async (req, res) => {
         return res.status(500).json({ message: error.message });
     }
 });
+
+
+
+
+
+
 
 
 
@@ -41,17 +51,80 @@ router.delete('/delesubQ',verifyToken,async(req,res)=>{
 
 
 
+
+
+
 //get all approved questions of a user
+// router.get('/getAppQ', verifyToken, async (req, res) => {
+//     try {
+//         const UserName = req.username; 
+//         const quiz = await sques.find({ submitby: UserName, status: "approve" });
+
+//         res.status(200).json({ questions: quiz }); 
+//     } catch (error) {
+//         return res.status(500).json({ message: error.message });
+//     }
+// });
 router.get('/getAppQ', verifyToken, async (req, res) => {
     try {
-        const UserName = req.username; 
-        const quiz = await sques.find({ submitby: UserName, status: "approve" });
+        const UserName = req.username;
 
-        res.status(200).json({ questions: quiz }); 
+        // Fetch approved questions for the user
+        const approvedQuestions = await sques.find({ submitby: UserName, status: "approve" });
+        const questionIds = approvedQuestions.map(question => question._id.toString());
+
+        // Fetch all quiz results
+        const allQuizResults = await QuizResult.find();
+
+        // Initialize question appearance count and correct count objects
+        const questionAppearanceCount = {};
+        const questionCorrectCount = {};
+
+        // Count how many times each approved question appears in quiz results
+        allQuizResults.forEach(quizResult => {
+            quizResult.answers.forEach(answer => {
+                const stringQuestionId = answer.questionId.toString(); // Convert ObjectId to string
+
+                if (questionIds.includes(stringQuestionId)) {
+                    // Increment appearance count for the question
+                    questionAppearanceCount[stringQuestionId] = (questionAppearanceCount[stringQuestionId] || 0) + 1;
+
+                    // Increment correct count if the answer is correct
+                    if (answer.answeredCorrectly) {
+                        questionCorrectCount[stringQuestionId] = (questionCorrectCount[stringQuestionId] || 0) + 1;
+                    }
+                }
+            });
+        });
+
+        // Calculate incorrect count for each question
+        const questionIncorrectCount = {};
+        Object.keys(questionAppearanceCount).forEach(questionId => {
+            const appearanceCount = questionAppearanceCount[questionId];
+            const correctCount = questionCorrectCount[questionId] || 0;
+            const incorrectCount = appearanceCount - correctCount;
+            questionIncorrectCount[questionId] = incorrectCount;
+        });
+
+        // Combine question counts with approved questions
+        const questionsWithCounts = approvedQuestions.map(question => ({
+            ...question.toObject(),
+            appearanceCount: questionAppearanceCount[question._id.toString()] || 0,
+            correctCount: questionCorrectCount[question._id.toString()] || 0,
+            incorrectCount: questionIncorrectCount[question._id.toString()] || 0
+        }));
+        console.log(questionsWithCounts);
+        res.status(200).json({ questions: questionsWithCounts });
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }
 });
+
+
+
+
+
+
 
 
 
@@ -184,7 +257,7 @@ router.get('/quizques', verifyToken, async (req, res) => {
             Difficulty_Level: questions.map(question => question.difficulty),
             Keywords: questions.map(question => keywordsToString(question.keywords))
         };
-        console.log("Data to send to Python script:", newData);
+        //console.log("Data to send to Python script:", newData);
       
         // Call Python script
         const pythonProcess = spawn('python', ['./predict.py']); 
@@ -195,14 +268,14 @@ router.get('/quizques', verifyToken, async (req, res) => {
 
         pythonProcess.stdout.on('data', (data) => {
             const predictions = JSON.parse(data.toString());
-            console.log("Predictions:", predictions);
+            //console.log("Predictions:", predictions);
 
             // Return questions, round number, and predictions
             return res.json({ questions, roundNo, predictions });
         });
 
         pythonProcess.stderr.on('data', (data) => {
-            console.error(`Error from Python script: ${data}`);
+            //console.error(`Error from Python script: ${data}`);
             return res.status(500).json({ message: "Error executing Python script" });
         });
 
