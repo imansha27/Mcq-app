@@ -12,6 +12,8 @@
       <div class="navbar-container" id="navbarContainer"></div>
    <div class="r-container"> 
     <h2>round no: <span id="round"></span> </h2>
+    
+   </div>
    </div>
       <div class="q-container">
         
@@ -42,8 +44,15 @@
         <div class="box"> <h2>hint: </h2>
           <p id="qhint"></p></div>
       </div>
+      
     </div>
 
+    <div class="difficulty-buttons" style="margin-left: 990px; margin-top:360px; padding: auto;">
+      <h3>Choose a difficulty level: </h3>
+      <button class="difficulty-button"  style="padding: 10px;" id="allButton" onclick="setDifficulty('All') ">Mix</button>
+      <button class="difficulty-button" style="padding: 10px;" id="hardButton" onclick="setDifficulty('Hard')">Hard</button>
+      <button class="difficulty-button" style="padding: 10px;" id="easyButton" onclick="setDifficulty('Easy')">Easy</button>
+    </div>
 
 <div id="myModal" class="modal">
   <div class="modal-content">

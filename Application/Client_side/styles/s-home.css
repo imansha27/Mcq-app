@@ -266,7 +266,7 @@
  
 }
 
-.category-buttons button{
+.category-buttons, button{
  background-color: #06531e; 
   color: white;
   border: none;
@@ -284,5 +284,10 @@
 }
 
 .category-buttons button:hover {
+  background-color: #4CAF50;
+}
+
+
+.difficulty-button:hover {
   background-color: #4CAF50;
 }
