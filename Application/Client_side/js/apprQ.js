@@ -40,6 +40,10 @@
                 <td>${question.Correctans}</td>
                 <td>${question.Category}</td>
                 <td>${question.keywords}</td>
+                <td>${question.difficulty}</td>
+                <td>${question.appearanceCount}</td>
+                <td>${question.correctCount}</td>
+                <td>${question.incorrectCount}</td>
                 <td>${question.image}</td>
                 <td>${question.source}</td>
                 <td>${question.status}</td>

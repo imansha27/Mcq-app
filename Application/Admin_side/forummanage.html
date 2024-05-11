@@ -4,15 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="styles/dashboard.css">
+    <link rel="stylesheet" href="styles/subq.css">
 </head>
 <body>
     <div class="navbar-container" id="navbarContainer"></div>
    
-    <div class="container">
-        <h1>Discussion Forum</h1>
-        
+    <div class="a-container">
+        <div class="aQ">
+            <h1>Forum</h1>
+            <table id="submittedQuestionsTable">
+                <thead>
+                    <tr>
+                        <th id="title">Title</th>
+                        <th id="Content">Content</th>
+                        <th id="Authour">Authour</th>
+                        <th id="Cat">Category</th>
+                        <th id="Createdat">Created on</th>
+                        <th>Remove From the QBank
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="submittedQuestionsBody">
+                    
+                </tbody>
+            </table>
+        </div>
     </div>
+        
+   
+    <script src="js/forumn.js"></script>
     <script>
         fetch("./components/adminnavbar.html")
 .then((response) => response.text())

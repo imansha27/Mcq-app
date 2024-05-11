@@ -5,24 +5,13 @@ ChemX is an innovative system designed to boost students' chemistry performance.
 
 # Install Dependencies and run the project
 
-**For Backend** - `cd server` `npm i` `npm start`
+**For Backend** 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#open bash server
+`cd Application ` 
+`cd Server ` 
+`npm i` 
+`nodemon server.js`
 
 
 
@@ -31,9 +20,9 @@ ChemX is an innovative system designed to boost students' chemistry performance.
 
 
 # Technologies Used:
-**Frontend**: HTML,css
-**Backend**: Node.js, Express.js
-**Database**: MongoDB
+**Frontend**: HTML,css,javascript
+**Backend**: Node.js, Express.js ,python
+**Database**: MongoDB atlas
 
 
 
@@ -47,6 +36,7 @@ ChemX is an innovative system designed to boost students' chemistry performance.
     |   ├── Admin_side
     |   |   ├── admin-images
     |   |   ├── components
+    |   |   ├── js
     |   |   ├── style
     |   |   ├── alogin.html
     |   |   ├── dashboard.html
@@ -54,6 +44,7 @@ ChemX is an innovative system designed to boost students' chemistry performance.
     |   |
     |   ├── Client_side
     |   |   ├── components
+    |   |   ├── js
     |   |   ├── images
     |   |   ├── style
     |   |   ├── aboutus.html
@@ -70,15 +61,30 @@ ChemX is an innovative system designed to boost students' chemistry performance.
     |       ├── database
     |       |   └── connection.js
     |       ├── middlewares
+    |       |   ├── authMiddleware.js
+    |       |   └── fileUploadMiddleware.js
+
     |       ├── models
-    |       |   ├── SubQuestions.js
+    |       |   ├── Questions.js
+    |       |   ├── admin.js
+    |       |   ├── comments.js
+    |       |   ├── Discussion.js
+    |       |   ├── results.js
     |       |   └── Users.js
     |       ├── routes
     |       |   ├── Questions.js
+    |       |   ├── Q-bank.js
+    |       |   ├── admin.js
+    |       |   ├── results.js
+    |       |   ├── comments.js
+    |       |   ├── admin.js
     |       |   └── Users.js
     |       ├── .env
     |       ├── .gitignore
-    |       ├── multi_output_SVM_model.pkl
+    |       ├── LR_model.pkl
+    |       ├── keyword_extraction.py
+    |       ├── predict.py
+    |       ├── retrain.py
     |       ├── package.json
     |       ├── package-lock.json
     |       └── server.js
